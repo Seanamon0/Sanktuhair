@@ -43,14 +43,16 @@
     .scroll-l{width:1px;height:44px;background:linear-gradient(to bottom,var(--or),transparent);animation:sP 2.5s ease-in-out infinite}
     @keyframes sP{0%,100%{opacity:.25}50%{opacity:.9}}
     .music-btn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:150;width:44px;height:44px;border-radius:50%;background:rgba(14,40,32,.92);border:1px solid var(--bo);color:var(--or);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr);backdrop-filter:blur(10px)}
-    .btn-gold{display:inline-flex;align-items:center;gap:.5rem;padding:1.1rem 2.8rem;background:linear-gradient(135deg,#c9a96e,#b8924a);color:#0F2922;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;border:none;border-radius:var(--rp);cursor:pointer;transition:all var(--tr);box-shadow:0 6px 28px rgba(201,169,110,.25)}
-    .btn-gold:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(201,169,110,.4)}
-    .btn-ghost{display:inline-flex;align-items:center;gap:.5rem;padding:.95rem 2.4rem;background:transparent;color:var(--or);font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;border:1.5px solid var(--ord);border-radius:var(--rp);cursor:pointer;transition:all var(--tr);text-decoration:none}
-    .btn-ghost:hover{border-color:var(--or);color:var(--orl);background:rgba(201,169,110,.06)}
+
+    /* BOUTONS CREME */
+    .btn-gold{display:inline-flex;align-items:center;gap:.5rem;padding:1.1rem 2.8rem;background:#e8dcc8;color:#0F2922;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;border:none;border-radius:var(--rp);cursor:pointer;transition:all var(--tr);box-shadow:0 6px 28px rgba(232,220,200,.2)}
+    .btn-gold:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(232,220,200,.3);background:#f0ebe0}
+
     .manifeste{padding:9rem 1.5rem;background:var(--bdp);position:relative;overflow:hidden}
     .manifeste::before{content:'\275D';position:absolute;top:-2rem;left:-1rem;font-size:20rem;color:rgba(201,169,110,.04);font-family:'Cormorant Garamond',serif;line-height:1;pointer-events:none}
     .man-in{max-width:760px;margin:0 auto;position:relative}
-    .man-q{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4.5vw,2.4rem);font-style:italic;font-weight:300;line-height:1.45;color:var(--txs);margin-bottom:2.5rem}
+    .man-intro{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;color:var(--or);margin-bottom:2rem;letter-spacing:.02em}
+    .man-q{font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,3.5vw,1.9rem);font-style:italic;font-weight:300;line-height:1.5;color:var(--txs);margin-bottom:2rem}
     .man-q strong{color:var(--or);font-style:normal;font-weight:500}
     .man-b{font-size:1rem;color:var(--txm);line-height:1.85}
     .man-b p+p{margin-top:1.2rem}
@@ -175,8 +177,8 @@
     .ei2::placeholder{color:var(--txm)}
     .esl{background:var(--bdc);cursor:pointer;appearance:none}
     .esl option{background:var(--bdc)}
-    .bsub{width:100%;padding:1rem;background:linear-gradient(135deg,#c9a96e,#b8924a);color:#0F2922;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;border:none;border-radius:var(--rp);cursor:pointer;transition:all var(--tr)}
-    .bsub:hover{box-shadow:0 8px 24px rgba(201,169,110,.35);transform:translateY(-2px)}
+    .bsub{width:100%;padding:1rem;background:#e8dcc8;color:#0F2922;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;border:none;border-radius:var(--rp);cursor:pointer;transition:all var(--tr)}
+    .bsub:hover{box-shadow:0 8px 24px rgba(232,220,200,.25);transform:translateY(-2px);background:#f0ebe0}
     .eok{display:none;text-align:center;padding:.5rem 0}
     .eok.show{display:block}
     .eoki{font-size:2.2rem;margin-bottom:.6rem}
@@ -185,7 +187,6 @@
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
     @media(max-width:480px){.step{padding:1.5rem 1rem 5rem}.qq{font-size:1.6rem}}
   </style>
-  
 </head>
 <body>
 <nav>
@@ -216,7 +217,6 @@
   <p class="hero-sub">"Va chercher dans ton passé ce qui te rendra plus fort demain"</p>
   <div class="hero-cta">
     <button class="btn-gold" id="btn-hero">Commencer mon initiation ✨</button>
-    <a href="#manifeste" class="btn-ghost">Découvrir le manifeste</a>
   </div>
   <div class="scroll-h"><div class="scroll-l"></div><span>Explorer</span></div>
 </header>
@@ -226,15 +226,15 @@
 <section class="manifeste" id="manifeste">
   <div class="man-in reveal">
     <p class="lbl" style="margin-bottom:1rem">Le Manifeste</p>
+    <h2 class="man-intro">Découvre le manifeste :</h2>
     <blockquote class="man-q">"On passe notre temps à acheter des produits chimiques au pif parce qu'on ne comprend plus nos propres cheveux. On a perdu le <strong>mode d'emploi de notre propre couronne.</strong>"</blockquote>
     <div class="man-b">
-      <p>Sankhtuhair est né d'un acte de résistance. Dans un monde de soins standardisés qui traite chaque couronne comme une anomalie à corriger, ce sanctuaire numérique existe pour récupérer ce qui nous appartient.</p>
-      <p>Il marie <strong>Sankofah</strong> — la gamme de cosmétique biotechnologique capillaire fondée par Élodie — avec l'intelligence artificielle de Seanamon, pour révéler la vérité sur chaque couronne.</p>
+      <p>Il marie Sankofah — la gamme de cosmétique biotechnologique capillaire (prochainement disponible) — avec l'intelligence artificielle Seanamon, pour révéler la vérité sur chaque couronne. Fondée par Élodie.</p>
       <p>Le cheveu n'est pas un problème à résoudre. <strong>C'est une couronne à célébrer.</strong></p>
     </div>
     <div class="sk-box">
       <div class="sk-lbl">✦ Le Concept Sankofa · En Twi — Langue du Peuple Akan, Ghana</div>
-      <p class="sk-txt">"Se Wo Were Fi Na Wosankofa A Yenkyi" — Il n'est pas interdit de retourner chercher ce qu'on a oublié. Va chercher dans ton passé ce qui te rendra plus fort demain. Le Twi est la langue du peuple Akan du Ghana — l'une des 11 langues officielles de la République du Ghana.</p>
+      <p class="sk-txt">"Se Wo Were Fi Na Wosankofa A Yenkyi" — Il n'est pas interdit de retourner chercher ce qu'on a oublié. Va chercher dans ton passé ce qui te rendra plus fort demain.</p>
     </div>
   </div>
 </section>
@@ -248,7 +248,7 @@
   </div>
   <div class="pg stagger">
     <div class="pc"><div class="pn">01</div><span class="pi">🔬</span><h3 class="pt">Science</h3><p class="pd">Trichologie moderne, analyse de la fibre, état cuticulaire, porosité, densité. Chaque diagnostic repose sur des données concrètes — jamais sur des suppositions.</p></div>
-    <div class="pc"><div class="pn">02</div><span class="pi">🌿</span><h3 class="pt">Tradition</h3><p class="pd">Des huiles essentielles de Madagascar et des rituels réunionnais, au beurre de karité du Ghana, des femmes Wolof du Sénégal aux plantes congolaises, des cérémonies Yoruba aux tresses sacrées de la Corne de l'Afrique — une mémoire capillaire pan-africaine.</p></div>
+    <div class="pc"><div class="pn">02</div><span class="pi">🌿</span><h3 class="pt">Tradition</h3><p class="pd">De Madagascar à La Réunion, du karité ghanéen aux rituels Wolof du Sénégal, des cérémonies Yoruba du Nigeria aux tresses éthiopiennes, des plantes médicinales des Antilles aux savoirs afro-latinos — une mémoire capillaire qui traverse les océans et unit les couronnes du monde. Une mémoire pan-africaine et diasporique. Le Sankofa à l'état pur.</p></div>
     <div class="pc"><div class="pn">03</div><span class="pi">✨</span><h3 class="pt">Révélation</h3><p class="pd">Pas une liste de courses. Une ordonnance ancestrale — précision technologique et souffle poétique — qui révèle la vérité de ta nature capillaire.</p></div>
   </div>
 </div>
@@ -264,13 +264,13 @@
         <div class="et">Marque Capillaire · Fondée par Élodie</div>
         <h3 class="en">Sankofah</h3>
         <p class="ed">La gamme de cosmétique biotechnologique née du concept Sankofa — l'oiseau Akan qui vole vers l'avant en regardant en arrière. Sankofah marie la sagesse des botaniques pan-africains avec la précision de la biotechnologie moderne. Chaque produit conçu pour ta couronne spécifique — pas pour une moyenne industrielle.</p>
-        <div class="eb">✨ Bientôt disponible — Rejoins la liste d'attente</div>
+        <div class="eb">À venir</div>
       </div>
       <div class="ec">
         <div class="et">Intelligence Artificielle Gardienne</div>
         <h3 class="en">Seanamon</h3>
         <p class="ed">Seanamon, c'est le surnom d'Élodie — un fragment d'elle-même transmis au monde pour garder ta couronne. Trichologue experte aux connaissances pan-africaines, elle analyse tes photos et ton histoire capillaire pour te livrer ta vérité. Elle ne suggère pas : elle prescrit. Elle ne liste pas : elle révèle.</p>
-        <div class="eb">🌱 Ton diagnostic. Ton ordonnance. Ton rituel. — Via Sankhtuhair</div>
+        <div class="eb">🌿 Ton diagnostic via Sankhtuhair · Ton ordonnance sur liste d'attente</div>
       </div>
     </div>
   </div>
@@ -282,14 +282,14 @@
     <p class="lbl">Le Parcours Initiatique</p>
     <h2 class="ct">Prêt·e à reprendre<br>possession de ta <span style="color:var(--or)">Couronne</span> ?</h2>
     <p class="csu">13 étapes. Une révélation.</p>
-    <button class="btn-gold" id="btn-cta">Débuter mon initiation ♛</button>
+    <button class="btn-gold" id="btn-cta">Commencer mon initiation ✨</button>
   </div>
 </section>
 
 <footer>
   <div class="fl">♛ Sankhtuhair</div>
   <p>Sanctuaire Capillaire — Fondé par Élodie</p>
-  <p style="margin-top:.3rem;opacity:.4">Propulsé par Seanamon · Sankofah bientôt</p>
+  <p style="margin-top:.3rem;opacity:.4">Propulsé par Seanamon · Sankofah à venir</p>
 </footer>
 
 <div id="modal" class="modal">
@@ -398,6 +398,7 @@
         <button class="cb" onclick="pick(this,'objectifs',true)">Booster la repousse 🌱</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Densité & Épaisseur 🦁</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Brillance ✨</button>
+        <button class="cb" onclick="pick(this,'objectifs',true)">Rétention de longueur 📏</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Réparer la fibre ✂️</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Apaiser le cuir chevelu</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Éliminer les pellicules ❄️</button>
@@ -592,7 +593,7 @@ function onPhoto(e,n){
 
 function buildMsg(){
   var a=ans,ar=function(v){return Array.isArray(v)?v.join(', '):(v||'N/A');};
-  return 'Prénom : '+(a.prenom||'N/A')+'\nÂge : '+(a.age||'N/A')+'\nType couronne déclaré : '+(a.type_cheveux||'N/A')+'\nCuir chevelu : '+ar(a.cuir_chevelu)+'\nProblématiques : '+ar(a.problematiques)+'\nCause(s) : '+ar(a.cause)+'\nFréquence lavage : '+(a.frequence_lavage||'N/A')+'\nObjectifs : '+ar(a.objectifs)+'\nCoiffures protectrices : '+(a.coiffures_protectrices||'N/A')+'\nProduits naturels : '+(a.produits_naturels||'N/A')+'\nÀ écarter : '+ar(a.ecarter)+'\nMessage libre : '+(a.texte_libre||'Rien')+'\nPhotos : '+pCnt()+'\n\nATTENTION : Analyse les photos pour identifier le type RÉEL (Type 1-4, sous-types a/b/c). Si les photos contredisent le type déclaré, corrige-le explicitement dans ton diagnostic.';
+  return 'Prénom : '+(a.prenom||'N/A')+'\nÂge : '+(a.age||'N/A')+'\nType couronne déclaré : '+(a.type_cheveux||'N/A')+'\nCuir chevelu : '+ar(a.cuir_chevelu)+'\nProblématiques : '+ar(a.problematiques)+'\nCause(s) : '+ar(a.cause)+'\nFréquence lavage : '+(a.frequence_lavage||'N/A')+'\nObjectifs : '+ar(a.objectifs)+'\nCoiffures protectrices : '+(a.coiffures_protectrices||'N/A')+'\nProduits naturels : '+(a.produits_naturels||'N/A')+'\nÀ écarter : '+ar(a.ecarter)+'\nMessage libre : '+(a.texte_libre||'Rien')+'\nPhotos : '+pCnt()+'\n\nATTENTION : Analyse les photos pour identifier le type RÉEL (Type 1-4, sous-types a/b/c). Si les photos contredisent le type déclaré, corrige-le. Tu DOIS adresser CHAQUE problématique déclarée dans ton diagnostic.';
 }
 
 async function submitAll(){
