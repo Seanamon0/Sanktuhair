@@ -1,45 +1,24 @@
 export const maxDuration = 60;
-// api/diagnose.js — Vercel Serverless Function
-// Proxies OpenAI GPT-4o call to protect the API key
 
 export default async function handler(req, res) {
-  // CORS headers (useful for local dev)
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const OPENAI_KEY = process.env.OPENAI_API_KEY;
+  
+  // DEBUG — on log la clé (masquée)
+  console.log('Clé présente:', !!OPENAI_KEY);
+  console.log('Début clé:', OPENAI_KEY ? OPENAI_KEY.substring(0, 10) : 'ABSENTE');
+
   if (!OPENAI_KEY) {
-    return res.status(500).json({ error: 'OpenAI API key not configured. Add OPENAI_API_KEY in your Vercel environment variables.' });
+    return res.status(500).json({ error: 'Clé OpenAI manquante' });
   }
 
   const { prenom, content } = req.body;
-
-  if (!content || !Array.isArray(content)) {
-    return res.status(400).json({ error: 'Missing content' });
-  }
-
-  const systemPrompt = `Tu es Seanamon, l'experte Trichologue spécialisée en couronnes texturées. Ton regard est clinique, mais ton ton est celui d'une coach de confiance. Tutoie l'utilisatrice par son prénom.
-
-RÈGLES DE STYLE :
-1/ ZÉRO Markdown.
-2/ EMOJIS AUTORISÉS UNIQUEMENT : ✨ 🌱 🌸 💕 🌿 🍃. Aucun autre emoji n'est permis. Utilise-les avec parcimonie pour souligner les passages doux ou poétiques.
-3/ Titres : Chiffre. Titre avec majuscule (ex: 1. Le petit mot de Seanamon :).
-4/ Laisse une ligne vide entre chaque section.
-
-INTERDITS : Ne JAMAIS utiliser le mot "crépus", "chevelure" ou "crinière". Utilise exclusivement "Couronne".
-
-RÈGLES DE TON : Ne suggère pas, prescris. Remplace les "Je te suggère" par des affirmations : "Ta couronne nécessite", "Voici ton ordonnance". Si tu vois une fibre très sèche, utilise un vocabulaire professionnel (déshydratation, fragilité cuticulaire).
-
-STRUCTURE OBLIGATOIRE :
-1. Le petit mot de Seanamon :
-2. Diagnostic technique :
-3. Ton ordonnance produit :
-4. Ton rituel de scellage détaillé :
-5. Le conseil bien-être :`;
+  const systemPrompt = `Tu es Seanamon, l'experte Trichologue spécialisée en couronnes texturées. Ton regard est clinique, mais ton ton est celui d'une coach de confiance. Tutoie l'utilisatrice par son prénom. RÈGLES DE STYLE : 1/ ZÉRO Markdown. 2/ EMOJIS AUTORISÉS UNIQUEMENT : ✨ 🌱 🌸 💕 🌿 🍃. 3/ Titres : Chiffre. Titre avec majuscule. 4/ Laisse une ligne vide entre chaque section. INTERDITS : Ne JAMAIS utiliser crépus, chevelure ou crinière. Utilise exclusivement Couronne. STRUCTURE OBLIGATOIRE : 1. Le petit mot de Seanamon : 2. Diagnostic technique : 3. Ton ordonnance produit : 4. Ton rituel de scellage détaillé : 5. Le conseil bien-être :`;
 
   try {
     const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -59,19 +38,20 @@ STRUCTURE OBLIGATOIRE :
       }),
     });
 
+    console.log('OpenAI status:', openaiRes.status);
+
     if (!openaiRes.ok) {
       const errBody = await openaiRes.text();
-      console.error('OpenAI error:', openaiRes.status, errBody);
-      return res.status(502).json({ error: 'OpenAI API error', detail: openaiRes.status });
+      console.error('OpenAI error:', errBody);
+      return res.status(502).json({ error: 'OpenAI error', detail: errBody });
     }
 
     const data = await openaiRes.json();
     const result = data.choices?.[0]?.message?.content || '';
-
     return res.status(200).json({ result });
 
   } catch (err) {
-    console.error('diagnose error:', err);
-    return res.status(500).json({ error: 'Internal error', message: err.message });
+    console.error('Catch error:', err.message);
+    return res.status(500).json({ error: err.message });
   }
 }
