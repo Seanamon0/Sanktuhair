@@ -725,7 +725,7 @@ function mkNoise(){
 function schedP(){
   if(!actx||!mOn)return;
   var now=actx.currentTime,b=60/70;
-  [[0,.22,80,.2],[b*.5,.1,140,.15],[b*1,.18,75,.2],[b*1.5,.08,160,.12],[b*2,.15,80,.18],[b*3,.1,130,.15],[b*3.5,.2,75,.22]].forEach(function(p){pDrm(now+p[0],p[2],p[1],p[3]);});
+ [[0,.22,80,.2],[b*.5,.1,140,.15],[b*1,.18,75,.2],[b*1.5,.08,160,.12],[b*2,.15,80,.18],[b*3,.1,130,.15],[b*3.5,.2,75,.22]].forEach(function(p){pDrm(now+p[0],p[2],p[1],p[3]);});
   setTimeout(function(){if(mOn&&actx)schedP();},b*4*1000);
 }
 function pDrm(w,f,v,d){
