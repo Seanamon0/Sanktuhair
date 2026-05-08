@@ -1,3 +1,4 @@
+export const maxDuration = 60;
 // api/diagnose.js — Vercel Serverless Function
 // Proxies OpenAI GPT-4o call to protect the API key
 
