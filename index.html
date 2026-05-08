@@ -193,7 +193,18 @@
     .esl{background:var(--bdc);cursor:pointer;appearance:none}
     .esl option{background:var(--bdc)}
     .bsub{width:100%;padding:1rem;background:linear-gradient(135deg,#c9a96e,#b8924a);color:#0F2922;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;border:none;border-radius:var(--rp);cursor:pointer;transition:all var(--tr)}
-    .bsub:hover{box-shadow:0 8px<body>
+    .bsub:hover{box-shadow:0 8px 24px rgba(201,169,110,.35);transform:translateY(-2px)}
+    .eok{display:none;text-align:center;padding:.5rem 0}
+    .eok.show{display:block}
+    .eoki{font-size:2.2rem;margin-bottom:.6rem}
+    .eokm{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--or);line-height:1.5}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @media(max-width:480px){.step{padding:1.5rem 1rem 5rem}.qq{font-size:1.6rem}}
+  </style>
+</head>
+<body>
 <nav>
   <div class="nav-logo">♛ Sankhtuhair</div>
   <button class="btn-nav" id="btn-nav">Débuter mon initiation</button>
@@ -725,7 +736,7 @@ function mkNoise(){
 function schedP(){
   if(!actx||!mOn)return;
   var now=actx.currentTime,b=60/70;
- [[0,.22,80,.2],[b*.5,.1,140,.15],[b*1,.18,75,.2],[b*1.5,.08,160,.12],[b*2,.15,80,.18],[b*3,.1,130,.15],[b*3.5,.2,75,.22]].forEach(function(p){pDrm(now+p[0],p[2],p[1],p[3]);});
+  [[0,.22,80,.2],[b*.5,.1,140,.15],[b*1,.18,75,.2],[b*1.5,.08,160,.12],[b*2,.15,80,.18],[b*3,.1,130,.15],[b*3.5,.2,75,.22]].forEach(function(p){pDrm(now+p[0],p[2],p[1],p[3]);});
   setTimeout(function(){if(mOn&&actx)schedP();},b*4*1000);
 }
 function pDrm(w,f,v,d){
