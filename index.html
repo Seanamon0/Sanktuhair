@@ -633,7 +633,8 @@ function pick(btn,field,multi){
 }
 
 function pCnt(){return Object.values(imgs).filter(Boolean).length;}
-function onPhoto(e,n){
+
+  function onPhoto(e,n){
   var file=e.target.files[0];if(!file)return;
   var canvas=document.createElement('canvas');
   var ctx=canvas.getContext('2d');
