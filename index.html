@@ -4,1868 +4,445 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sankhtuhair — Sanctuaire de ta Couronne</title>
-  <meta name="description" content="Sankhtuhair marie le Sankofa et l'IA pour révéler la vérité sur ta couronne. Diagnostic capillaire personnalisé par Seanamon, trichologue IA.">
+  <meta name="description" content="Sankhtuhair marie le Sankofa et l'IA pour révéler la vérité sur ta couronne.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
-    /* ====================================================
-       RESET & ROOT
-    ==================================================== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:           #0F2922;
-      --bg-card:      #172f25;
-      --bg-deep:      #0a1f18;
-      --bg-modal:     #0e2820;
-      --gold:         #c9a96e;
-      --gold-light:   #e8c98a;
-      --gold-dim:     rgba(201,169,110,0.35);
-      --gold-glow:    rgba(201,169,110,0.12);
-      --text:         #f0ebe0;
-      --text-soft:    rgba(240,235,224,0.8);
-      --text-muted:   rgba(240,235,224,0.55);
-      --border:       rgba(201,169,110,0.2);
-      --border-hover: rgba(201,169,110,0.55);
-      --success:      #5ecb8a;
-      --radius-pill:  50px;
-      --radius-card:  18px;
-      --radius-sm:    10px;
-      --transition:   0.3s cubic-bezier(0.4,0,0.2,1);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      line-height: 1.65;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ====================================================
-       TYPOGRAPHY HELPERS
-    ==================================================== */
-    .serif { font-family: 'Cormorant Garamond', serif; }
-    .gold  { color: var(--gold); }
-    .italic { font-style: italic; }
-    .label {
-      font-size: 0.68rem;
-      letter-spacing: 0.38em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    /* ====================================================
-       SCROLL REVEAL
-    ==================================================== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.in { opacity: 1; transform: translateY(0); }
-
-    .stagger > * {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
-    .stagger.in > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay:0s; }
-    .stagger.in > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay:0.12s; }
-    .stagger.in > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay:0.24s; }
-    .stagger.in > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay:0.36s; }
-
-    /* ====================================================
-       NAV
-    ==================================================== */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      background: rgba(14,40,32,0.82);
-      border-bottom: 1px solid var(--border);
-      transition: padding var(--transition);
-    }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: var(--gold);
-      letter-spacing: 0.12em;
-      text-decoration: none;
-    }
-    .btn-nav {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      background: transparent;
-      border: 1.5px solid var(--gold-dim);
-      border-radius: var(--radius-pill);
-      padding: 0.55rem 1.4rem;
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-    .btn-nav:hover {
-      background: var(--gold);
-      color: var(--bg);
-      border-color: var(--gold);
-    }
-
-    /* ====================================================
-       HERO
-    ==================================================== */
-    .hero {
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 7rem 1.5rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Radial ambient */
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 70% 55% at 50% 45%, rgba(201,169,110,0.09) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 30% at 20% 80%, rgba(201,169,110,0.04) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    /* Grain texture overlay */
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      background-size: 200px;
-      opacity: 0.6;
-      pointer-events: none;
-    }
-
-    /* Botanical branch — right */
-    .branch-r {
-      position: absolute;
-      right: -40px; top: 8%;
-      width: min(360px, 40vw);
-      opacity: 0.09;
-      pointer-events: none;
-    }
-    /* Botanical branch — left */
-    .branch-l {
-      position: absolute;
-      left: -30px; bottom: 12%;
-      width: min(280px, 32vw);
-      opacity: 0.09;
-      transform: scaleX(-1);
-      pointer-events: none;
-    }
-
-    .hero-eyebrow {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.42em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.2rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.3s forwards;
-    }
-
-    .hero-crown {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      color: var(--gold);
-      margin-bottom: 1.2rem;
-      display: block;
-      filter: drop-shadow(0 0 24px rgba(201,169,110,0.35));
-      animation: floatCrown 5s ease-in-out infinite, fadeIn 1s ease 0.1s both;
-    }
-    @keyframes floatCrown {
-      0%,100% { transform: translateY(0); }
-      50%     { transform: translateY(-10px); }
-    }
-
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(4rem, 15vw, 9.5rem);
-      font-weight: 300;
-      line-height: 0.95;
-      letter-spacing: 0.06em;
-      color: var(--text);
-      margin-bottom: 0.6rem;
-      opacity: 0;
-      animation: fadeUp 0.9s ease 0.5s forwards;
-    }
-    .hero-title .accent {
-      color: var(--gold);
-      font-style: italic;
-    }
-
-    .hero-sub {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1rem, 3.5vw, 1.45rem);
-      font-style: italic;
-      font-weight: 300;
-      color: var(--text-muted);
-      max-width: 460px;
-      margin: 1.4rem auto 2.8rem;
-      opacity: 0;
-      animation: fadeUp 0.9s ease 0.7s forwards;
-    }
-
-    .hero-cta {
-      opacity: 0;
-      animation: fadeUp 0.9s ease 0.9s forwards;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem; left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      opacity: 0;
-      animation: fadeIn 1s ease 1.8s forwards;
-    }
-    .scroll-hint span {
-      font-size: 0.62rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(201,169,110,0.4);
-    }
-    .scroll-line {
-      width: 1px; height: 44px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-      animation: scrollPulse 2.5s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%,100% { opacity: 0.25; }
-      50%     { opacity: 0.9; }
-    }
-
-    /* ====================================================
-       BUTTONS
-    ==================================================== */
-    .btn-gold {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 1.1rem 2.8rem;
-      background: linear-gradient(135deg, #c9a96e 0%, #b8924a 100%);
-      color: var(--bg-deep);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      border: none;
-      border-radius: var(--radius-pill);
-      cursor: pointer;
-      transition: all var(--transition);
-      box-shadow: 0 6px 28px rgba(201,169,110,0.22);
-    }
-    .btn-gold:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 40px rgba(201,169,110,0.38);
-    }
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.95rem 2.4rem;
-      background: transparent;
-      color: var(--gold);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      border: 1.5px solid var(--gold-dim);
-      border-radius: var(--radius-pill);
-      cursor: pointer;
-      transition: all var(--transition);
-      text-decoration: none;
-    }
-    .btn-ghost:hover {
-      border-color: var(--gold);
-      color: var(--gold-light);
-      background: rgba(201,169,110,0.06);
-    }
-
-    /* ====================================================
-       MANIFESTE
-    ==================================================== */
-    .manifeste {
-      padding: 9rem 1.5rem;
-      background: var(--bg-deep);
-      position: relative;
-      overflow: hidden;
-    }
-    .manifeste::before {
-      content: '❝';
-      position: absolute;
-      top: -2rem; left: -1rem;
-      font-size: 22rem;
-      color: rgba(201,169,110,0.035);
-      font-family: 'Cormorant Garamond', serif;
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-    .manifeste-inner {
-      max-width: 760px;
-      margin: 0 auto;
-      position: relative;
-    }
-    .manifeste-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.6rem, 4.5vw, 2.4rem);
-      font-style: italic;
-      font-weight: 300;
-      line-height: 1.45;
-      color: var(--text-soft);
-      margin-bottom: 2.5rem;
-    }
-    .manifeste-quote strong {
-      color: var(--gold);
-      font-style: normal;
-      font-weight: 500;
-    }
-    .manifeste-body {
-      font-size: 1rem;
-      color: var(--text-muted);
-      line-height: 1.85;
-    }
-    .manifeste-body p + p { margin-top: 1.2rem; }
-    .manifeste-body strong { color: var(--text-soft); font-weight: 400; }
-
-    /* ====================================================
-       SECTION WRAPPER
-    ==================================================== */
-    .section-wrap {
-      padding: 7rem 1.5rem;
-      max-width: 1180px;
-      margin: 0 auto;
-    }
-    .section-head { margin-bottom: 3.5rem; }
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.8rem, 6vw, 4.8rem);
-      font-weight: 400;
-      line-height: 1.05;
-      margin-top: 0.6rem;
-    }
-    .section-title em { color: var(--gold); font-style: italic; }
-
-    /* ====================================================
-       3 PILIERS
-    ==================================================== */
-    .piliers-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 1.5rem;
-    }
-    .pilier-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-card);
-      padding: 2.5rem 2rem 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: border-color var(--transition), transform var(--transition);
-    }
-    .pilier-card:hover {
-      border-color: var(--gold-dim);
-      transform: translateY(-5px);
-    }
-    .pilier-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 20%; right: 20%;
-      height: 2px;
-      background: linear-gradient(to right, transparent, var(--gold), transparent);
-      opacity: 0;
-      transition: opacity var(--transition);
-    }
-    .pilier-card:hover::after { opacity: 1; }
-    .pilier-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 6rem;
-      font-weight: 300;
-      color: rgba(201,169,110,0.07);
-      line-height: 1;
-      margin-bottom: -2rem;
-      user-select: none;
-    }
-    .pilier-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
-    .pilier-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.9rem;
-      color: var(--gold);
-      margin-bottom: 0.9rem;
-    }
-    .pilier-desc { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; }
-
-    /* ====================================================
-       ECOSYSTEM
-    ==================================================== */
-    .ecosystem-wrap {
-      padding: 9rem 1.5rem;
-      background: var(--bg-deep);
-    }
-    .ecosystem-inner { max-width: 1100px; margin: 0 auto; }
-    .eco-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 4rem;
-    }
-    @media (max-width: 700px) { .eco-grid { grid-template-columns: 1fr; } }
-    .eco-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-card);
-      padding: 2.8rem 2.2rem;
-      transition: border-color var(--transition);
-    }
-    .eco-card:hover { border-color: var(--gold-dim); }
-    .eco-tag {
-      display: inline-block;
-      border: 1px solid var(--gold-dim);
-      border-radius: var(--radius-pill);
-      padding: 0.3rem 1rem;
-      font-size: 0.66rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.4rem;
-    }
-    .eco-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.6rem;
-      font-weight: 400;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-    .eco-desc { font-size: 0.93rem; color: var(--text-muted); line-height: 1.8; }
-    .eco-badge {
-      margin-top: 1.8rem;
-      padding: 0.9rem 1.1rem;
-      background: rgba(201,169,110,0.05);
-      border-left: 2px solid var(--gold-dim);
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      font-size: 0.84rem;
-      color: var(--text-muted);
-      font-style: italic;
-      font-family: 'Cormorant Garamond', serif;
-    }
-
-    /* ====================================================
-       CTA SECTION
-    ==================================================== */
-    .cta-section {
-      padding: 10rem 1.5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-section::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,169,110,0.07) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .cta-bg-num {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(12rem, 28vw, 22rem);
-      font-weight: 300;
-      color: rgba(201,169,110,0.045);
-      user-select: none;
-      pointer-events: none;
-      white-space: nowrap;
-    }
-    .cta-inner { position: relative; z-index: 1; }
-    .cta-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 5.5vw, 3.8rem);
-      font-weight: 400;
-      line-height: 1.2;
-      margin-top: 0.8rem;
-      margin-bottom: 0.8rem;
-    }
-    .cta-subtitle {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: var(--text-muted);
-      margin-bottom: 2.8rem;
-    }
-    .cta-meta {
-      margin-top: 1.5rem;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      letter-spacing: 0.12em;
-    }
-
-    /* ====================================================
-       FOOTER
-    ==================================================== */
-    footer {
-      padding: 3rem 1.5rem;
-      text-align: center;
-      border-top: 1px solid var(--border);
-    }
-    .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      color: var(--gold);
-      letter-spacing: 0.12em;
-      margin-bottom: 0.6rem;
-    }
-    footer p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.8; }
-
-    /* ====================================================
-       DIVIDER
-    ==================================================== */
-    .ornate-divider {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      padding: 2rem 1.5rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .ornate-divider-line {
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-    .ornate-divider-symbol { color: var(--gold); font-size: 1rem; opacity: 0.5; }
-
-    /* ====================================================
-       QUESTIONNAIRE MODAL
-    ==================================================== */
-    .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 500;
-      background: var(--bg-modal);
-      display: flex;
-      flex-direction: column;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease;
-    }
-    .modal.open {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    /* Progress bar */
-    .q-progress {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: rgba(201,169,110,0.12);
-      z-index: 10;
-    }
-    .q-progress-fill {
-      height: 100%;
-      background: linear-gradient(to right, var(--gold), var(--gold-light));
-      transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
-      width: 0%;
-    }
-
-    /* Modal header */
-    .q-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.3rem 1.5rem 0;
-      flex-shrink: 0;
-    }
-    .q-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      color: var(--gold);
-      letter-spacing: 0.12em;
-    }
-    .q-close {
-      width: 34px; height: 34px;
-      border-radius: 50%;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all var(--transition);
-    }
-    .q-close:hover { border-color: var(--gold-dim); color: var(--gold); }
-
-    /* Steps area */
-    .q-steps {
-      flex: 1;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .step {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 2rem 1.5rem 1.5rem;
-      max-width: 520px;
-      margin: 0 auto;
-      width: 100%;
-      opacity: 0;
-      transform: translateX(55px);
-      transition: opacity 0.38s cubic-bezier(0.4,0,0.2,1), transform 0.38s cubic-bezier(0.4,0,0.2,1);
-      pointer-events: none;
-      overflow-y: auto;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    .step::-webkit-scrollbar { display: none; }
-    .step.active {
-      opacity: 1;
-      transform: translateX(0);
-      pointer-events: all;
-    }
-    .step.exit {
-      opacity: 0;
-      transform: translateX(-55px);
-    }
-
-    .q-question {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.7rem, 5vw, 2.3rem);
-      font-weight: 400;
-      line-height: 1.3;
-      text-align: center;
-      margin-bottom: 2.2rem;
-    }
-    .q-hint {
-      text-align: center;
-      font-size: 0.76rem;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-      letter-spacing: 0.1em;
-    }
-
-    /* Text / textarea inputs */
-    .q-input {
-      width: 100%;
-      background: transparent;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 1rem 1.3rem;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 1rem;
-      font-weight: 300;
-      outline: none;
-      transition: border-color var(--transition);
-      margin-bottom: 1.8rem;
-    }
-    .q-input:focus { border-color: var(--gold); }
-    .q-input::placeholder { color: var(--text-muted); }
-
-    textarea.q-input {
-      min-height: 130px;
-      resize: none;
-      line-height: 1.6;
-    }
-
-    /* Choice buttons */
-    .choices {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-      justify-content: center;
-      margin-bottom: 1.8rem;
-    }
-    .c-btn {
-      padding: 0.72rem 1.15rem;
-      background: transparent;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-pill);
-      color: var(--text-soft);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 300;
-      cursor: pointer;
-      transition: all var(--transition);
-      white-space: nowrap;
-    }
-    .c-btn:hover { border-color: var(--gold-dim); color: var(--gold-light); }
-    .c-btn.sel {
-      border-color: var(--gold);
-      background: rgba(201,169,110,0.1);
-      color: var(--gold-light);
-    }
-
-    /* Next / Submit buttons in steps */
-    .q-next {
-      width: 100%;
-      padding: 1rem 1.5rem;
-      background: transparent;
-      border: 1.5px solid var(--gold-dim);
-      border-radius: var(--radius-pill);
-      color: var(--gold);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 400;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all var(--transition);
-      margin-top: auto;
-      flex-shrink: 0;
-    }
-    .q-next:not(:disabled):hover { background: var(--gold); color: var(--bg); border-color: var(--gold); }
-    .q-next:disabled { opacity: 0.3; cursor: not-allowed; }
-
-    /* ====================================================
-       PHOTO UPLOAD
-    ==================================================== */
-    .photos-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-      margin-bottom: 1.5rem;
-    }
-    .photo-zone {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      background: rgba(23,47,37,0.6);
-      border: 1.5px dashed var(--border);
-      border-radius: var(--radius-sm);
-      padding: 0.9rem 1.1rem;
-      cursor: pointer;
-      transition: border-color var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-    .photo-zone input[type="file"] {
-      position: absolute; inset: 0;
-      opacity: 0; cursor: pointer; width: 100%; height: 100%;
-    }
-    .photo-zone:hover, .photo-zone.done { border-style: solid; border-color: var(--gold-dim); }
-    .photo-thumb {
-      width: 56px; height: 56px;
-      border-radius: 8px;
-      background: rgba(201,169,110,0.08);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      overflow: hidden;
-      font-size: 1.4rem;
-    }
-    .photo-thumb img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: none;
-    }
-    .photo-thumb.loaded img { display: block; }
-    .photo-thumb.loaded .thumb-icon { display: none; }
-    .photo-info { flex: 1; }
-    .photo-title { font-size: 0.86rem; font-weight: 500; color: var(--text-soft); margin-bottom: 0.2rem; }
-    .photo-desc { font-size: 0.76rem; color: var(--text-muted); line-height: 1.4; }
-    .photo-check { color: var(--success); font-size: 1.1rem; opacity: 0; transition: opacity var(--transition); }
-    .photo-zone.done .photo-check { opacity: 1; }
-    .photos-note {
-      text-align: center;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-bottom: 1.3rem;
-    }
-
-    /* ====================================================
-       LOADING SCREEN
-    ==================================================== */
-    .q-loading {
-      position: absolute; inset: 0;
-      background: var(--bg-modal);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.5s ease;
-      z-index: 5;
-    }
-    .q-loading.active { opacity: 1; pointer-events: all; }
-
-    .loading-glyph {
-      font-size: 3.5rem;
-      color: var(--gold);
-      animation: loadPulse 2.5s ease-in-out infinite;
-      margin-bottom: 2rem;
-      filter: drop-shadow(0 0 16px rgba(201,169,110,0.3));
-    }
-    @keyframes loadPulse {
-      0%,100% { opacity: 0.35; transform: scale(0.95); }
-      50%     { opacity: 1; transform: scale(1.05); }
-    }
-    .loading-msg {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--text-soft);
-      max-width: 320px;
-    }
-    .loading-sub {
-      margin-top: 0.8rem;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-    }
-    .dots {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 2rem;
-      justify-content: center;
-    }
-    .dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--gold);
-      animation: dotBlink 1.6s ease-in-out infinite;
-    }
-    .dot:nth-child(2) { animation-delay: 0.22s; }
-    .dot:nth-child(3) { animation-delay: 0.44s; }
-    @keyframes dotBlink {
-      0%,100% { opacity: 0.25; transform: scale(0.85); }
-      50%     { opacity: 1; transform: scale(1.2); }
-    }
-
-    /* ====================================================
-       DIAGNOSTIC RESULT
-    ==================================================== */
-    .q-result {
-      position: absolute; inset: 0;
-      overflow-y: auto;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.5s ease;
-      z-index: 4;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    .q-result::-webkit-scrollbar { display: none; }
-    .q-result.active { opacity: 1; pointer-events: all; }
-
-    .result-wrap {
-      max-width: 580px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
-    }
-
-    .result-top {
-      text-align: center;
-      padding: 2rem 0 1.5rem;
-    }
-    .result-glyph { font-size: 2.8rem; color: var(--gold); margin-bottom: 0.8rem; display: block; }
-    .result-headline {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      font-weight: 400;
-      color: var(--gold);
-      margin-bottom: 0.3rem;
-    }
-    .result-by { font-size: 0.8rem; color: var(--text-muted); letter-spacing: 0.15em; }
-
-    .result-hr {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-    .result-hr-line { flex:1; height:1px; background: var(--border); }
-    .result-hr-gem { color: var(--gold); font-size: 0.7rem; }
-
-    /* Seanamon sections */
-    .seanamon-block {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-card);
-      overflow: hidden;
-      margin-bottom: 0.75rem;
-    }
-    .seanamon-section-head {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 1.3rem;
-      border-bottom: 1px solid var(--border);
-      background: rgba(201,169,110,0.04);
-    }
-    .seanamon-num {
-      width: 28px; height: 28px;
-      border: 1.5px solid var(--gold-dim);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.9rem;
-      color: var(--gold);
-      flex-shrink: 0;
-    }
-    .seanamon-sec-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: var(--text-soft);
-    }
-    .seanamon-sec-body {
-      padding: 1.2rem 1.3rem;
-      font-size: 0.9rem;
-      line-height: 1.8;
-      color: var(--text-soft);
-      white-space: pre-line;
-    }
-
-    /* Raw fallback */
-    .result-raw {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-card);
-      padding: 1.5rem;
-      font-size: 0.9rem;
-      line-height: 1.8;
-      color: var(--text-soft);
-      white-space: pre-line;
-    }
-
-    /* ====================================================
-       EMAIL CAPTURE
-    ==================================================== */
-    .email-block {
-      background: var(--bg-deep);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-card);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      margin-top: 1.5rem;
-    }
-    .email-badge {
-      display: inline-block;
-      background: rgba(201,169,110,0.08);
-      border: 1px solid var(--gold-dim);
-      border-radius: var(--radius-pill);
-      padding: 0.35rem 1rem;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-    .email-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.7rem;
-      margin-bottom: 0.5rem;
-    }
-    .email-sub { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6; }
-
-    .slots {
-      display: flex;
-      gap: 0.65rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
-    }
-    .slot {
-      background: rgba(201,169,110,0.05);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.55rem 0.9rem;
-      font-size: 0.78rem;
-      text-align: center;
-    }
-    .slot-name { color: var(--gold); display: block; font-weight: 500; margin-bottom: 0.1rem; }
-    .slot-count { color: var(--text-muted); font-size: 0.72rem; }
-
-    .email-form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      max-width: 380px;
-      margin: 0 auto;
-    }
-    .email-input, .cohorte-sel {
-      width: 100%;
-      background: transparent;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 0.9rem 1.2rem;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.92rem;
-      font-weight: 300;
-      outline: none;
-      transition: border-color var(--transition);
-    }
-    .email-input:focus, .cohorte-sel:focus { border-color: var(--gold); }
-    .email-input::placeholder { color: var(--text-muted); }
-    .cohorte-sel { background: var(--bg-card); cursor: pointer; appearance: none; }
-    .cohorte-sel option { background: var(--bg-card); }
-
-    .btn-subscribe {
-      width: 100%;
-      padding: 1rem;
-      background: linear-gradient(135deg, #c9a96e 0%, #b8924a 100%);
-      color: var(--bg-deep);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      border: none;
-      border-radius: var(--radius-pill);
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-    .btn-subscribe:hover { box-shadow: 0 8px 24px rgba(201,169,110,0.3); transform: translateY(-2px); }
-
-    .email-ok { display: none; text-align: center; padding: 0.5rem 0; }
-    .email-ok.show { display: block; }
-    .email-ok-icon { font-size: 2.2rem; margin-bottom: 0.6rem; }
-    .email-ok-msg {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      color: var(--gold);
-      line-height: 1.5;
-    }
-
-    /* ====================================================
-       KEYFRAMES
-    ==================================================== */
-    @keyframes fadeUp {
-      from { opacity:0; transform: translateY(28px); }
-      to   { opacity:1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity:0; }
-      to   { opacity:1; }
-    }
-
-    /* ====================================================
-       RESPONSIVE TWEAKS
-    ==================================================== */
-    @media (max-width: 480px) {
-      .step { padding: 1.5rem 1rem 1rem; }
-      .q-question { font-size: 1.6rem; }
-      .hero-title { letter-spacing: 0.03em; }
-    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0F2922;--bg-card:#172f25;--bg-deep:#0a1f18;--bg-modal:#0e2820;
+      --br:#A8784A;--brl:#C49A6A;--brd:rgba(168,120,74,.35);
+      --tx:#f0ebe0;--txs:rgba(240,235,224,.82);--txm:rgba(240,235,224,.55);
+      --bo:rgba(168,120,74,.22);--ok:#5ecb8a;
+      --rp:50px;--rc:18px;--rs:10px;--tr:.3s cubic-bezier(.4,0,.2,1)
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    .lbl{font-size:.67rem;letter-spacing:.4em;text-transform:uppercase;color:var(--br)}
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.in{opacity:1;transform:translateY(0)}
+    .stagger>*{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
+    .stagger.in>*:nth-child(1){opacity:1;transform:translateY(0)}
+    .stagger.in>*:nth-child(2){opacity:1;transform:translateY(0);transition-delay:.12s}
+    .stagger.in>*:nth-child(3){opacity:1;transform:translateY(0);transition-delay:.24s}
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(14px);background:rgba(14,40,32,.84);border-bottom:1px solid var(--bo)}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--br);letter-spacing:.12em}
+    .btn-nav{font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--br);background:transparent;border:1.5px solid var(--brd);border-radius:var(--rp);padding:.55rem 1.4rem;cursor:pointer;transition:all var(--tr)}
+    .btn-nav:hover{background:var(--br);color:var(--bg);border-color:var(--br)}
+    .hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 1.5rem 4rem;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 45%,rgba(168,120,74,.09) 0%,transparent 70%);pointer-events:none}
+    .bot{position:absolute;pointer-events:none}
+    .hero-eyebrow{font-size:.67rem;letter-spacing:.42em;text-transform:uppercase;color:var(--br);margin-bottom:1.2rem;opacity:0;animation:fadeUp .8s ease .3s forwards}
+    .hero-crown{font-size:clamp(2.5rem,6vw,4rem);color:var(--br);filter:drop-shadow(0 0 22px rgba(168,120,74,.4));display:block;margin-bottom:1.2rem;animation:floatCrown 5s ease-in-out infinite,fadeIn 1s ease .1s both}
+    @keyframes floatCrown{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(4rem,15vw,9.5rem);font-weight:300;line-height:.95;letter-spacing:.06em;opacity:0;animation:fadeUp .9s ease .5s forwards}
+    .hero-title .accent{color:var(--br);font-style:italic}
+    .hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,3.5vw,1.4rem);font-style:italic;font-weight:300;color:var(--txm);max-width:460px;margin:1.4rem auto 2.8rem;opacity:0;animation:fadeUp .9s ease .7s forwards}
+    .hero-cta{opacity:0;animation:fadeUp .9s ease .9s forwards;display:flex;flex-direction:column;align-items:center;gap:1rem}
+    .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;opacity:0;animation:fadeIn 1s ease 1.8s forwards}
+    .scroll-hint span{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(168,120,74,.4)}
+    .scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,var(--br),transparent);animation:scrollPulse 2.5s ease-in-out infinite}
+    @keyframes scrollPulse{0%,100%{opacity:.25}50%{opacity:.9}}
+    .music-btn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:150;width:44px;height:44px;border-radius:50%;background:rgba(14,40,32,.9);border:1px solid var(--bo);color:var(--br);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr);backdrop-filter:blur(10px)}
+    .btn-gold{display:inline-flex;align-items:center;gap:.5rem;padding:1.1rem 2.8rem;background:linear-gradient(135deg,#A8784A 0%,#8B5E30 100%);color:#f0ebe0;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;border:none;border-radius:var(--rp);cursor:pointer;transition:all var(--tr);box-shadow:0 6px 28px rgba(168,120,74,.25)}
+    .btn-gold:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(168,120,74,.38)}
+    .btn-ghost{display:inline-flex;align-items:center;gap:.5rem;padding:.95rem 2.4rem;background:transparent;color:var(--br);font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;border:1.5px solid var(--brd);border-radius:var(--rp);cursor:pointer;transition:all var(--tr);text-decoration:none}
+    .btn-ghost:hover{border-color:var(--br);color:var(--brl);background:rgba(168,120,74,.06)}
+    .manifeste{padding:9rem 1.5rem;background:var(--bg-deep);position:relative;overflow:hidden}
+    .manifeste::before{content:'❝';position:absolute;top:-2rem;left:-1rem;font-size:20rem;color:rgba(168,120,74,.04);font-family:'Cormorant Garamond',serif;line-height:1;pointer-events:none}
+    .man-inner{max-width:760px;margin:0 auto;position:relative}
+    .man-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4.5vw,2.4rem);font-style:italic;font-weight:300;line-height:1.45;color:var(--txs);margin-bottom:2.5rem}
+    .man-quote strong{color:var(--br);font-style:normal;font-weight:500}
+    .man-body{font-size:1rem;color:var(--txm);line-height:1.85}
+    .man-body p+p{margin-top:1.2rem}
+    .man-body strong{color:var(--txs);font-weight:400}
+    .sankofa-box{margin-top:2.5rem;padding:1.5rem 1.8rem;background:rgba(168,120,74,.06);border-left:3px solid var(--brd);border-radius:0 var(--rs) var(--rs) 0}
+    .sankofa-box-lbl{font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:var(--br);margin-bottom:.5rem}
+    .sankofa-box-txt{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--txs);line-height:1.6}
+    .sec-wrap{padding:7rem 1.5rem;max-width:1180px;margin:0 auto}
+    .sec-head{margin-bottom:3.5rem}
+    .sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,4.8rem);font-weight:400;line-height:1.05;margin-top:.6rem}
+    .sec-title em{color:var(--br);font-style:italic}
+    .pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.5rem}
+    .pc{background:var(--bg-card);border:1px solid var(--bo);border-radius:var(--rc);padding:2.5rem 2rem 2rem;position:relative;overflow:hidden;transition:border-color var(--tr),transform var(--tr)}
+    .pc:hover{border-color:var(--brd);transform:translateY(-5px)}
+    .pn{font-family:'Cormorant Garamond',serif;font-size:6rem;font-weight:300;color:rgba(168,120,74,.07);line-height:1;margin-bottom:-2rem;user-select:none}
+    .pi{font-size:2rem;margin-bottom:1rem;display:block}
+    .pt{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--br);margin-bottom:.9rem}
+    .pd{font-size:.93rem;color:var(--txm);line-height:1.75}
+    .eco-wrap{padding:9rem 1.5rem;background:var(--bg-deep)}
+    .eco-inner{max-width:1100px;margin:0 auto}
+    .eco-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:4rem}
+    @media(max-width:700px){.eco-grid{grid-template-columns:1fr}}
+    .ec{background:var(--bg-card);border:1px solid var(--bo);border-radius:var(--rc);padding:2.8rem 2.2rem;transition:border-color var(--tr)}
+    .ec:hover{border-color:var(--brd)}
+    .et{display:inline-block;border:1px solid var(--brd);border-radius:var(--rp);padding:.3rem 1rem;font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--br);margin-bottom:1.4rem}
+    .en{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:400;color:var(--br);margin-bottom:1rem}
+    .ed{font-size:.93rem;color:var(--txm);line-height:1.8}
+    .eb{margin-top:1.8rem;padding:.9rem 1.1rem;background:rgba(168,120,74,.05);border-left:2px solid var(--brd);border-radius:0 var(--rs) var(--rs) 0;font-size:.84rem;color:var(--txm);font-style:italic;font-family:'Cormorant Garamond',serif}
+    .cta-sec{padding:10rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+    .cta-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(168,120,74,.07) 0%,transparent 65%);pointer-events:none}
+    .cta-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(12rem,28vw,22rem);font-weight:300;color:rgba(168,120,74,.04);user-select:none;pointer-events:none;white-space:nowrap}
+    .cta-in{position:relative;z-index:1}
+    .cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:400;line-height:1.2;margin-top:.8rem;margin-bottom:.8rem}
+    .cta-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.1rem,2.5vw,1.4rem);color:var(--txm);margin-bottom:2.8rem}
+    footer{padding:3rem 1.5rem;text-align:center;border-top:1px solid var(--bo)}
+    .f-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--br);letter-spacing:.12em;margin-bottom:.6rem}
+    footer p{font-size:.82rem;color:var(--txm);line-height:1.8}
+    .dv{display:flex;align-items:center;gap:1.2rem;padding:2rem 1.5rem;max-width:700px;margin:0 auto}
+    .dl{flex:1;height:1px;background:var(--bo)}
+    .ds{color:var(--br);font-size:1rem;opacity:.5}
+    .modal{position:fixed;inset:0;z-index:500;background:var(--bg-modal);display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .4s ease}
+    .modal.open{opacity:1;pointer-events:all}
+    .q-prog{position:absolute;top:0;left:0;right:0;height:3px;background:rgba(168,120,74,.12);z-index:10}
+    .q-pf{height:100%;background:linear-gradient(to right,var(--br),var(--brl));transition:width .5s cubic-bezier(.4,0,.2,1);width:0%}
+    .q-hdr{display:flex;align-items:center;justify-content:space-between;padding:1.3rem 1.5rem 0;flex-shrink:0}
+    .q-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--br);letter-spacing:.12em}
+    .q-close{width:34px;height:34px;border-radius:50%;background:transparent;border:1px solid var(--bo);color:var(--txm);font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr)}
+    .q-close:hover{border-color:var(--brd);color:var(--br)}
+    .q-steps{flex:1;position:relative;overflow:hidden}
+    .step{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:2rem 1.5rem 1.5rem;max-width:520px;margin:0 auto;width:100%;opacity:0;transform:translateX(55px);transition:opacity .38s cubic-bezier(.4,0,.2,1),transform .38s cubic-bezier(.4,0,.2,1);pointer-events:none;overflow-y:auto;scrollbar-width:none}
+    .step::-webkit-scrollbar{display:none}
+    .step.active{opacity:1;transform:translateX(0);pointer-events:all}
+    .step.exit{opacity:0;transform:translateX(-55px)}
+    .q-q{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,5vw,2.3rem);font-weight:400;line-height:1.3;text-align:center;margin-bottom:2.2rem}
+    .q-hint{text-align:center;font-size:.76rem;color:var(--txm);margin-bottom:1rem;letter-spacing:.1em}
+    .q-inp{width:100%;background:transparent;border:1.5px solid var(--bo);border-radius:var(--rs);padding:1rem 1.3rem;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:1rem;outline:none;transition:border-color var(--tr);margin-bottom:1.8rem}
+    .q-inp:focus{border-color:var(--br)}
+    .q-inp::placeholder{color:var(--txm)}
+    textarea.q-inp{min-height:130px;resize:none;line-height:1.6}
+    .choices{display:flex;flex-wrap:wrap;gap:.65rem;justify-content:center;margin-bottom:1.8rem}
+    .cb{padding:.72rem 1.15rem;background:transparent;border:1.5px solid var(--bo);border-radius:var(--rp);color:var(--txs);font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:300;cursor:pointer;transition:all var(--tr);white-space:nowrap}
+    .cb:hover{border-color:var(--brd);color:var(--brl)}
+    .cb.sel{border-color:var(--br);background:rgba(168,120,74,.1);color:var(--brl)}
+    .q-next{width:100%;padding:1rem 1.5rem;background:transparent;border:1.5px solid var(--brd);border-radius:var(--rp);color:var(--br);font-family:'DM Sans',sans-serif;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all var(--tr);margin-top:auto;flex-shrink:0}
+    .q-next:not(:disabled):hover{background:var(--br);color:var(--bg);border-color:var(--br)}
+    .q-next:disabled{opacity:.3;cursor:not-allowed}
+    .photos-list{display:flex;flex-direction:column;gap:.85rem;margin-bottom:1.5rem}
+    .pz{display:flex;align-items:center;gap:1rem;background:rgba(23,47,37,.6);border:1.5px dashed var(--bo);border-radius:var(--rs);padding:.9rem 1.1rem;cursor:pointer;transition:border-color var(--tr);position:relative;overflow:hidden}
+    .pz input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+    .pz:hover,.pz.done{border-style:solid;border-color:var(--brd)}
+    .pth{width:56px;height:56px;border-radius:8px;background:rgba(168,120,74,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;font-size:1.4rem}
+    .pth img{width:100%;height:100%;object-fit:cover;display:none}
+    .pth.loaded img{display:block}
+    .pth.loaded .ti{display:none}
+    .p-info{flex:1}
+    .p-title{font-size:.86rem;font-weight:500;color:var(--txs);margin-bottom:.2rem}
+    .p-desc{font-size:.76rem;color:var(--txm);line-height:1.4}
+    .p-chk{color:var(--ok);font-size:1.1rem;opacity:0;transition:opacity var(--tr)}
+    .pz.done .p-chk{opacity:1}
+    .p-note{text-align:center;font-size:.78rem;color:var(--txm);margin-bottom:1.3rem}
+    .q-load{position:absolute;inset:0;background:var(--bg-modal);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity .5s ease;z-index:5}
+    .q-load.active{opacity:1;pointer-events:all}
+    .lg{font-size:3.5rem;color:var(--br);animation:lp 2.5s ease-in-out infinite;margin-bottom:2rem}
+    @keyframes lp{0%,100%{opacity:.35;transform:scale(.95)}50%{opacity:1;transform:scale(1.05)}}
+    .lm{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:var(--txs);max-width:320px}
+    .ls{margin-top:.8rem;font-size:.85rem;color:var(--txm);font-family:'Cormorant Garamond',serif;font-style:italic}
+    .dots{display:flex;gap:.5rem;margin-top:2rem;justify-content:center}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--br);animation:db 1.6s ease-in-out infinite}
+    .dot:nth-child(2){animation-delay:.22s}.dot:nth-child(3){animation-delay:.44s}
+    @keyframes db{0%,100%{opacity:.25;transform:scale(.85)}50%{opacity:1;transform:scale(1.2)}}
+    .q-res{position:absolute;inset:0;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .5s ease;z-index:4;scrollbar-width:none}
+    .q-res::-webkit-scrollbar{display:none}
+    .q-res.active{opacity:1;pointer-events:all}
+    .res-wrap{max-width:580px;margin:0 auto;padding:2rem 1.5rem 4rem}
+    .res-top{text-align:center;padding:2rem 0 1.5rem}
+    .res-g{font-size:2.8rem;color:var(--br);margin-bottom:.8rem;display:block}
+    .res-h{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--br);margin-bottom:.3rem}
+    .res-by{font-size:.8rem;color:var(--txm);letter-spacing:.15em}
+    .res-hr{display:flex;align-items:center;gap:1rem;margin:1.5rem 0}
+    .res-hrl{flex:1;height:1px;background:var(--bo)}
+    .res-hrg{color:var(--br);font-size:.7rem}
+    .sn-blk{background:var(--bg-card);border:1px solid var(--bo);border-radius:var(--rc);overflow:hidden;margin-bottom:.75rem}
+    .sn-hd{display:flex;align-items:center;gap:1rem;padding:1rem 1.3rem;border-bottom:1px solid var(--bo);background:rgba(168,120,74,.04)}
+    .sn-num{width:28px;height:28px;border:1.5px solid var(--brd);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:.9rem;color:var(--br);flex-shrink:0}
+    .sn-ttl{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--txs)}
+    .sn-bd{padding:1.2rem 1.3rem;font-size:.9rem;line-height:1.8;color:var(--txs);white-space:pre-line}
+    .res-raw{background:var(--bg-card);border:1px solid var(--bo);border-radius:var(--rc);padding:1.5rem;font-size:.9rem;line-height:1.8;color:var(--txs);white-space:pre-line}
+    .e-blk{background:var(--bg-deep);border:1px solid var(--bo);border-radius:var(--rc);padding:2rem 1.5rem;text-align:center;margin-top:1.5rem}
+    .e-badge{display:inline-block;background:rgba(168,120,74,.08);border:1px solid var(--brd);border-radius:var(--rp);padding:.35rem 1rem;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--br);margin-bottom:1rem}
+    .e-title{font-family:'Cormorant Garamond',serif;font-size:1.7rem;margin-bottom:.5rem}
+    .e-sub{font-size:.88rem;color:var(--txm);margin-bottom:1.5rem;line-height:1.6}
+    .slots{display:flex;gap:.65rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+    .slot{background:rgba(168,120,74,.05);border:1px solid var(--bo);border-radius:8px;padding:.55rem .9rem;font-size:.78rem;text-align:center}
+    .slot-n{color:var(--br);display:block;font-weight:500;margin-bottom:.1rem}
+    .slot-c{color:var(--txm);font-size:.72rem}
+    .e-form{display:flex;flex-direction:column;gap:.7rem;max-width:380px;margin:0 auto}
+    .e-inp,.e-sel{width:100%;background:transparent;border:1.5px solid var(--bo);border-radius:var(--rs);padding:.9rem 1.2rem;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:.92rem;outline:none;transition:border-color var(--tr)}
+    .e-inp:focus,.e-sel:focus{border-color:var(--br)}
+    .e-inp::placeholder{color:var(--txm)}
+    .e-sel{background:var(--bg-card);cursor:pointer;appearance:none}
+    .e-sel option{background:var(--bg-card)}
+    .btn-sub{width:100%;padding:1rem;background:linear-gradient(135deg,#A8784A 0%,#8B5E30 100%);color:#f0ebe0;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;border:none;border-radius:var(--rp);cursor:pointer;transition:all var(--tr)}
+    .btn-sub:hover{box-shadow:0 8px 24px rgba(168,120,74,.3);transform:translateY(-2px)}
+    .e-ok{display:none;text-align:center;padding:.5rem 0}
+    .e-ok.show{display:block}
+    .e-ok-icon{font-size:2.2rem;margin-bottom:.6rem}
+    .e-ok-msg{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--br);line-height:1.5}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @media(max-width:480px){.step{padding:1.5rem 1rem 1rem}.q-q{font-size:1.6rem}}
   </style>
 </head>
+```html
 <body>
-
-<!-- ============================================================
-     BOTANICAL SVG ASSETS (inline, reusable)
-============================================================ -->
-<template id="branch-svg">
-<svg viewBox="0 0 220 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M110 500 C108 400 85 310 100 200 C108 145 130 90 110 30" stroke="#c9a96e" stroke-width="1.8" fill="none"/>
-  <path d="M106 390 C80 365 42 355 18 320" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
-  <path d="M107 320 C135 298 172 290 195 260" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
-  <path d="M105 255 C75 235 38 228 16 195" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
-  <path d="M107 190 C140 172 178 165 198 134" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
-  <path d="M107 125 C82 112 50 108 30 82" stroke="#c9a96e" stroke-width="1" fill="none"/>
-  <!-- Leaves -->
-  <ellipse cx="18" cy="315" rx="24" ry="14" transform="rotate(-35 18 315)" fill="#c9a96e" opacity="0.28"/>
-  <ellipse cx="196" cy="255" rx="22" ry="13" transform="rotate(25 196 255)" fill="#c9a96e" opacity="0.28"/>
-  <ellipse cx="15" cy="190" rx="20" ry="12" transform="rotate(-28 15 190)" fill="#c9a96e" opacity="0.28"/>
-  <ellipse cx="200" cy="128" rx="19" ry="11" transform="rotate(22 200 128)" fill="#c9a96e" opacity="0.28"/>
-  <ellipse cx="28" cy="76" rx="17" ry="10" transform="rotate(-22 28 76)" fill="#c9a96e" opacity="0.28"/>
-</svg>
-</template>
-
-<!-- ============================================================
-     NAV
-============================================================ -->
 <nav>
-  <div class="nav-logo">♛ Sankhtuhair</div>
-  <button class="btn-nav" onclick="openModal()">Débuter mon initiation</button>
+  <div class="nav-logo">👑 Sankhtuhair</div>
+  <button class="btn-nav" id="btn-nav">Débuter mon initiation</button>
 </nav>
 
-<!-- ============================================================
-     HERO
-============================================================ -->
-<header class="hero">
-  <svg class="branch-r" viewBox="0 0 220 500" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;right:-40px;top:5%;width:min(340px,38vw);opacity:0.1;pointer-events:none">
-    <path d="M110 500 C108 400 85 310 100 200 C108 145 130 90 110 30" stroke="#c9a96e" stroke-width="1.8" fill="none"/>
-    <path d="M106 390 C80 365 42 355 18 320" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
-    <path d="M107 320 C135 298 172 290 195 260" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
-    <path d="M105 255 C75 235 38 228 16 195" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
-    <path d="M107 190 C140 172 178 165 198 134" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
-    <ellipse cx="18" cy="315" rx="24" ry="14" transform="rotate(-35 18 315)" fill="#c9a96e" opacity="0.3"/>
-    <ellipse cx="196" cy="255" rx="22" ry="13" transform="rotate(25 196 255)" fill="#c9a96e" opacity="0.3"/>
-    <ellipse cx="15" cy="190" rx="20" ry="12" transform="rotate(-28 15 190)" fill="#c9a96e" opacity="0.3"/>
-    <ellipse cx="200" cy="128" rx="19" ry="11" transform="rotate(22 200 128)" fill="#c9a96e" opacity="0.3"/>
+<header class="hero" id="accueil">
+  <svg class="bot" style="right:-30px;top:4%;width:min(320px,35vw);opacity:.1" viewBox="0 0 200 480" fill="none">
+    <path d="M100 480C98 370 72 280 88 170C96 118 122 62 100 10" stroke="#A8784A" stroke-width="1.8" fill="none"/>
+    <path d="M96 370C68 345 30 338 10 305" stroke="#A8784A" stroke-width="1.2" fill="none"/>
+    <path d="M97 300C128 278 168 272 190 242" stroke="#A8784A" stroke-width="1.2" fill="none"/>
+    <path d="M95 235C62 215 26 208 8 175" stroke="#A8784A" stroke-width="1.2" fill="none"/>
+    <path d="M98 170C132 153 172 147 192 116" stroke="#A8784A" stroke-width="1.2" fill="none"/>
+    <ellipse cx="10" cy="300" rx="22" ry="13" transform="rotate(-35 10 300)" fill="#A8784A" opacity=".28"/>
+    <ellipse cx="191" cy="237" rx="20" ry="12" transform="rotate(25 191 237)" fill="#A8784A" opacity=".28"/>
+    <ellipse cx="7" cy="170" rx="18" ry="11" transform="rotate(-28 7 170)" fill="#A8784A" opacity=".28"/>
+    <ellipse cx="193" cy="110" rx="17" ry="10" transform="rotate(22 193 110)" fill="#A8784A" opacity=".28"/>
   </svg>
-
-  <svg class="branch-l" viewBox="0 0 220 500" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;left:-30px;bottom:8%;width:min(260px,30vw);opacity:0.08;pointer-events:none;transform:scaleX(-1)">
-    <path d="M110 500 C108 400 85 310 100 200 C108 145 130 90 110 30" stroke="#c9a96e" stroke-width="1.8" fill="none"/>
-    <path d="M106 390 C80 365 42 355 18 320" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
-    <path d="M107 320 C135 298 172 290 195 260" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
-    <path d="M105 255 C75 235 38 228 16 195" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
-    <ellipse cx="18" cy="315" rx="24" ry="14" transform="rotate(-35 18 315)" fill="#c9a96e" opacity="0.3"/>
-    <ellipse cx="196" cy="255" rx="22" ry="13" transform="rotate(25 196 255)" fill="#c9a96e" opacity="0.3"/>
+  <svg class="bot" style="left:-30px;bottom:6%;width:min(260px,28vw);opacity:.09;transform:scaleX(-1)" viewBox="0 0 200 480" fill="none">
+    <path d="M100 480C98 370 72 280 88 170C96 118 122 62 100 10" stroke="#A8784A" stroke-width="1.8" fill="none"/>
+    <path d="M96 370C68 345 30 338 10 305" stroke="#A8784A" stroke-width="1.2" fill="none"/>
+    <path d="M97 300C128 278 168 272 190 242" stroke="#A8784A" stroke-width="1.2" fill="none"/>
+    <ellipse cx="10" cy="300" rx="22" ry="13" transform="rotate(-35 10 300)" fill="#A8784A" opacity=".3"/>
+    <ellipse cx="191" cy="237" rx="20" ry="12" transform="rotate(25 191 237)" fill="#A8784A" opacity=".3"/>
   </svg>
-
   <p class="hero-eyebrow">Sanctuaire Capillaire · Fondé par Élodie</p>
   <span class="hero-crown">♛</span>
   <h1 class="hero-title">SANKTU<span class="accent">hair</span></h1>
   <p class="hero-sub">"Va chercher dans ton passé ce qui te rendra plus fort demain"</p>
   <div class="hero-cta">
-    <button class="btn-gold" onclick="openModal()">Commencer mon initiation ✨</button>
+    <button class="btn-gold" id="btn-hero">Commencer mon initiation ✨</button>
     <a href="#manifeste" class="btn-ghost">Découvrir le manifeste</a>
   </div>
-
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-    <span>Explorer</span>
-  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div><span>Explorer</span></div>
 </header>
 
-<!-- ============================================================
-     MANIFESTE
-============================================================ -->
+<button class="music-btn" id="music-btn" title="Ambiance sonore">🎵</button>
+
 <section class="manifeste" id="manifeste">
-  <div class="manifeste-inner reveal">
-    <p class="label" style="margin-bottom:1rem">Le Manifeste</p>
-    <blockquote class="manifeste-quote">
-      "On passe notre temps à acheter des produits chimiques au pif parce qu'on ne comprend plus nos propres cheveux. On a perdu le <strong>mode d'emploi de notre propre couronne.</strong> Sankhtuhair, c'est un projet pour reprendre le pouvoir."
-    </blockquote>
-    <div class="manifeste-body">
-      <p>Sankhtuhair est l'union mystique entre le <em>Sankofa</em> — l'art d'aller chercher dans le passé ce qui nous rend plus forts aujourd'hui — et la couronne que nous portons tous : nos cheveux. Ce n'est pas une application. C'est un acte de résistance.</p>
-      <p>Il est né face à un monde de soins standardisés qui traite chaque couronne comme une anomalie à corriger. Ici, le cheveu n'est pas un problème à résoudre. <strong>C'est un héritage à révéler.</strong></p>
-      <p>Ce sanctuaire réconcilie la précision d'un laboratoire et la puissance d'un rituel. Quand tu en sors, tu ne te dis pas "mes cheveux sont un problème" — tu sais enfin <em>comment honorer ta couronne.</em></p>
+  <div class="man-inner reveal">
+    <p class="lbl" style="margin-bottom:1rem">Le Manifeste</p>
+    <blockquote class="man-quote">"On passe notre temps à acheter des produits chimiques au pif parce qu'on ne comprend plus nos propres cheveux. On a perdu le <strong>mode d'emploi de notre propre couronne.</strong>"</blockquote>
+    <div class="man-body">
+      <p>Sankhtuhair est né d'un acte de résistance. Dans un monde de soins standardisés qui traite chaque couronne comme une anomalie à corriger, ce sanctuaire numérique existe pour récupérer ce qui nous appartient.</p>
+      <p>Il marie <strong>Sankofah</strong> — la gamme de cosmétique biotechnologique capillaire fondée par Élodie — avec l'intelligence artificielle de Seanamon, pour révéler la vérité sur chaque couronne.</p>
+      <p>Le cheveu n'est pas un problème à résoudre. <strong>C'est une couronne à célébrer.</strong></p>
+    </div>
+    <div class="sankofa-box">
+      <div class="sankofa-box-lbl">✦ Le Concept Sankofa · Peuple Akan</div>
+      <p class="sankofa-box-txt">"Se Wo Were Fi Na Wosankofa A Yenkyi" — Il n'est pas interdit de retourner chercher ce qu'on a oublié. Va chercher dans ton passé ce qui te rendra plus fort demain.</p>
     </div>
   </div>
 </section>
 
-<div class="ornate-divider">
-  <div class="ornate-divider-line"></div>
-  <span class="ornate-divider-symbol">✦</span>
-  <div class="ornate-divider-line"></div>
-</div>
+<div class="dv"><div class="dl"></div><span class="ds">✦</span><div class="dl"></div></div>
 
-<!-- ============================================================
-     3 PILIERS
-============================================================ -->
-<div class="section-wrap">
-  <div class="section-head reveal">
-    <p class="label">L'Architecture du Sanctuaire</p>
-    <h2 class="section-title">Les <em>Trois</em> Piliers</h2>
+<div class="sec-wrap">
+  <div class="sec-head reveal">
+    <p class="lbl">L'Architecture du Sanctuaire</p>
+    <h2 class="sec-title">Les <em>Trois</em> Piliers</h2>
   </div>
-  <div class="piliers-grid stagger">
-    <div class="pilier-card">
-      <div class="pilier-num">01</div>
-      <span class="pilier-icon">🔬</span>
-      <h3 class="pilier-title">Science</h3>
-      <p class="pilier-desc">Trichologie moderne, analyse de la fibre, état cuticulaire, porosité et densité. Chaque diagnostic repose sur des données concrètes, pas sur des suppositions.</p>
-    </div>
-    <div class="pilier-card">
-      <div class="pilier-num">02</div>
-      <span class="pilier-icon">🌿</span>
-      <h3 class="pilier-title">Tradition</h3>
-      <p class="pilier-desc">Rituels de Madagascar, cérémonies Yoruba, savoirs botaniques africains et antillais. Une mémoire capillaire que l'industrie a effacée — que Seanamon garde vivante.</p>
-    </div>
-    <div class="pilier-card">
-      <div class="pilier-num">03</div>
-      <span class="pilier-icon">✨</span>
-      <h3 class="pilier-title">Révélation</h3>
-      <p class="pilier-desc">Pas une liste de courses. Une ordonnance ancestrale — précision technologique et souffle poétique — qui révèle la vérité de ta nature capillaire.</p>
-    </div>
+  <div class="pg stagger">
+    <div class="pc"><div class="pn">01</div><span class="pi">🔬</span><h3 class="pt">Science</h3><p class="pd">Trichologie moderne, analyse de la fibre, état cuticulaire, porosité, densité. Chaque diagnostic repose sur des données concrètes.</p></div>
+    <div class="pc"><div class="pn">02</div><span class="pi">🌍</span><h3 class="pt">Tradition</h3><p class="pd">Du karité au Ghana aux rituels éthiopiens, des femmes Wolof du Sénégal aux plantes congolaises, des cérémonies Yoruba aux tresses sacrées — une mémoire capillaire pan-africaine.</p></div>
+    <div class="pc"><div class="pn">03</div><span class="pi">✨</span><h3 class="pt">Révélation</h3><p class="pd">Pas une liste de courses. Une ordonnance ancestrale — précision technologique et souffle poétique.</p></div>
   </div>
 </div>
 
-<!-- ============================================================
-     ECOSYSTEM
-============================================================ -->
-<div class="ecosystem-wrap" id="ecosysteme">
-  <div class="ecosystem-inner">
-    <div class="section-head reveal">
-      <p class="label">L'Écosystème</p>
-      <h2 class="section-title">Deux <em>Gardiens</em><br>de ta Couronne</h2>
-    </div>
+<div class="eco-wrap">
+  <div class="eco-inner">
+    <div class="sec-head reveal"><p class="lbl">L'Écosystème</p><h2 class="sec-title">Trois <em>Gardiens</em><br>de ta Couronne</h2></div>
     <div class="eco-grid stagger">
-      <div class="eco-card">
-        <div class="eco-tag">Gamme Cosmétique</div>
-        <h3 class="eco-name">Sankofa</h3>
-        <p class="eco-desc">La future gamme de cosmétique biotechnologique capillaire. Des formules qui marient les actifs botaniques ancestraux avec la biotechnologie de pointe. Chaque produit est conçu pour <em>ta</em> couronne spécifique — pas pour une moyenne industrielle.</p>
-        <div class="eco-badge">✨ Bientôt disponible — Rejoins la liste d'attente ci-dessous</div>
-      </div>
-      <div class="eco-card">
-        <div class="eco-tag">Intelligence Artificielle</div>
-        <h3 class="eco-name">Seanamon</h3>
-        <p class="eco-desc">L'IA Gardienne. Un prénom forgé par la fondatrice Élodie — un fragment d'elle transmis au monde. Trichologue experte aux connaissances ancestrales, elle analyse tes photos et ton histoire pour te livrer ta vérité capillaire.</p>
-        <div class="eco-badge">🌱 Ton diagnostic. Ton ordonnance. Ton rituel.</div>
-      </div>
+      <div class="ec"><div class="et">Concept Ancestral · Akan</div><h3 class="en">Sankofa</h3><p class="ed">L'oiseau mythique Akan qui vole vers l'avant en regardant en arrière. Le principe fondateur — aller chercher dans le passé la sagesse qui nous rend plus forts demain.</p><div class="eb">✦ Le souffle ancestral de Sankhtuhair</div></div>
+      <div class="ec"><div class="et">Gamme Cosmétique Biotechnologique</div><h3 class="en">Sankofah</h3><p class="ed">La marque capillaire fondée par Élodie. Des formules qui marient les actifs botaniques pan-africains avec la biotechnologie de pointe. Chaque produit conçu pour ta couronne spécifique.</p><div class="eb">✨ Bientôt disponible</div></div>
     </div>
+    <div class="ec" style="margin-top:2rem"><div class="et">Intelligence Artificielle Gardienne</div><h3 class="en">Seanamon</h3><p class="ed">Un prénom forgé par Élodie — un fragment d'elle transmis au monde. Trichologue experte aux connaissances pan-africaines. Elle ne suggère pas : elle prescrit. Elle ne liste pas : elle révèle.</p><div class="eb">🌱 Ton diagnostic. Ton ordonnance. Ton rituel.</div></div>
   </div>
 </div>
 
-<!-- ============================================================
-     CTA PARCOURS
-============================================================ -->
-<section class="cta-section" id="parcours">
-  <div class="cta-bg-num">13</div>
-  <div class="cta-inner reveal">
-    <p class="label">Le Parcours Initiatique</p>
-    <h2 class="cta-title">Prête à reprendre<br>possession de ta <span class="gold">Couronne</span> ?</h2>
-    <p class="cta-subtitle">13 étapes. Une révélation.</p>
-    <button class="btn-gold" onclick="openModal()" style="font-size:0.85rem;padding:1.2rem 3.2rem">
-      Débuter mon initiation ♛
-    </button>
-    <p class="cta-meta">Gratuit &nbsp;·&nbsp; ~5 minutes &nbsp;·&nbsp; Diagnostic Seanamon personnalisé</p>
+<section class="cta-sec">
+  <div class="cta-bg">13</div>
+  <div class="cta-in reveal">
+    <p class="lbl">Le Parcours Initiatique</p>
+    <h2 class="cta-title">Prête à reprendre<br>possession de ta <span style="color:var(--br)">Couronne</span> ?</h2>
+    <p class="cta-sub">13 étapes. Une révélation.</p>
+    <button class="btn-gold" id="btn-cta">Débuter mon initiation ♛</button>
   </div>
 </section>
 
-<!-- ============================================================
-     FOOTER
-============================================================ -->
 <footer>
-  <div class="footer-logo">♛ Sankhtuhair</div>
+  <div class="f-logo">♛ Sankhtuhair</div>
   <p>Sanctuaire Capillaire — Fondé par Élodie</p>
-  <p style="margin-top:0.3rem;opacity:0.45">Propulsé par Seanamon · Une reconquête</p>
+  <p style="margin-top:.3rem;opacity:.4">Propulsé par Seanamon · Sankofah bientôt</p>
 </footer>
 
-<!-- ============================================================
-     QUESTIONNAIRE MODAL
-============================================================ -->
-<div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Parcours initiatique Sankhtuhair">
-
-  <div class="q-progress">
-    <div class="q-progress-fill" id="prog"></div>
-  </div>
-
-  <div class="q-header">
-    <div class="q-logo">♛ Sankhtuhair</div>
-    <button class="q-close" onclick="closeModal()" aria-label="Fermer">✕</button>
-  </div>
-
-  <div class="q-steps" id="qsteps">
-
-    <!-- === ÉTAPE 1 : Prénom === -->
-    <div class="step active" id="s1">
-      <h2 class="q-question">Comment tu t'appelles ? 👋</h2>
-      <input class="q-input" id="inp-prenom" type="text" placeholder="Ton prénom..." maxlength="60" autocomplete="given-name">
-      <button class="q-next" id="next1" onclick="goNext()" disabled>Suivant</button>
-    </div>
-
-    <!-- === ÉTAPE 2 : Âge === -->
-    <div class="step" id="s2">
-      <h2 class="q-question">Quel âge as-tu ? 🎂</h2>
-      <div class="choices">
-        <button class="c-btn" onclick="pick(this,'age',false)">18-25 ans 🧑🏾</button>
-        <button class="c-btn" onclick="pick(this,'age',false)">26-40 ans ✨</button>
-        <button class="c-btn" onclick="pick(this,'age',false)">41-60 ans 🌱</button>
-        <button class="c-btn" onclick="pick(this,'age',false)">60+ ans ⭐</button>
-      </div>
-      <button class="q-next" onclick="goNext()" disabled>Suivant</button>
-    </div>
-
-    <!-- === ÉTAPE 3 : Type === -->
-    <div class="step" id="s3">
-      <h2 class="q-question">Quel est ton type de cheveux ? 💇🏽</h2>
-      <div class="choices">
-        <button class="c-btn" onclick="pick(this,'type_cheveux',false)">Lisses 🌸 (Type 1)</button>
-        <button class="c-btn" onclick="pick(this,'type_cheveux',false)">Ondulés (Type 2) 🌊</button>
-        <button class="c-btn" onclick="pick(this,'type_cheveux',false)">Bouclés (Type 3) 🍃</button>
-        <button class="c-btn" onclick="pick(this,'type_cheveux',false)">Frisés / Coily (Type 4) 👑</button>
-        <button class="c-btn" onclick="pick(this,'type_cheveux',false)">Rasés / Tondus 🪒</button>
-        <button class="c-btn" onclick="pick(this,'type_cheveux',false)">Chauve / Très court 🧑</button>
-        <button class="c-btn" onclick="pick(this,'type_cheveux',false)">Aide-moi à identifier mon type 💕</button>
-      </div>
-      <button class="q-next" onclick="goNext()" disabled>Suivant</button>
-    </div>
-
-    <!-- === ÉTAPE 4 : Cuir chevelu === -->
-    <div class="step" id="s4">
-      <h2 class="q-question">Ton cuir chevelu, en ce moment, c'est plutôt comment ? 🧴</h2>
-      <div class="choices">
-        <button class="c-btn" onclick="pick(this,'cuir_chevelu',false)">Sec 🌵</button>
-        <button class="c-btn" onclick="pick(this,'cuir_chevelu',false)">Gras 💧</button>
-        <button class="c-btn" onclick="pick(this,'cuir_chevelu',false)">Sensible / Irrité ⚡</button>
-        <button class="c-btn" onclick="pick(this,'cuir_chevelu',false)">Pellicules ❄️</button>
-        <button class="c-btn" onclick="pick(this,'cuir_chevelu',false)">Démangeaisons ✏️</button>
-        <button class="c-btn" onclick="pick(this,'cuir_chevelu',false)">Tout va bien 🌱</button>
-      </div>
-      <button class="q-next" onclick="goNext()" disabled>Suivant</button>
-    </div>
-
-    <!-- === ÉTAPE 5 : Problématiques (multi) === -->
-    <div class="step" id="s5">
-      <h2 class="q-question">Quelles sont tes problématiques principales ? ✨</h2>
-      <p class="q-hint">Plusieurs réponses possibles</p>
-      <div class="choices">
-        <button class="c-btn" onclick="pick(this,'problematiques',true)">Perte de cheveux 🌱</button>
-        <button class="c-btn" onclick="pick(this,'problematiques',true)">Pelade 💕</button>
-        <button class="c-btn" onclick="pick(this,'problematiques',true)">Post-greffe ✏️</button>
-        <button class="c-btn" onclick="pick(this,'problematiques',true)">Ménopause / Hormonal 🌸</button>
-        <button class="c-btn" onclick="pick(this,'problematiques',true)">Alopécie de traction 💇🏽</button>
-        <button class="c-btn" onclick="pick(this,'problematiques',true)">Perte de densité / Calvitie</button>
-        <button class="c-btn" onclick="pick(this,'problematiques',true)">Casse / Pointes fourches ✂️</button>
-        <button class="c-btn" onclick="pick(this,'problematiques',true)">Cheveux ternes ☁️</button>
-        <button class="c-btn" onclick="pick(this,'problematiques',true)">Rien de tout ça 🤔</button>
-      </div>
-      <button class="q-next" onclick="goNext()" disabled>Suivant</button>
-    </div>
-
-    <!-- === ÉTAPE 6 : Cause === -->
-    <div class="step" id="s6">
-      <h2 class="q-question">Selon toi, qu'est-ce qui a causé ce changement ? 🌀</h2>
-      <div class="choices">
-        <button class="c-btn" onclick="pick(this,'cause',false)">Accouchement 🤱</button>
-        <button class="c-btn" onclick="pick(this,'cause',false)">Post-partum 🌙</button>
-        <button class="c-btn" onclick="pick(this,'cause',false)">Ménopause 🌸</button>
-        <button class="c-btn" onclick="pick(this,'cause',false)">Choc émotionnel ⚡</button>
-        <button class="c-btn" onclick="pick(this,'cause',false)">Rupture 💔</button>
-        <button class="c-btn" onclick="pick(this,'cause',false)">Maladie ✏️</button>
-        <button class="c-btn" onclick="pick(this,'cause',false)">Stress / Surmenage 😤</button>
-        <button class="c-btn" onclick="pick(this,'cause',false)">Traitement médical 💊</button>
-        <button class="c-btn" onclick="pick(this,'cause',false)">Hérédité / Génétique 🧬</button>
-        <button class="c-btn" onclick="pick(this,'cause',false)">Changement hormonal ⚖️</button>
-        <button class="c-btn" onclick="pick(this,'cause',false)">Je ne sais pas / Tout va bien 🌱</button>
-      </div>
-      <button class="q-next" onclick="goNext()" disabled>Suivant</button>
-    </div>
-
-    <!-- === ÉTAPE 7 : Fréquence lavage === -->
-    <div class="step" id="s7">
-      <h2 class="q-question">À quelle fréquence laves-tu tes cheveux ? 🧼</h2>
-      <div class="choices">
-        <button class="c-btn" onclick="pick(this,'frequence_lavage',false)">Tous les jours 🌪️</button>
-        <button class="c-btn" onclick="pick(this,'frequence_lavage',false)">2 à 3 fois par semaine 💆</button>
-        <button class="c-btn" onclick="pick(this,'frequence_lavage',false)">1 fois par semaine 👌</button>
-        <button class="c-btn" onclick="pick(this,'frequence_lavage',false)">Toutes les 2 semaines ou plus ⏳</button>
-        <button class="c-btn" onclick="pick(this,'frequence_lavage',false)">Moins que ça 🌱</button>
-      </div>
-      <button class="q-next" onclick="goNext()" disabled>Suivant</button>
-    </div>
-
-    <!-- === ÉTAPE 8 : Objectifs (multi) === -->
-    <div class="step" id="s8">
-      <h2 class="q-question">Quels sont tes objectifs principaux ? ✨</h2>
-      <p class="q-hint">Plusieurs réponses possibles</p>
-      <div class="choices">
-        <button class="c-btn" onclick="pick(this,'objectifs',true)">Stopper la chute 🚩</button>
-        <button class="c-btn" onclick="pick(this,'objectifs',true)">Booster la repousse 🌱</button>
-        <button class="c-btn" onclick="pick(this,'objectifs',true)">Densité & Épaisseur 🦁</button>
-        <button class="c-btn" onclick="pick(this,'objectifs',true)">Améliorer la brillance ✨</button>
-        <button class="c-btn" onclick="pick(this,'objectifs',true)">Réparer la fibre / longueur ✂️</button>
-        <button class="c-btn" onclick="pick(this,'objectifs',true)">Apaiser le cuir chevelu ✏️</button>
-        <button class="c-btn" onclick="pick(this,'objectifs',true)">Éliminer les pellicules ❄️</button>
-        <button class="c-btn" onclick="pick(this,'objectifs',true)">Rien de tout ça ⭐</button>
-      </div>
-      <button class="q-next" onclick="goNext()" disabled>Suivant</button>
-    </div>
-
-    <!-- === ÉTAPE 9 : Coiffures protectrices === -->
-    <div class="step" id="s9">
-      <h2 class="q-question">Fais-tu des coiffures protectrices ? 👑</h2>
-      <div class="choices">
-        <button class="c-btn" onclick="pick(this,'coiffures_protectrices',false)">Oui, souvent (tresses, perruques, foulard...)</button>
-        <button class="c-btn" onclick="pick(this,'coiffures_protectrices',false)">Parfois 🤔</button>
-        <button class="c-btn" onclick="pick(this,'coiffures_protectrices',false)">Rarement 🌱</button>
-        <button class="c-btn" onclick="pick(this,'coiffures_protectrices',false)">Jamais 💕</button>
-      </div>
-      <button class="q-next" onclick="goNext()" disabled>Suivant</button>
-    </div>
-
-    <!-- === ÉTAPE 10 : Produits naturels === -->
-    <div class="step" id="s10">
-      <h2 class="q-question">As-tu déjà utilisé des produits naturels ? 🌱</h2>
-      <div class="choices">
-        <button class="c-btn" onclick="pick(this,'produits_naturels',false)">Oui, principalement 🌿</button>
-        <button class="c-btn" onclick="pick(this,'produits_naturels',false)">De temps en temps ✨</button>
-        <button class="c-btn" onclick="pick(this,'produits_naturels',false)">Non, jamais 🤔</button>
-      </div>
-      <button class="q-next" onclick="goNext()" disabled>Suivant</button>
-    </div>
-
-    <!-- === ÉTAPE 11 : À écarter (multi) === -->
-    <div class="step" id="s11">
-      <h2 class="q-question">Y a-t-il des choses que tu souhaites écarter ? ❌</h2>
-      <p class="q-hint">Plusieurs réponses possibles</p>
-      <div class="choices">
-        <button class="c-btn" onclick="pick(this,'ecarter',true)">Textures trop grasses ✨</button>
-        <button class="c-btn" onclick="pick(this,'ecarter',true)">Odeurs trop fortes 🌱</button>
-        <button class="c-btn" onclick="pick(this,'ecarter',true)">Ingrédients irritants 🤚</button>
-        <button class="c-btn" onclick="pick(this,'ecarter',true)">Effet "carton" 🌸</button>
-        <button class="c-btn" onclick="pick(this,'ecarter',true)">Produits trop longs à poser ⏳</button>
-        <button class="c-btn" onclick="pick(this,'ecarter',true)">Rien de particulier 👌</button>
-      </div>
-      <button class="q-next" onclick="goNext()" disabled>Suivant</button>
-    </div>
-
-    <!-- === ÉTAPE 12 : Texte libre === -->
-    <div class="step" id="s12">
-      <h2 class="q-question">Est-ce que tu souhaites me dire quelque chose ? 💕🌱✨</h2>
-      <textarea class="q-input" id="inp-libre" placeholder="Dis-moi..."></textarea>
-      <button class="q-next" onclick="goNext()">Suivant</button>
-    </div>
-
-    <!-- === ÉTAPE 13 : Photos === -->
+<div id="modal" class="modal">
+  <div class="q-prog"><div class="q-pf" id="prog"></div></div>
+  <div class="q-hdr"><div class="q-logo">♛ Sankhtuhair</div><button class="q-close" id="btn-close">✕</button></div>
+  <div class="q-steps">
+    <div class="step active" id="s1"><h2 class="q-q">Comment tu t'appelles ? 👋</h2><input class="q-inp" id="inp-prenom" type="text" placeholder="Ton prénom..." maxlength="60"><button class="q-next" id="next1" disabled>Suivant</button></div>
+    <div class="step" id="s2"><h2 class="q-q">Quel âge as-tu ? 🎂</h2><div class="choices"><button class="cb" onclick="pick(this,'age',false)">18-25 ans 🧑🏾</button><button class="cb" onclick="pick(this,'age',false)">26-40 ans ✨</button><button class="cb" onclick="pick(this,'age',false)">41-60 ans 🌱</button><button class="cb" onclick="pick(this,'age',false)">60+ ans ⭐</button></div><button class="q-next" disabled>Suivant</button></div>
+    <div class="step" id="s3"><h2 class="q-q">Ton type de cheveux ? 💇🏽</h2><div class="choices"><button class="cb" onclick="pick(this,'type_cheveux',false)">Lisses 🌸 (Type 1)</button><button class="cb" onclick="pick(this,'type_cheveux',false)">Ondulés (Type 2) 🌊</button><button class="cb" onclick="pick(this,'type_cheveux',false)">Bouclés (Type 3) 🍃</button><button class="cb" onclick="pick(this,'type_cheveux',false)">Frisés / Coily (Type 4) 👑</button><button class="cb" onclick="pick(this,'type_cheveux',false)">Rasés / Tondus</button><button class="cb" onclick="pick(this,'type_cheveux',false)">Chauve / Très court</button><button class="cb" onclick="pick(this,'type_cheveux',false)">Aide-moi à identifier 💕</button></div><button class="q-next" disabled>Suivant</button></div>
+    <div class="step" id="s4"><h2 class="q-q">Ton cuir chevelu ? 🧴</h2><p class="q-hint">Plusieurs réponses possibles</p><div class="choices"><button class="cb" onclick="pick(this,'cuir_chevelu',true)">Sec 🌵</button><button class="cb" onclick="pick(this,'cuir_chevelu',true)">Gras 💧</button><button class="cb" onclick="pick(this,'cuir_chevelu',true)">Sensible / Irrité ⚡</button><button class="cb" onclick="pick(this,'cuir_chevelu',true)">Pellicules ❄️</button><button class="cb" onclick="pick(this,'cuir_chevelu',true)">Démangeaisons</button><button class="cb" onclick="pick(this,'cuir_chevelu',true)">Tout va bien 🌱</button></div><button class="q-next" disabled>Suivant</button></div>
+    <div class="step" id="s5"><h2 class="q-q">Tes problématiques ? ✨</h2><p class="q-hint">Plusieurs réponses possibles</p><div class="choices"><button class="cb" onclick="pick(this,'problematiques',true)">Perte de cheveux 🌱</button><button class="cb" onclick="pick(this,'problematiques',true)">Pelade 💕</button><button class="cb" onclick="pick(this,'problematiques',true)">Post-greffe</button><button class="cb" onclick="pick(this,'problematiques',true)">Ménopause / Hormonal 🌸</button><button class="cb" onclick="pick(this,'problematiques',true)">Alopécie de traction</button><button class="cb" onclick="pick(this,'problematiques',true)">Perte de densité / Calvitie</button><button class="cb" onclick="pick(this,'problematiques',true)">Casse / Pointes fourches ✂️</button><button class="cb" onclick="pick(this,'problematiques',true)">Cheveux ternes</button><button class="cb" onclick="pick(this,'problematiques',true)">Rien de tout ça 🤔</button></div><button class="q-next" disabled>Suivant</button></div>
+    <div class="step" id="s6"><h2 class="q-q">La cause du changement ? 🌀</h2><p class="q-hint">Plusieurs réponses possibles</p><div class="choices"><button class="cb" onclick="pick(this,'cause',true)">Accouchement 🤱</button><button class="cb" onclick="pick(this,'cause',true)">Post-partum 🌙</button><button class="cb" onclick="pick(this,'cause',true)">Ménopause 🌸</button><button class="cb" onclick="pick(this,'cause',true)">Choc émotionnel ⚡</button><button class="cb" onclick="pick(this,'cause',true)">Rupture 💔</button><button class="cb" onclick="pick(this,'cause',true)">Maladie</button><button class="cb" onclick="pick(this,'cause',true)">Stress / Surmenage 😤</button><button class="cb" onclick="pick(this,'cause',true)">Traitement médical 💊</button><button class="cb" onclick="pick(this,'cause',true)">Hérédité / Génétique 🧬</button><button class="cb" onclick="pick(this,'cause',true)">Changement hormonal ⚖️</button><button class="cb" onclick="pick(this,'cause',true)">Je ne sais pas 🌱</button></div><button class="q-next" disabled>Suivant</button></div>
+    <div class="step" id="s7"><h2 class="q-q">Fréquence de lavage ? 🧼</h2><div class="choices"><button class="cb" onclick="pick(this,'frequence_lavage',false)">Tous les jours 🌪️</button><button class="cb" onclick="pick(this,'frequence_lavage',false)">2 à 3 fois par semaine</button><button class="cb" onclick="pick(this,'frequence_lavage',false)">1 fois par semaine 👌</button><button class="cb" onclick="pick(this,'frequence_lavage',false)">Toutes les 2 semaines ou plus ⏳</button><button class="cb" onclick="pick(this,'frequence_lavage',false)">Moins que ça 🌱</button></div><button class="q-next" disabled>Suivant</button></div>
+    <div class="step" id="s8"><h2 class="q-q">Tes objectifs ? ✨</h2><p class="q-hint">Plusieurs réponses possibles</p><div class="choices"><button class="cb" onclick="pick(this,'objectifs',true)">Stopper la chute 🚩</button><button class="cb" onclick="pick(this,'objectifs',true)">Booster la repousse 🌱</button><button class="cb" onclick="pick(this,'objectifs',true)">Densité & Épaisseur 🦁</button><button class="cb" onclick="pick(this,'objectifs',true)">Brillance ✨</button><button class="cb" onclick="pick(this,'objectifs',true)">Réparer la fibre ✂️</button><button class="cb" onclick="pick(this,'objectifs',true)">Apaiser le cuir chevelu</button><button class="cb" onclick="pick(this,'objectifs',true)">Éliminer les pellicules ❄️</button><button class="cb" onclick="pick(this,'objectifs',true)">Rien de tout ça ⭐</button></div><button class="q-next" disabled>Suivant</button></div>
+    <div class="step" id="s9"><h2 class="q-q">Coiffures protectrices ? 👑</h2><div class="choices"><button class="cb" onclick="pick(this,'coiffures_protectrices',false)">Oui, souvent 🥹 (tresses, perruques, foulard...)</button><button class="cb" onclick="pick(this,'coiffures_protectrices',false)">Parfois 🤔</button><button class="cb" onclick="pick(this,'coiffures_protectrices',false)">Rarement 🌱</button><button class="cb" onclick="pick(this,'coiffures_protectrices',false)">Jamais 💕</button></div><button class="q-next" disabled>Suivant</button></div>
+    <div class="step" id="s10"><h2 class="q-q">Produits naturels ? 🌱</h2><div class="choices"><button class="cb" onclick="pick(this,'produits_naturels',false)">Oui, principalement 🌿</button><button class="cb" onclick="pick(this,'produits_naturels',false)">De temps en temps ✨</button><button class="cb" onclick="pick(this,'produits_naturels',false)">Non, jamais 🤔</button></div><button class="q-next" disabled>Suivant</button></div>
+    <div class="step" id="s11"><h2 class="q-q">Des choses à écarter ? ❌</h2><p class="q-hint">Plusieurs réponses possibles</p><div class="choices"><button class="cb" onclick="pick(this,'ecarter',true)">Textures trop grasses ✨</button><button class="cb" onclick="pick(this,'ecarter',true)">Odeurs trop fortes 🌱</button><button class="cb" onclick="pick(this,'ecarter',true)">Ingrédients irritants</button><button class="cb" onclick="pick(this,'ecarter',true)">Effet "carton" 🌸</button><button class="cb" onclick="pick(this,'ecarter',true)">Produits trop longs à poser ⏳</button><button class="cb" onclick="pick(this,'ecarter',true)">Rien de particulier 👌</button></div><button class="q-next" disabled>Suivant</button></div>
+    <div class="step" id="s12"><h2 class="q-q">Tu souhaites me dire quelque chose ? 💕🌱✨</h2><textarea class="q-inp" id="inp-libre" placeholder="Dis-moi..."></textarea><button class="q-next" id="next12">Suivant</button></div>
     <div class="step" id="s13">
-      <h2 class="q-question" style="font-size:1.8rem">Prenons quelques photos 📸</h2>
+      <h2 class="q-q" style="font-size:1.8rem">Prenons quelques photos 📸</h2>
       <div class="photos-list">
-
-        <div class="photo-zone" id="pz1">
-          <input type="file" accept="image/*" capture="environment" onchange="onPhoto(event,1)" aria-label="Photo de face">
-          <div class="photo-thumb" id="pt1">
-            <div class="thumb-icon">📷</div>
-            <img id="pi1" alt="Aperçu photo 1">
-          </div>
-          <div class="photo-info">
-            <div class="photo-title">Vue de face</div>
-            <div class="photo-desc">Prends tes cheveux de face pour analyser l'ensemble de ta couronne.</div>
-          </div>
-          <span class="photo-check">✓</span>
-        </div>
-
-        <div class="photo-zone" id="pz2">
-          <input type="file" accept="image/*" capture="environment" onchange="onPhoto(event,2)" aria-label="Photo zone inquiétante">
-          <div class="photo-thumb" id="pt2">
-            <div class="thumb-icon">📷</div>
-            <img id="pi2" alt="Aperçu photo 2">
-          </div>
-          <div class="photo-info">
-            <div class="photo-title">Zone inquiétante</div>
-            <div class="photo-desc">La zone qui t'inquiète (chute, cuir chevelu, racines).</div>
-          </div>
-          <span class="photo-check">✓</span>
-        </div>
-
-        <div class="photo-zone" id="pz3">
-          <input type="file" accept="image/*" capture="environment" onchange="onPhoto(event,3)" aria-label="Zoom pointes">
-          <div class="photo-thumb" id="pt3">
-            <div class="thumb-icon">📷</div>
-            <img id="pi3" alt="Aperçu photo 3">
-          </div>
-          <div class="photo-info">
-            <div class="photo-title">Zoom pointes / mèche</div>
-            <div class="photo-desc">Zoom max sur tes pointes pour voir l'état des cuticules.</div>
-          </div>
-          <span class="photo-check">✓</span>
-        </div>
-
+        <div class="pz" id="pz1"><input type="file" accept="image/*" onchange="onPhoto(event,1)"><div class="pth" id="pt1"><div class="ti">📷</div><img id="pi1" alt=""></div><div class="p-info"><div class="p-title">Vue de face</div><div class="p-desc">Cheveux de face pour analyser ta couronne.</div></div><span class="p-chk">✓</span></div>
+        <div class="pz" id="pz2"><input type="file" accept="image/*" onchange="onPhoto(event,2)"><div class="pth" id="pt2"><div class="ti">📷</div><img id="pi2" alt=""></div><div class="p-info"><div class="p-title">Zone inquiétante</div><div class="p-desc">Chute, cuir chevelu, racines.</div></div><span class="p-chk">✓</span></div>
+        <div class="pz" id="pz3"><input type="file" accept="image/*" onchange="onPhoto(event,3)"><div class="pth" id="pt3"><div class="ti">📷</div><img id="pi3" alt=""></div><div class="p-info"><div class="p-title">Zoom pointes / mèche</div><div class="p-desc">Zoom max pour voir l'état des cuticules.</div></div><span class="p-chk">✓</span></div>
       </div>
-      <p class="photos-note">Au moins 1 photo requise · Seanamon analyse les 3 pour une précision maximale</p>
-      <button class="q-next" id="btn-submit" onclick="submitAll()" disabled>Voir mon diagnostic ✨</button>
+      <p class="p-note" id="p-note">3 photos requises pour le diagnostic complet de Seanamon</p>
+      <button class="q-next" id="btn-submit" disabled>Voir mon diagnostic ✨</button>
     </div>
-
-    <!-- === LOADING === -->
-    <div class="q-loading" id="q-loading">
-      <div class="loading-glyph">♛</div>
-      <p class="loading-msg" id="load-msg">Seanamon analyse ta couronne...</p>
-      <p class="loading-sub" id="load-sub">Prêt·e à en reprendre possession ? 🌱✨👑💕</p>
-      <div class="dots">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-    </div>
-
-    <!-- === RESULT === -->
-    <div class="q-result" id="q-result">
-      <div class="result-wrap">
-
-        <div class="result-top">
-          <span class="result-glyph">♛</span>
-          <h2 class="result-headline">Ta Révélation</h2>
-          <p class="result-by" id="result-by">Diagnostic par Seanamon</p>
+    <div class="q-load" id="q-load"><div class="lg">♛</div><p class="lm" id="lm">Seanamon analyse ta couronne...</p><p class="ls" id="ls">Prêt·e à en reprendre possession ? 🌱✨👑💕</p><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+    <div class="q-res" id="q-res">
+      <div class="res-wrap">
+        <div class="res-top"><span class="res-g">♛</span><h2 class="res-h">Ta Révélation</h2><p class="res-by" id="res-by">Diagnostic par Seanamon</p></div>
+        <div class="res-hr"><div class="res-hrl"></div><span class="res-hrg">✦</span><div class="res-hrl"></div></div>
+        <div id="res-body"></div>
+        <div class="e-blk">
+          <div class="e-badge">Accès Fondateur·rice</div>
+          <h3 class="e-title">Rejoins les 150 Pionniers</h3>
+          <p class="e-sub">Les 150 premières personnes inscrites reçoivent un accès offert à l'agenda de soin personnalisé Sankhtuhair.</p>
+          <div class="slots"><div class="slot"><span class="slot-n">✦ NHA</span><span class="slot-c">50 places</span></div><div class="slot"><span class="slot-n">✦ TikTok</span><span class="slot-c">50 places</span></div><div class="slot"><span class="slot-n">✦ Cercle Privé</span><span class="slot-c">50 places</span></div></div>
+          <div id="e-form-wrap">
+            <div class="e-form">
+              <input type="email" class="e-inp" id="e-inp" placeholder="ton@email.com">
+              <select class="e-sel" id="e-sel"><option value="" disabled selected>Comment tu nous as trouvé·e ?</option><option value="NHA">✦ NHA — Natural Hair Academy</option><option value="TikTok">✦ TikTok</option><option value="Cercle Privé">✦ Cercle Privé (Proches)</option></select>
+              <button class="btn-sub" id="btn-sub">Rejoindre le Sanctuaire 👑</button>
+            </div>
+          </div>
+          <div class="e-ok" id="e-ok"><div class="e-ok-icon">✨</div><p class="e-ok-msg" id="e-ok-msg">Ta couronne est enregistrée.<br>Bienvenue dans le Sanctuaire.</p></div>
         </div>
-
-        <div class="result-hr">
-          <div class="result-hr-line"></div>
-          <span class="result-hr-gem">✦</span>
-          <div class="result-hr-line"></div>
-        </div>
-
-        <div id="result-body"></div>
-
-        <!-- EMAIL CAPTURE -->
-        <div class="email-block" id="email-block">
-          <div class="email-badge">Accès Fondateur·rice</div>
-          <h3 class="email-title">Rejoins les 150 Pionniers</h3>
-          <p class="email-sub">Les 150 premières personnes inscrites reçoivent un accès offert à l'agenda de soin personnalisé Sankhtuhair.</p>
-
-          <div class="slots">
-            <div class="slot">
-              <span class="slot-name">✦ NHA</span>
-              <span class="slot-count">50 places</span>
-            </div>
-            <div class="slot">
-              <span class="slot-name">✦ TikTok</span>
-              <span class="slot-count">50 places</span>
-            </div>
-            <div class="slot">
-              <span class="slot-name">✦ Cercle Privé</span>
-              <span class="slot-count">50 places</span>
-            </div>
-          </div>
-
-          <div id="email-form-wrap">
-            <div class="email-form">
-              <input type="email" class="email-input" id="email-inp" placeholder="ton@email.com" autocomplete="email">
-              <select class="cohorte-sel" id="cohorte-inp">
-                <option value="" disabled selected>Comment tu nous as trouvé·e ?</option>
-                <option value="NHA">✦ NHA — Natural Hair Academy</option>
-                <option value="TikTok">✦ TikTok</option>
-                <option value="Cercle Privé">✦ Cercle Privé (Proches)</option>
-              </select>
-              <button class="btn-subscribe" onclick="doSubscribe()">Rejoindre le Sanctuaire 👑</button>
-            </div>
-          </div>
-
-          <div class="email-ok" id="email-ok">
-            <div class="email-ok-icon">✨</div>
-            <p class="email-ok-msg">Ta couronne est enregistrée.<br>Bienvenue dans le Sanctuaire, <span id="ok-name"></span>.</p>
-          </div>
-
-        </div><!-- /email-block -->
         <div style="height:2rem"></div>
       </div>
-    </div><!-- /q-result -->
+    </div>
+  </div>
+</div>
 
-  </div><!-- /q-steps -->
-</div><!-- /modal -->
-
-<!-- ============================================================
-     JAVASCRIPT
-============================================================ -->
 <script>
-/* ============================================================
-   STATE
-============================================================ */
-let cur = 1;
-const TOTAL = 13;
-const ans = {};
-const imgs = { 1: null, 2: null, 3: null };
-
-const loadingMessages = [
-  ['Seanamon étudie ta couronne...', 'Chaque fibre parle, elle écoute. 🌿'],
-  ['Les ancêtres témoignent...', 'Le passé révèle ton avenir capillaire. ✨'],
-  ["L'ordonnance prend forme...", 'Précision d\'un labo, âme d\'un rituel. 🌱'],
-  ['La révélation est presque prête...', 'Ta couronne mérite cette vérité. 👑💕'],
-];
-let loadIdx = 0;
-let loadTimer = null;
-
-/* ============================================================
-   MODAL
-============================================================ */
-function openModal() {
-  document.getElementById('modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  setProgress(cur);
+var cur=1,TOTAL=13,ans={},imgs={1:null,2:null,3:null};
+var loadMsgs=[['Seanamon étudie ta couronne...','Chaque fibre parle, elle écoute. 🌿'],['Les ancêtres témoignent...','Le passé révèle ton avenir capillaire. ✨'],["L'ordonnance prend forme...",'Précision d\'un labo, âme d\'un rituel. 🌱'],['La révélation est presque prête...','Ta couronne mérite cette vérité. 👑💕']];
+var loadIdx=0,loadTimer=null;
+function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('btn-nav').onclick=openModal;
+  document.getElementById('btn-hero').onclick=openModal;
+  document.getElementById('btn-cta').onclick=openModal;
+  document.getElementById('btn-close').onclick=closeModal;
+  document.getElementById('btn-submit').onclick=submitAll;
+  document.getElementById('btn-sub').onclick=doSubscribe;
+  document.getElementById('next1').onclick=goNext;
+  document.getElementById('next12').onclick=goNext;
+  document.getElementById('inp-prenom').addEventListener('input',function(e){document.getElementById('next1').disabled=!e.target.value.trim();});
+  document.getElementById('inp-prenom').addEventListener('keydown',function(e){if(e.key==='Enter')goNext();});
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting)en.target.classList.add('in');});},{threshold:.12});
+  document.querySelectorAll('.reveal,.stagger').forEach(function(el){io.observe(el);});
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+function setProg(s){document.getElementById('prog').style.width=Math.round(((s-1)/TOTAL)*100)+'%';}
+function goNext(){
+  if(cur===1){var v=document.getElementById('inp-prenom').value.trim();if(!v)return;ans.prenom=v;}
+  if(cur===12){ans.texte_libre=document.getElementById('inp-libre').value.trim();}
+  var ce=document.getElementById('s'+cur),ne=document.getElementById('s'+(cur+1));
+  if(!ne)return;
+  ce.classList.remove('active');ce.classList.add('exit');
+  setTimeout(function(){ce.classList.remove('exit');ne.classList.add('active');cur++;setProg(cur);ne.scrollTop=0;},350);
 }
-function closeModal() {
-  document.getElementById('modal').classList.remove('open');
-  document.body.style.overflow = '';
+function pick(btn,field,multi){
+  var grid=btn.closest('.choices');
+  if(multi){btn.classList.toggle('sel');var sel=Array.from(grid.querySelectorAll('.cb.sel'));ans[field]=sel.map(function(b){return b.textContent.trim();});var nb=btn.closest('.step').querySelector('.q-next');if(nb)nb.disabled=sel.length===0;}
+  else{grid.querySelectorAll('.cb').forEach(function(b){b.classList.remove('sel');});btn.classList.add('sel');ans[field]=btn.textContent.trim();var nb=btn.closest('.step').querySelector('.q-next');if(nb)nb.disabled=false;}
 }
-
-/* ============================================================
-   PROGRESS
-============================================================ */
-function setProgress(step) {
-  const pct = Math.round(((step - 1) / TOTAL) * 100);
-  document.getElementById('prog').style.width = pct + '%';
-}
-
-/* ============================================================
-   NAVIGATION
-============================================================ */
-function goNext() {
-  // Save step-specific values
-  if (cur === 1) {
-    const v = document.getElementById('inp-prenom').value.trim();
-    if (!v) return;
-    ans.prenom = v;
-  }
-  if (cur === 12) {
-    ans.texte_libre = document.getElementById('inp-libre').value.trim();
-  }
-
-  const curEl = document.getElementById('s' + cur);
-  const nxt = cur + 1;
-  const nxtEl = document.getElementById('s' + nxt);
-  if (!nxtEl) return;
-
-  curEl.classList.remove('active');
-  curEl.classList.add('exit');
-  setTimeout(() => {
-    curEl.classList.remove('exit');
-    nxtEl.classList.add('active');
-    cur = nxt;
-    setProgress(cur);
-    nxtEl.scrollTop = 0;
-  }, 350);
-}
-
-/* ============================================================
-   CHOICE SELECTION
-============================================================ */
-function pick(btn, field, multi) {
-  const grid = btn.closest('.choices');
-  if (multi) {
-    btn.classList.toggle('sel');
-    const sel = [...grid.querySelectorAll('.c-btn.sel')];
-    ans[field] = sel.map(b => b.textContent.trim());
-    const nb = btn.closest('.step').querySelector('.q-next');
-    if (nb) nb.disabled = sel.length === 0;
-  } else {
-    grid.querySelectorAll('.c-btn').forEach(b => b.classList.remove('sel'));
-    btn.classList.add('sel');
-    ans[field] = btn.textContent.trim();
-    const nb = btn.closest('.step').querySelector('.q-next');
-    if (nb) nb.disabled = false;
-  }
-}
-
-/* ============================================================
-   PHOTO HANDLING
-============================================================ */
-function onPhoto(e, n) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    imgs[n] = ev.target.result;
-    const pt = document.getElementById('pt' + n);
-    const pi = document.getElementById('pi' + n);
-    const pz = document.getElementById('pz' + n);
-    pi.src = ev.target.result;
-    pt.classList.add('loaded');
-    pz.classList.add('done');
-    // Enable submit if at least 1 photo
-    const hasPhoto = Object.values(imgs).some(x => x !== null);
-    document.getElementById('btn-submit').disabled = !hasPhoto;
+function pCount(){return Object.values(imgs).filter(Boolean).length;}
+function onPhoto(e,n){
+  var file=e.target.files[0];if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(ev){
+    imgs[n]=ev.target.result;
+    document.getElementById('pi'+n).src=ev.target.result;
+    document.getElementById('pt'+n).classList.add('loaded');
+    document.getElementById('pz'+n).classList.add('done');
+    var cnt=pCount(),note=document.getElementById('p-note');
+    if(cnt===3){document.getElementById('btn-submit').disabled=false;note.textContent='3 photos ajoutées — Seanamon est prête ✨';note.style.color='var(--ok)';}
+    else{note.textContent=cnt+'/3 photos — encore '+(3-cnt)+' photo'+(3-cnt>1?'s':'');}
   };
   reader.readAsDataURL(file);
 }
-
-/* ============================================================
-   BUILD USER MESSAGE
-============================================================ */
-function buildMsg() {
-  const a = ans;
-  const pc = Object.values(imgs).filter(Boolean).length;
-  const arr = v => Array.isArray(v) ? v.join(', ') : (v || 'Non renseigné');
-  return `Prénom : ${a.prenom || 'N/A'}
-Âge : ${a.age || 'N/A'}
-Type de couronne déclaré : ${a.type_cheveux || 'N/A'}
-État du cuir chevelu : ${a.cuir_chevelu || 'N/A'}
-Problématiques principales : ${arr(a.problematiques)}
-Cause identifiée : ${a.cause || 'N/A'}
-Fréquence de lavage : ${a.frequence_lavage || 'N/A'}
-Objectifs principaux : ${arr(a.objectifs)}
-Coiffures protectrices : ${a.coiffures_protectrices || 'N/A'}
-Usage de produits naturels : ${a.produits_naturels || 'N/A'}
-Préférences à écarter : ${arr(a.ecarter)}
-Message libre : ${a.texte_libre || 'Rien de particulier'}
-Nombre de photos fournies : ${pc}
-
-Analyse les photos fournies pour identifier précisément le type de couronne (Type 1-4, sous-types a/b/c) et construis ton diagnostic complet selon la structure obligatoire.`;
+function buildMsg(){
+  var a=ans,arr=function(v){return Array.isArray(v)?v.join(', '):(v||'N/A');};
+  return 'Prénom : '+(a.prenom||'N/A')+'\nÂge : '+(a.age||'N/A')+'\nType couronne : '+(a.type_cheveux||'N/A')+'\nCuir chevelu : '+arr(a.cuir_chevelu)+'\nProblématiques : '+arr(a.problematiques)+'\nCause(s) : '+arr(a.cause)+'\nFréquence lavage : '+(a.frequence_lavage||'N/A')+'\nObjectifs : '+arr(a.objectifs)+'\nCoiffures protectrices : '+(a.coiffures_protectrices||'N/A')+'\nProduits naturels : '+(a.produits_naturels||'N/A')+'\nÀ écarter : '+arr(a.ecarter)+'\nMessage libre : '+(a.texte_libre||'Rien')+'\nPhotos : '+pCount()+'\n\nAnalyse les photos pour identifier le type précis (Type 1-4, sous-types a/b/c) et construis le diagnostic complet.';
 }
-
-/* ============================================================
-   SUBMIT TO API
-============================================================ */
-async function submitAll() {
-  // Hide step 13
+async function submitAll(){
   document.getElementById('s13').classList.remove('active');
-  // Show loading
-  const ql = document.getElementById('q-loading');
-  ql.classList.add('active');
-  setProgress(14);
-  document.getElementById('prog').style.width = '100%';
-
-  // Cycle loading messages
-  loadIdx = 0;
-  updateLoadMsg();
-  loadTimer = setInterval(() => {
-    loadIdx = (loadIdx + 1) % loadingMessages.length;
-    updateLoadMsg();
-  }, 3000);
-
-  // Build content array
-  const content = [{ type: 'text', text: buildMsg() }];
-  for (let i = 1; i <= 3; i++) {
-    if (imgs[i]) content.push({ type: 'image_url', image_url: { url: imgs[i] } });
-  }
-
-  try {
-    const resp = await fetch('/api/diagnose', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prenom: ans.prenom || '', content })
-    });
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
-    const data = await resp.json();
-    showResult(data.result, ans.prenom || '');
-  } catch (err) {
-    console.error(err);
-    showResult('Seanamon est momentanément indisponible. Ta couronne mérite une connexion stable — réessaie dans quelques instants. ✨', ans.prenom || '');
-  }
+  var ql=document.getElementById('q-load');ql.classList.add('active');
+  document.getElementById('prog').style.width='100%';
+  loadIdx=0;updateLoad();
+  loadTimer=setInterval(function(){loadIdx=(loadIdx+1)%loadMsgs.length;updateLoad();},3000);
+  var content=[{type:'text',text:buildMsg()}];
+  for(var i=1;i<=3;i++){if(imgs[i])content.push({type:'image_url',image_url:{url:imgs[i]}});}
+  try{
+    var resp=await fetch('/api/diagnose',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prenom:ans.prenom||'',content:content})});
+    if(!resp.ok)throw new Error('HTTP '+resp.status);
+    var data=await resp.json();showResult(data.result,ans.prenom||'');
+  }catch(err){console.error(err);showResult('Seanamon est momentanément indisponible. Réessaie dans quelques instants. ✨',ans.prenom||'');}
 }
-
-function updateLoadMsg() {
-  const [msg, sub] = loadingMessages[loadIdx];
-  document.getElementById('load-msg').textContent = msg;
-  document.getElementById('load-sub').textContent = sub;
-}
-
-/* ============================================================
-   SHOW RESULT
-============================================================ */
-function showResult(text, prenom) {
+function updateLoad(){document.getElementById('lm').textContent=loadMsgs[loadIdx][0];document.getElementById('ls').textContent=loadMsgs[loadIdx][1];}
+function showResult(text,prenom){
   clearInterval(loadTimer);
-  document.getElementById('q-loading').classList.remove('active');
-  document.getElementById('result-by').textContent = `Diagnostic de ${prenom} · par Seanamon`;
-  document.getElementById('ok-name').textContent = prenom;
-
-  // Parse Seanamon sections
-  const body = document.getElementById('result-body');
-  body.innerHTML = parseSeanamon(text);
-
-  document.getElementById('q-result').classList.add('active');
+  document.getElementById('q-load').classList.remove('active');
+  document.getElementById('res-by').textContent='Diagnostic de '+prenom+' · par Seanamon';
+  document.getElementById('res-body').innerHTML=parseSn(text);
+  document.getElementById('q-res').classList.add('active');
 }
-
-function parseSeanamon(raw) {
-  // Try to split into numbered sections
-  const sectionRe = /(?:^|\n)(\d+)\.\s+([^\n:]+)\s*:\s*\n([\s\S]*?)(?=\n\d+\.|$)/g;
-  const sections = [];
-  let m;
-  const workText = '\n' + raw;
-  while ((m = sectionRe.exec(workText)) !== null) {
-    sections.push({ num: m[1], title: m[2].trim(), body: m[3].trim() });
-  }
-
-  if (sections.length >= 2) {
-    return sections.map(s => `
-      <div class="seanamon-block">
-        <div class="seanamon-section-head">
-          <div class="seanamon-num">${s.num}</div>
-          <div class="seanamon-sec-title">${s.title}</div>
-        </div>
-        <div class="seanamon-sec-body">${escHtml(s.body)}</div>
-      </div>`).join('');
-  }
-  // Fallback: raw display
-  return `<div class="result-raw">${escHtml(raw)}</div>`;
+function parseSn(raw){
+  var re=/(?:^|\n)(\d+)\.\s+([^\n:]+)\s*:\s*\n([\s\S]*?)(?=\n\d+\.|$)/g;
+  var secs=[],m,t='\n'+raw;
+  while((m=re.exec(t))!==null)secs.push({num:m[1],title:m[2].trim(),body:m[3].trim()});
+  if(secs.length>=2)return secs.map(function(s){return '<div class="sn-blk"><div class="sn-hd"><div class="sn-num">'+s.num+'</div><div class="sn-ttl">'+s.title+'</div></div><div class="sn-bd">'+esc(s.body)+'</div></div>';}).join('');
+  return '<div class="res-raw">'+esc(raw)+'</div>';
 }
-
-function escHtml(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+async function doSubscribe(){
+  var email=document.getElementById('e-inp').value.trim();
+  var cohorte=document.getElementById('e-sel').value;
+  var prenom=ans.prenom||'';
+  if(!email||!email.includes('@')){document.getElementById('e-inp').style.borderColor='#e57373';return;}
+  if(!cohorte){document.getElementById('e-sel').style.borderColor='#e57373';return;}
+  try{await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,cohorte:cohorte,prenom:prenom})});}catch(e){console.error(e);}
+  document.getElementById('e-form-wrap').style.display='none';
+  document.getElementById('e-ok-msg').innerHTML='Ta couronne est enregistrée, '+prenom+'.<br>Bienvenue dans le Sanctuaire. 👑';
+  document.getElementById('e-ok').classList.add('show');
 }
-
-/* ============================================================
-   EMAIL SUBSCRIPTION
-============================================================ */
-async function doSubscribe() {
-  const email   = document.getElementById('email-inp').value.trim();
-  const cohorte = document.getElementById('cohorte-inp').value;
-  const prenom  = ans.prenom || '';
-
-  const emailEl   = document.getElementById('email-inp');
-  const cohorteEl = document.getElementById('cohorte-inp');
-
-  if (!email || !email.includes('@')) {
-    emailEl.style.borderColor = '#e57373';
-    emailEl.focus();
-    return;
-  }
-  if (!cohorte) {
-    cohorteEl.style.borderColor = '#e57373';
-    return;
-  }
-
-  try {
-    const r = await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, cohorte, prenom })
-    });
-    // Show success regardless of response (UX priority)
-    showEmailSuccess();
-  } catch {
-    showEmailSuccess(); // Still show success — don't block UX
-  }
-}
-
-function showEmailSuccess() {
-  document.getElementById('email-form-wrap').style.display = 'none';
-  document.getElementById('email-ok').classList.add('show');
-}
-
-/* ============================================================
-   STEP 1 — Live validation
-============================================================ */
-document.getElementById('inp-prenom').addEventListener('input', e => {
-  document.getElementById('next1').disabled = !e.target.value.trim();
+var actx=null,musicOn=false,mgain=null;
+document.getElementById('music-btn').addEventListener('click',function(){
+  var btn=document.getElementById('music-btn');
+  if(musicOn){if(mgain)mgain.gain.setTargetAtTime(0,actx.currentTime,.5);setTimeout(function(){if(actx){actx.close();actx=null;}},1000);musicOn=false;btn.textContent='🎵';}
+  else{startAmbiance();musicOn=true;btn.textContent='🔇';}
 });
-document.getElementById('inp-prenom').addEventListener('keydown', e => {
-  if (e.key === 'Enter') goNext();
-});
-
-/* ============================================================
-   SCROLL REVEAL
-============================================================ */
-const io = new IntersectionObserver(entries => {
-  entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('in'); });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
-
-/* ============================================================
-   ESCAPE KEY — close modal
-============================================================ */
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeModal();
-});
+function startAmbiance(){
+  actx=new(window.AudioContext||window.webkitAudioContext)();
+  mgain=actx.createGain();mgain.gain.setValueAtTime(0,actx.currentTime);mgain.gain.setTargetAtTime(.6,actx.currentTime,2);mgain.connect(actx.destination);
+  mkDrone(55,'sine',.08);mkDrone(110,'sine',.04);mkDrone(165,'triangle',.02);mkNoise();schedPerc();
+}
+function mkDrone(freq,type,vol){var o=actx.createOscillator(),g=actx.createGain(),lfo=actx.createOscillator(),lfog=actx.createGain();lfo.frequency.value=.08+Math.random()*.05;lfog.gain.value=1.5;lfo.connect(lfog);lfog.connect(o.frequency);lfo.start();o.frequency.value=freq;o.type=type;g.gain.value=vol;o.connect(g);g.connect(mgain);o.start();}
+function mkNoise(){var sz=actx.sampleRate*2,buf=actx.createBuffer(1,sz,actx.sampleRate),d=buf.getChannelData(0);for(var i=0;i<sz;i++)d[i]=(Math.random()*2-1);var src=actx.createBufferSource();src.buffer=buf;src.loop=true;var f=actx.createBiquadFilter();f.type='lowpass';f.frequency.value=180;var g=actx.createGain();g.gain.value=.012;src.connect(f);f.connect(g);g.connect(mgain);src.start();}
+function schedPerc(){if(!actx||!musicOn)return;var now=actx.currentTime,b=60/72,pat=[0,b*1.5,b*2,b*3.5,b*4];pat.forEach(function(t,i){playDrum(now+t,i===0||i===3?80:120,i===0||i===3?.22:.12,.18);});setTimeout(function(){if(musicOn&&actx)schedPerc();},b*4*1000);}
+function playDrum(when,freq,vol,dur){var o=actx.createOscillator(),g=actx.createGain();o.frequency.setValueAtTime(freq*1.5,when);o.frequency.exponentialRampToValueAtTime(freq,when+.05);o.type='sine';g.gain.setValueAtTime(vol,when);g.gain.exponentialRampToValueAtTime(.001,when+dur);o.connect(g);g.connect(mgain);o.start(when);o.stop(when+dur+.01);}
 </script>
 </body>
 </html>
+```
