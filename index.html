@@ -25,15 +25,12 @@
     .stagger.in>*:nth-child(1){opacity:1;transform:translateY(0)}
     .stagger.in>*:nth-child(2){opacity:1;transform:translateY(0);transition-delay:.12s}
     .stagger.in>*:nth-child(3){opacity:1;transform:translateY(0);transition-delay:.24s}
-
     nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1rem 2rem;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(14px);background:rgba(14,40,32,.88);border-bottom:1px solid var(--bo)}
     .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--or);letter-spacing:.12em;display:flex;align-items:center;gap:.8rem}
     .nav-logo img{height:36px;width:36px;object-fit:cover;border-radius:50%;border:1px solid var(--ord)}
-
     .hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 1.5rem 4rem;position:relative;overflow:hidden}
     .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 45%,rgba(201,169,110,.08) 0%,transparent 70%);pointer-events:none}
     .bot{position:absolute;pointer-events:none}
-
     .hero-logo{width:clamp(80px,15vw,130px);height:clamp(80px,15vw,130px);object-fit:cover;border-radius:50%;border:2px solid var(--ord);margin-bottom:1.5rem;box-shadow:0 0 40px rgba(201,169,110,.2);opacity:0;animation:fadeIn 1s ease .2s forwards}
     .hero-ey{font-size:.67rem;letter-spacing:.42em;text-transform:uppercase;color:var(--or);margin-bottom:1rem;opacity:0;animation:fadeUp .8s ease .4s forwards}
     .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,13vw,9rem);font-weight:300;line-height:.95;letter-spacing:.06em;opacity:0;animation:fadeUp .9s ease .6s forwards}
@@ -44,15 +41,12 @@
     .scroll-h span{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,169,110,.4)}
     .scroll-l{width:1px;height:44px;background:linear-gradient(to bottom,var(--or),transparent);animation:sP 2.5s ease-in-out infinite}
     @keyframes sP{0%,100%{opacity:.25}50%{opacity:.9}}
-
     .music-btn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:150;width:44px;height:44px;border-radius:50%;background:rgba(14,40,32,.92);border:1px solid var(--bo);color:var(--or);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr);backdrop-filter:blur(10px)}
-
     .btn-gold{display:inline-flex;align-items:center;gap:.5rem;padding:1.1rem 2.8rem;background:var(--beige);color:#0F2922;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;border:none;border-radius:var(--rp);cursor:pointer;transition:all var(--tr);box-shadow:0 6px 28px rgba(212,184,150,.25)}
     .btn-gold:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(212,184,150,.4);background:var(--beige2)}
-
     .manifeste{padding:9rem 1.5rem;background:var(--bdp);position:relative;overflow:hidden}
     .manifeste::before{content:'\275D';position:absolute;top:-2rem;left:-1rem;font-size:20rem;color:rgba(201,169,110,.04);font-family:'Cormorant Garamond',serif;line-height:1;pointer-events:none}
-    .man-in{max-width:760px;margin:0 auto;position:relative}
+    .man-in{max-width:760px;margin:0 auto;position:relative;z-index:1}
     .man-intro{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;color:var(--or);margin-bottom:2rem}
     .man-q{font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,3.5vw,1.9rem);font-style:italic;font-weight:300;line-height:1.5;color:var(--txs);margin-bottom:2rem}
     .man-q strong{color:var(--or);font-style:normal;font-weight:500}
@@ -62,7 +56,6 @@
     .sk-box{margin-top:2.5rem;padding:1.5rem 1.8rem;background:rgba(201,169,110,.06);border-left:3px solid var(--ord);border-radius:0 var(--rs) var(--rs) 0}
     .sk-lbl{font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:var(--or);margin-bottom:.5rem}
     .sk-txt{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--txs);line-height:1.6}
-
     .sw{padding:7rem 1.5rem;max-width:1180px;margin:0 auto;position:relative}
     .sh{margin-bottom:3.5rem}
     .st{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,4.8rem);font-weight:400;line-height:1.05;margin-top:.6rem}
@@ -76,9 +69,8 @@
     .pi{font-size:2rem;margin-bottom:1rem;display:block}
     .pt{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--or);margin-bottom:.9rem}
     .pd{font-size:.93rem;color:var(--txm);line-height:1.75}
-
     .ew{padding:9rem 1.5rem;background:var(--bdp);position:relative;overflow:hidden}
-    .ei{max-width:1100px;margin:0 auto;position:relative}
+    .ei{max-width:1100px;margin:0 auto;position:relative;z-index:1}
     .eg{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:4rem}
     @media(max-width:700px){.eg{grid-template-columns:1fr}}
     .ec{background:var(--bdc);border:1px solid var(--bo);border-radius:var(--rc);padding:2.8rem 2.2rem;transition:border-color var(--tr)}
@@ -87,22 +79,19 @@
     .en{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:400;color:var(--or);margin-bottom:1rem}
     .ed{font-size:.93rem;color:var(--txm);line-height:1.8}
     .eb{margin-top:1.8rem;padding:.9rem 1.1rem;background:rgba(201,169,110,.05);border-left:2px solid var(--ord);border-radius:0 var(--rs) var(--rs) 0;font-size:.84rem;color:var(--txm);font-style:italic;font-family:'Cormorant Garamond',serif}
-
     .cs{padding:10rem 1.5rem;text-align:center;position:relative;overflow:hidden}
     .cs::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(201,169,110,.07) 0%,transparent 65%);pointer-events:none}
     .cb2{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(12rem,28vw,22rem);font-weight:300;color:rgba(201,169,110,.04);user-select:none;pointer-events:none;white-space:nowrap}
     .ci{position:relative;z-index:1}
     .ct{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:400;line-height:1.2;margin-top:.8rem;margin-bottom:.8rem}
     .csu{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.1rem,2.5vw,1.4rem);color:var(--txm);margin-bottom:2.8rem}
-
-    footer{padding:3rem 1.5rem;text-align:center;border-top:1px solid var(--bo)}
+    footer{padding:3rem 1.5rem;text-align:center;border-top:1px solid var(--bo);position:relative;overflow:hidden}
     .fl{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--or);letter-spacing:.12em;margin-bottom:.6rem;display:flex;align-items:center;justify-content:center;gap:.8rem}
     .fl img{height:30px;width:30px;object-fit:cover;border-radius:50%;border:1px solid var(--ord)}
-    footer p{font-size:.82rem;color:var(--txm);line-height:1.8}
+    footer p{font-size:.82rem;color:var(--txm);line-height:1.8;position:relative;z-index:1}
     .dv{display:flex;align-items:center;gap:1.2rem;padding:2rem 1.5rem;max-width:700px;margin:0 auto}
     .dl{flex:1;height:1px;background:var(--bo)}
     .ds{color:var(--or);font-size:1rem;opacity:.5}
-
     .modal{position:fixed;inset:0;z-index:500;background:var(--bmd);display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .4s ease}
     .modal.open{opacity:1;pointer-events:all}
     .qp{position:absolute;top:0;left:0;right:0;height:3px;background:rgba(201,169,110,.12);z-index:10}
@@ -206,56 +195,69 @@
 
 <header class="hero" id="accueil">
 
-  <!-- Arbre du Voyageur gauche (Ravenala Madagascar) -->
-  <svg class="bot" style="left:-20px;top:0;height:100%;width:min(280px,28vw);opacity:.13" viewBox="0 0 200 700" fill="none">
-    <!-- Tronc -->
-    <rect x="96" y="400" width="8" height="300" fill="#c9a96e" opacity=".4"/>
-    <!-- Nervure centrale -->
-    <line x1="100" y1="400" x2="100" y2="50" stroke="#c9a96e" stroke-width="2"/>
-    <!-- Feuilles Ravenala - éventail caractéristique -->
-    <path d="M100 200 C60 180 20 140 5 90" stroke="#c9a96e" stroke-width="3" fill="none"/>
-    <path d="M100 200 C140 180 180 140 195 90" stroke="#c9a96e" stroke-width="3" fill="none"/>
-    <path d="M100 230 C55 200 15 155 0 100" stroke="#c9a96e" stroke-width="2.5" fill="none"/>
-    <path d="M100 230 C145 200 185 155 200 100" stroke="#c9a96e" stroke-width="2.5" fill="none"/>
-    <path d="M100 260 C50 225 8 175 -5 115" stroke="#c9a96e" stroke-width="2.2" fill="none"/>
-    <path d="M100 260 C150 225 192 175 205 115" stroke="#c9a96e" stroke-width="2.2" fill="none"/>
-    <path d="M100 290 C45 250 5 195 -8 130" stroke="#c9a96e" stroke-width="2" fill="none"/>
-    <path d="M100 290 C155 250 195 195 208 130" stroke="#c9a96e" stroke-width="2" fill="none"/>
-    <path d="M100 320 C40 275 2 215 -10 148" stroke="#c9a96e" stroke-width="1.8" fill="none"/>
-    <path d="M100 320 C160 275 198 215 210 148" stroke="#c9a96e" stroke-width="1.8" fill="none"/>
-    <!-- Feuilles larges -->
-    <path d="M5 90 C15 75 25 78 20 95 C10 102 0 98 5 90Z" fill="#c9a96e" opacity=".25"/>
-    <path d="M195 90 C185 75 175 78 180 95 C190 102 200 98 195 90Z" fill="#c9a96e" opacity=".25"/>
-    <path d="M0 100 C12 84 22 88 16 106 C5 113 -5 108 0 100Z" fill="#c9a96e" opacity=".22"/>
-    <path d="M200 100 C188 84 178 88 184 106 C195 113 205 108 200 100Z" fill="#c9a96e" opacity=".22"/>
+  <!-- Arbre du Voyageur gauche grand -->
+  <svg class="bot" style="left:-10px;top:0;height:100%;width:min(320px,32vw);opacity:.15" viewBox="0 0 220 700" fill="none">
+    <rect x="106" y="420" width="8" height="280" fill="#c9a96e" opacity=".35"/>
+    <line x1="110" y1="420" x2="110" y2="60" stroke="#c9a96e" stroke-width="2.5"/>
+    <path d="M110 210 C65 188 22 148 5 95" stroke="#c9a96e" stroke-width="3.5" fill="none"/>
+    <path d="M110 210 C155 188 198 148 215 95" stroke="#c9a96e" stroke-width="3.5" fill="none"/>
+    <path d="M110 245 C58 218 14 172 -2 112" stroke="#c9a96e" stroke-width="3" fill="none"/>
+    <path d="M110 245 C162 218 206 172 222 112" stroke="#c9a96e" stroke-width="3" fill="none"/>
+    <path d="M110 280 C52 248 6 198 -10 130" stroke="#c9a96e" stroke-width="2.5" fill="none"/>
+    <path d="M110 280 C168 248 214 198 230 130" stroke="#c9a96e" stroke-width="2.5" fill="none"/>
+    <path d="M110 315 C46 278 -2 222 -18 148" stroke="#c9a96e" stroke-width="2.2" fill="none"/>
+    <path d="M110 315 C174 278 222 222 238 148" stroke="#c9a96e" stroke-width="2.2" fill="none"/>
+    <path d="M110 350 C40 308 -8 246 -22 166" stroke="#c9a96e" stroke-width="2" fill="none"/>
+    <path d="M110 350 C180 308 228 246 242 166" stroke="#c9a96e" stroke-width="2" fill="none"/>
+    <path d="M110 385 C35 338 -14 270 -26 184" stroke="#c9a96e" stroke-width="1.8" fill="none"/>
+    <path d="M110 385 C185 338 234 270 246 184" stroke="#c9a96e" stroke-width="1.8" fill="none"/>
+    <path d="M5 95 C18 78 30 82 24 100 C12 108 -2 104 5 95Z" fill="#c9a96e" opacity=".3"/>
+    <path d="M215 95 C202 78 190 82 196 100 C208 108 222 104 215 95Z" fill="#c9a96e" opacity=".3"/>
+    <path d="M-2 112 C12 94 25 98 18 118 C6 126 -8 122 -2 112Z" fill="#c9a96e" opacity=".28"/>
+    <path d="M222 112 C208 94 195 98 202 118 C214 126 228 122 222 112Z" fill="#c9a96e" opacity=".28"/>
+    <path d="M-10 130 C5 110 20 115 12 136 C0 145 -14 140 -10 130Z" fill="#c9a96e" opacity=".25"/>
+    <path d="M230 130 C215 110 200 115 208 136 C220 145 234 140 230 130Z" fill="#c9a96e" opacity=".25"/>
   </svg>
 
-  <!-- Monstera droite -->
-  <svg class="bot" style="right:-15px;top:5%;width:min(320px,33vw);opacity:.13" viewBox="0 0 250 550" fill="none">
-    <!-- Tige -->
-    <path d="M125 550C123 430 100 330 115 220C123 165 148 100 125 20" stroke="#c9a96e" stroke-width="2" fill="none"/>
-    <!-- Grande feuille monstera typique -->
-    <path d="M122 280C70 252 15 268 -8 232C-28 202 5 162 42 175C22 145 36 118 65 130C55 100 78 83 100 100C96 70 120 55 140 75C154 48 180 55 178 83C202 72 215 95 202 113C226 113 233 138 217 152C230 172 222 198 200 200C195 228 173 242 148 236C142 262 128 274 122 280Z" fill="#c9a96e" opacity=".18"/>
-    <!-- Trous caractéristiques monstera -->
-    <ellipse cx="95" cy="175" rx="13" ry="20" transform="rotate(-18 95 175)" fill="#0F2922" opacity=".55"/>
-    <ellipse cx="148" cy="150" rx="10" ry="16" transform="rotate(12 148 150)" fill="#0F2922" opacity=".55"/>
-    <ellipse cx="75" cy="210" rx="8" ry="12" transform="rotate(-10 75 210)" fill="#0F2922" opacity=".45"/>
-    <!-- Feuille haute -->
-    <path d="M120 160C78 138 32 150 12 118C-6 90 22 55 55 68C38 42 52 20 78 32C74 5 98 -8 116 14C128 -10 152 -4 150 24C172 14 183 35 170 52C192 52 198 75 183 87C196 107 188 132 167 134C162 158 140 168 120 160Z" fill="#c9a96e" opacity=".14"/>
-    <ellipse cx="90" cy="95" rx="11" ry="17" transform="rotate(-15 90 95)" fill="#0F2922" opacity=".45"/>
-    <!-- Branches basses -->
-    <path d="M122 360C90 340 55 346 35 320" stroke="#c9a96e" stroke-width="1.4" fill="none"/>
-    <path d="M123 420C152 402 186 408 205 385" stroke="#c9a96e" stroke-width="1.4" fill="none"/>
-    <ellipse cx="33" cy="315" rx="24" ry="15" transform="rotate(-25 33 315)" fill="#c9a96e" opacity=".18"/>
-    <ellipse cx="207" cy="380" rx="22" ry="14" transform="rotate(20 207 380)" fill="#c9a96e" opacity=".18"/>
+  <!-- Monstera droite grand -->
+  <svg class="bot" style="right:-15px;top:0;width:min(360px,36vw);opacity:.15" viewBox="0 0 280 600" fill="none">
+    <path d="M140 600C138 470 108 360 126 240C136 175 165 105 140 20" stroke="#c9a96e" stroke-width="2.5" fill="none"/>
+    <path d="M136 295C80 265 18 282 -8 242C-30 208 6 164 46 178C24 146 40 116 72 130C60 96 86 78 110 98C106 64 132 48 154 72C170 42 200 52 198 82C226 70 240 96 226 116C252 116 262 146 244 160C258 182 250 212 226 214C220 244 196 258 168 252C160 280 144 292 136 295Z" fill="#c9a96e" opacity=".18"/>
+    <ellipse cx="104" cy="185" rx="14" ry="22" transform="rotate(-18 104 185)" fill="#0F2922" opacity=".55"/>
+    <ellipse cx="158" cy="158" rx="11" ry="17" transform="rotate(12 158 158)" fill="#0F2922" opacity=".55"/>
+    <ellipse cx="82" cy="222" rx="9" ry="14" transform="rotate(-10 82 222)" fill="#0F2922" opacity=".45"/>
+    <path d="M132 165C86 142 35 155 12 120C-8 90 22 52 58 66C40 40 55 16 82 28C77 0 104 -12 122 12C136 -12 162 -5 160 26C184 15 196 38 182 56C205 56 212 82 195 95C208 116 200 144 178 146C172 172 148 182 132 165Z" fill="#c9a96e" opacity=".14"/>
+    <ellipse cx="98" cy="98" rx="12" ry="18" transform="rotate(-15 98 98)" fill="#0F2922" opacity=".45"/>
+    <path d="M136 380C100 358 60 365 38 336" stroke="#c9a96e" stroke-width="1.6" fill="none"/>
+    <path d="M138 440C170 420 208 428 228 403" stroke="#c9a96e" stroke-width="1.6" fill="none"/>
+    <path d="M136 500C98 482 60 490 38 465" stroke="#c9a96e" stroke-width="1.4" fill="none"/>
+    <path d="M138 555C172 538 210 546 230 522" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
+    <ellipse cx="36" cy="330" rx="28" ry="18" transform="rotate(-25 36 330)" fill="#c9a96e" opacity=".2"/>
+    <ellipse cx="230" cy="398" rx="25" ry="16" transform="rotate(20 230 398)" fill="#c9a96e" opacity=".2"/>
+    <ellipse cx="36" cy="460" rx="23" ry="15" transform="rotate(-22 36 460)" fill="#c9a96e" opacity=".18"/>
+    <ellipse cx="232" cy="517" rx="21" ry="13" transform="rotate(18 232 517)" fill="#c9a96e" opacity=".18"/>
   </svg>
 
   <!-- Monstera bas gauche -->
-  <svg class="bot" style="left:5%;bottom:-20px;width:min(200px,22vw);opacity:.09" viewBox="0 0 180 200" fill="none">
-    <path d="M90 200C88 150 65 110 78 60C84 35 100 10 90 0" stroke="#c9a96e" stroke-width="1.5" fill="none"/>
-    <path d="M88 120C55 100 18 108 0 78C-14 54 12 22 42 35C28 10 42 -5 65 8C60 -18 82 -28 98 -8C110 -30 134 -22 132 6C154 -4 163 18 150 34C170 34 176 55 163 65C174 84 166 106 146 108C141 130 120 138 88 120Z" fill="#c9a96e" opacity=".16"/>
-    <ellipse cx="62" cy="72" rx="10" ry="15" transform="rotate(-14 62 72)" fill="#0F2922" opacity=".45"/>
-    <ellipse cx="110" cy="52" rx="8" ry="12" transform="rotate(10 110 52)" fill="#0F2922" opacity=".45"/>
+  <svg class="bot" style="left:2%;bottom:-10px;width:min(240px,26vw);opacity:.12" viewBox="0 0 210 240" fill="none">
+    <path d="M105 240C102 175 75 125 92 68C100 40 118 12 105 0" stroke="#c9a96e" stroke-width="1.8" fill="none"/>
+    <path d="M102 145C64 122 22 130 2 96C-14 68 16 32 50 46C34 18 50 2 78 15C72 -14 98 -26 116 -4C130 -28 158 -20 156 10C182 -2 192 22 178 40C202 40 210 65 194 78C208 100 198 126 175 128C168 155 145 165 102 145Z" fill="#c9a96e" opacity=".18"/>
+    <ellipse cx="74" cy="85" rx="11" ry="17" transform="rotate(-14 74 85)" fill="#0F2922" opacity=".45"/>
+    <ellipse cx="128" cy="62" rx="9" ry="14" transform="rotate(10 128 62)" fill="#0F2922" opacity=".45"/>
+  </svg>
+
+  <!-- Monstera bas droite -->
+  <svg class="bot" style="right:2%;bottom:-10px;width:min(210px,23vw);opacity:.11;transform:scaleX(-1)" viewBox="0 0 210 240" fill="none">
+    <path d="M105 240C102 175 75 125 92 68C100 40 118 12 105 0" stroke="#c9a96e" stroke-width="1.8" fill="none"/>
+    <path d="M102 145C64 122 22 130 2 96C-14 68 16 32 50 46C34 18 50 2 78 15C72 -14 98 -26 116 -4C130 -28 158 -20 156 10C182 -2 192 22 178 40C202 40 210 65 194 78C208 100 198 126 175 128C168 155 145 165 102 145Z" fill="#c9a96e" opacity=".18"/>
+    <ellipse cx="74" cy="85" rx="11" ry="17" transform="rotate(-14 74 85)" fill="#0F2922" opacity=".45"/>
+    <ellipse cx="128" cy="62" rx="9" ry="14" transform="rotate(10 128 62)" fill="#0F2922" opacity=".45"/>
+  </svg>
+
+  <!-- Feuilles tropicales haut droite -->
+  <svg class="bot" style="right:15%;top:5%;width:min(160px,18vw);opacity:.09" viewBox="0 0 140 180" fill="none">
+    <path d="M70 180C68 130 48 90 58 45C64 22 78 5 70 0" stroke="#c9a96e" stroke-width="1.4" fill="none"/>
+    <path d="M68 105C42 88 15 94 2 70C-8 50 12 24 36 35C24 12 36 0 56 10C52 -14 70 -22 82 -2C92 -20 112 -14 110 10C128 1 135 18 124 30C140 30 145 50 133 60C144 78 136 100 118 102C112 122 93 130 68 105Z" fill="#c9a96e" opacity=".16"/>
   </svg>
 
   <img class="hero-logo" src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Sankhtuhair Logo">
@@ -263,7 +265,7 @@
   <h1 class="hero-title">SANKTU<span class="ac">hair</span></h1>
   <p class="hero-sub">"Va chercher dans ton passé ce qui te rendra plus fort demain"</p>
   <div class="hero-cta">
-    <button class="btn-gold" id="btn-hero">Commencer mon initiation ✨</button>
+    <button class="btn-gold" id="btn-hero" onclick="openModal()">Commencer mon initiation ✨</button>
   </div>
   <div class="scroll-h"><div class="scroll-l"></div><span>Explorer</span></div>
 </header>
@@ -271,12 +273,29 @@
 <button class="music-btn" id="music-btn">🎵</button>
 
 <section class="manifeste" id="manifeste">
-  <!-- Monstera fond -->
-  <svg style="position:absolute;right:-30px;top:50%;transform:translateY(-50%);width:min(280px,30vw);opacity:.06;pointer-events:none" viewBox="0 0 250 380" fill="none">
-    <path d="M125 380C123 285 95 205 110 118C118 72 142 26 125 0" stroke="#c9a96e" stroke-width="1.5" fill="none"/>
-    <path d="M122 210C75 182 22 196 -2 158C-20 128 12 88 48 102C30 72 44 46 72 60C62 30 86 14 106 32C102 4 126 -8 144 16C158 -8 184 0 182 30C206 18 218 44 205 62C228 62 236 90 218 104C232 126 222 154 200 156C194 182 172 194 146 188C140 214 126 222 122 210Z" fill="#c9a96e" opacity=".22"/>
-    <ellipse cx="92" cy="128" rx="12" ry="19" transform="rotate(-16 92 128)" fill="#0a1f18" opacity=".6"/>
-    <ellipse cx="142" cy="104" rx="9" ry="14" transform="rotate(14 142 104)" fill="#0a1f18" opacity=".6"/>
+  <!-- Monstera gauche manifeste -->
+  <svg style="position:absolute;left:-20px;top:0;height:100%;width:min(220px,22vw);opacity:.09;pointer-events:none" viewBox="0 0 180 500" fill="none">
+    <path d="M90 500C88 380 65 285 80 178C88 128 108 68 90 10" stroke="#c9a96e" stroke-width="1.5" fill="none"/>
+    <path d="M88 260C55 238 18 248 0 214C-15 186 12 150 44 164C28 136 42 115 68 127C62 98 84 82 102 102C114 76 140 84 138 114C158 103 168 125 155 142C175 142 182 165 168 177C180 198 172 224 150 226C144 252 122 264 88 260Z" fill="#c9a96e" opacity=".16"/>
+    <ellipse cx="62" cy="168" rx="10" ry="15" transform="rotate(-14 62 168)" fill="#0a1f18" opacity=".5"/>
+    <ellipse cx="110" cy="148" rx="8" ry="12" transform="rotate(10 110 148)" fill="#0a1f18" opacity=".5"/>
+    <path d="M88 360C55 340 20 348 2 320" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
+    <path d="M90 430C120 412 155 420 172 398" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
+    <ellipse cx="0" cy="315" rx="20" ry="13" transform="rotate(-22 0 315)" fill="#c9a96e" opacity=".16"/>
+    <ellipse cx="174" cy="393" rx="18" ry="12" transform="rotate(18 174 393)" fill="#c9a96e" opacity=".16"/>
+  </svg>
+  <!-- Ravenala droite manifeste -->
+  <svg style="position:absolute;right:-10px;top:50%;transform:translateY(-50%);height:80%;width:min(200px,20vw);opacity:.08;pointer-events:none" viewBox="0 0 180 500" fill="none">
+    <rect x="86" y="300" width="8" height="200" fill="#c9a96e" opacity=".3"/>
+    <line x1="90" y1="300" x2="90" y2="80" stroke="#c9a96e" stroke-width="2"/>
+    <path d="M90 170 C55 152 22 118 8 78" stroke="#c9a96e" stroke-width="2.5" fill="none"/>
+    <path d="M90 170 C125 152 158 118 172 78" stroke="#c9a96e" stroke-width="2.5" fill="none"/>
+    <path d="M90 200 C50 178 15 140 0 95" stroke="#c9a96e" stroke-width="2.2" fill="none"/>
+    <path d="M90 200 C130 178 165 140 180 95" stroke="#c9a96e" stroke-width="2.2" fill="none"/>
+    <path d="M90 230 C45 205 8 162 -6 112" stroke="#c9a96e" stroke-width="2" fill="none"/>
+    <path d="M90 230 C135 205 172 162 186 112" stroke="#c9a96e" stroke-width="2" fill="none"/>
+    <path d="M8 78 C20 62 30 66 24 82 C14 90 2 86 8 78Z" fill="#c9a96e" opacity=".28"/>
+    <path d="M172 78 C160 62 150 66 156 82 C166 90 178 86 172 78Z" fill="#c9a96e" opacity=".28"/>
   </svg>
   <div class="man-in reveal">
     <p class="lbl" style="margin-bottom:1rem">Le Manifeste</p>
@@ -296,6 +315,13 @@
 <div class="dv"><div class="dl"></div><span class="ds">✦</span><div class="dl"></div></div>
 
 <div class="sw">
+  <!-- Monstera coins piliers -->
+  <svg style="position:absolute;right:-10px;top:0;width:min(180px,18vw);opacity:.08;pointer-events:none" viewBox="0 0 160 300" fill="none">
+    <path d="M80 300C78 220 55 158 68 88C75 55 92 22 80 0" stroke="#c9a96e" stroke-width="1.4" fill="none"/>
+    <path d="M78 170C48 152 15 160 0 130C-12 106 12 72 40 85C26 60 38 44 62 55C56 28 78 16 94 38C106 14 130 22 128 52C150 40 158 62 145 78C164 78 170 102 156 114C168 136 160 160 140 162C134 188 112 196 78 170Z" fill="#c9a96e" opacity=".16"/>
+    <ellipse cx="55" cy="108" rx="10" ry="15" transform="rotate(-14 55 108)" fill="#0a1f18" opacity=".5"/>
+    <ellipse cx="100" cy="90" rx="8" ry="12" transform="rotate(10 100 90)" fill="#0a1f18" opacity=".5"/>
+  </svg>
   <div class="sh reveal">
     <p class="lbl">L'Architecture du Sanctuaire</p>
     <h2 class="st">Les <em>Trois</em> Piliers</h2>
@@ -308,6 +334,26 @@
 </div>
 
 <div class="ew" id="ecosysteme">
+  <!-- Ravenala fond ecosystem -->
+  <svg style="position:absolute;left:-15px;bottom:0;height:80%;width:min(200px,20vw);opacity:.09;pointer-events:none" viewBox="0 0 180 500" fill="none">
+    <rect x="86" y="300" width="8" height="200" fill="#c9a96e" opacity=".3"/>
+    <line x1="90" y1="300" x2="90" y2="60" stroke="#c9a96e" stroke-width="2"/>
+    <path d="M90 160 C52 140 18 105 4 62" stroke="#c9a96e" stroke-width="2.8" fill="none"/>
+    <path d="M90 160 C128 140 162 105 176 62" stroke="#c9a96e" stroke-width="2.8" fill="none"/>
+    <path d="M90 195 C47 172 12 132 -2 85" stroke="#c9a96e" stroke-width="2.4" fill="none"/>
+    <path d="M90 195 C133 172 168 132 182 85" stroke="#c9a96e" stroke-width="2.4" fill="none"/>
+    <path d="M90 230 C42 204 5 158 -9 105" stroke="#c9a96e" stroke-width="2.2" fill="none"/>
+    <path d="M90 230 C138 204 175 158 189 105" stroke="#c9a96e" stroke-width="2.2" fill="none"/>
+    <path d="M4 62 C18 44 30 48 23 66 C12 75 -1 70 4 62Z" fill="#c9a96e" opacity=".28"/>
+    <path d="M176 62 C162 44 150 48 157 66 C168 75 181 70 176 62Z" fill="#c9a96e" opacity=".28"/>
+  </svg>
+  <!-- Monstera fond ecosystem droite -->
+  <svg style="position:absolute;right:-10px;top:10%;width:min(190px,19vw);opacity:.09;pointer-events:none" viewBox="0 0 170 320" fill="none">
+    <path d="M85 320C83 240 62 172 75 98C82 62 100 28 85 0" stroke="#c9a96e" stroke-width="1.5" fill="none"/>
+    <path d="M83 185C52 165 18 173 2 140C-11 114 14 80 44 94C28 68 42 50 66 60C60 34 80 20 97 40C108 16 134 24 132 52C154 42 163 64 150 80C170 80 177 105 163 117C175 138 167 164 145 166C138 192 117 200 83 185Z" fill="#c9a96e" opacity=".16"/>
+    <ellipse cx="58" cy="118" rx="10" ry="15" transform="rotate(-14 58 118)" fill="#0a1f18" opacity=".5"/>
+    <ellipse cx="104" cy="100" rx="8" ry="12" transform="rotate(10 104 100)" fill="#0a1f18" opacity=".5"/>
+  </svg>
   <div class="ei">
     <div class="sh reveal">
       <p class="lbl">L'Écosystème</p>
@@ -331,17 +377,36 @@
 </div>
 
 <section class="cs" id="parcours">
+  <!-- Plantes CTA -->
+  <svg style="position:absolute;left:2%;top:50%;transform:translateY(-50%);width:min(200px,20vw);opacity:.1;pointer-events:none" viewBox="0 0 180 340" fill="none">
+    <path d="M90 340C88 255 65 182 78 102C86 62 106 22 90 0" stroke="#c9a96e" stroke-width="1.5" fill="none"/>
+    <path d="M88 195C55 173 20 181 3 148C-12 122 14 86 46 100C30 72 44 54 70 65C63 38 86 24 104 46C116 20 144 28 142 58C165 46 174 70 160 88C180 88 188 114 173 126C185 148 177 175 155 177C148 204 126 214 88 195Z" fill="#c9a96e" opacity=".18"/>
+    <ellipse cx="62" cy="128" rx="11" ry="17" transform="rotate(-15 62 128)" fill="#0a1f18" opacity=".5"/>
+    <ellipse cx="112" cy="108" rx="9" ry="14" transform="rotate(12 112 108)" fill="#0a1f18" opacity=".5"/>
+  </svg>
+  <svg style="position:absolute;right:2%;top:50%;transform:translateY(-50%) scaleX(-1);width:min(190px,19vw);opacity:.1;pointer-events:none" viewBox="0 0 180 340" fill="none">
+    <path d="M90 340C88 255 65 182 78 102C86 62 106 22 90 0" stroke="#c9a96e" stroke-width="1.5" fill="none"/>
+    <path d="M88 195C55 173 20 181 3 148C-12 122 14 86 46 100C30 72 44 54 70 65C63 38 86 24 104 46C116 20 144 28 142 58C165 46 174 70 160 88C180 88 188 114 173 126C185 148 177 175 155 177C148 204 126 214 88 195Z" fill="#c9a96e" opacity=".18"/>
+  </svg>
   <div class="cb2">13</div>
   <div class="ci reveal">
     <p class="lbl">Le Parcours Initiatique</p>
     <h2 class="ct">Prêt·e à reprendre<br>possession de ta <span style="color:var(--or)">Couronne</span> ?</h2>
     <p class="csu">13 étapes. Une révélation.</p>
-    <button class="btn-gold" id="btn-cta">Commencer mon initiation ✨</button>
+    <button class="btn-gold" id="btn-cta" onclick="openModal()">Commencer mon initiation ✨</button>
   </div>
 </section>
 
 <footer>
-  <div class="fl">
+  <svg style="position:absolute;left:0;top:0;width:min(150px,15vw);opacity:.07;pointer-events:none" viewBox="0 0 130 200" fill="none">
+    <path d="M65 200C63 145 45 100 55 52C60 28 74 8 65 0" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
+    <path d="M63 115C38 100 12 107 0 80C-10 58 12 30 36 42C24 20 34 6 54 15C49 -8 68 -18 82 4C92 -16 114 -10 112 18C130 8 138 28 126 42C142 42 148 64 135 74C146 92 138 114 118 116C112 138 92 146 63 115Z" fill="#c9a96e" opacity=".16"/>
+  </svg>
+  <svg style="position:absolute;right:0;bottom:0;width:min(140px,14vw);opacity:.07;pointer-events:none;transform:scaleX(-1)" viewBox="0 0 130 200" fill="none">
+    <path d="M65 200C63 145 45 100 55 52C60 28 74 8 65 0" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
+    <path d="M63 115C38 100 12 107 0 80C-10 58 12 30 36 42C24 20 34 6 54 15C49 -8 68 -18 82 4C92 -16 114 -10 112 18C130 8 138 28 126 42C142 42 148 64 135 74C146 92 138 114 118 116C112 138 92 146 63 115Z" fill="#c9a96e" opacity=".16"/>
+  </svg>
+  <div class="fl" style="position:relative;z-index:1">
     <img src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Logo">
     Sankhtuhair
   </div>
@@ -353,13 +418,11 @@
   <div class="qp"><div class="qpf" id="prog"></div></div>
   <div class="qh"><div class="ql">♛ Sankhtuhair</div><button class="qx" id="btn-close">✕</button></div>
   <div class="qst" id="qst">
-
     <div class="step active" id="s1">
       <h2 class="qq">Comment tu t'appelles ? 👋</h2>
       <input class="qi" id="inp-prenom" type="text" placeholder="Ton prénom..." maxlength="60" autocomplete="given-name">
       <div class="qnw"><button class="qn" id="next1" disabled>Suivant</button></div>
     </div>
-
     <div class="step" id="s2">
       <h2 class="qq">Quel âge as-tu ? 🎂</h2>
       <div class="ch">
@@ -370,7 +433,6 @@
       </div>
       <div class="qnw"><button class="qn" disabled>Suivant</button></div>
     </div>
-
     <div class="step" id="s3">
       <h2 class="qq">Ton type de cheveux ? 💇🏽</h2>
       <div class="ch">
@@ -384,7 +446,6 @@
       </div>
       <div class="qnw"><button class="qn" disabled>Suivant</button></div>
     </div>
-
     <div class="step" id="s4">
       <h2 class="qq">Ton cuir chevelu ? 🧴</h2>
       <p class="qhi">Plusieurs réponses possibles</p>
@@ -398,7 +459,6 @@
       </div>
       <div class="qnw"><button class="qn" disabled>Suivant</button></div>
     </div>
-
     <div class="step" id="s5">
       <h2 class="qq">Tes problématiques ? ✨</h2>
       <p class="qhi">Plusieurs réponses possibles</p>
@@ -415,7 +475,6 @@
       </div>
       <div class="qnw"><button class="qn" disabled>Suivant</button></div>
     </div>
-
     <div class="step" id="s6">
       <h2 class="qq">La cause du changement ? 🌀</h2>
       <p class="qhi">Plusieurs réponses possibles</p>
@@ -434,7 +493,6 @@
       </div>
       <div class="qnw"><button class="qn" disabled>Suivant</button></div>
     </div>
-
     <div class="step" id="s7">
       <h2 class="qq">Fréquence de lavage ? 🧼</h2>
       <div class="ch">
@@ -446,7 +504,6 @@
       </div>
       <div class="qnw"><button class="qn" disabled>Suivant</button></div>
     </div>
-
     <div class="step" id="s8">
       <h2 class="qq">Tes objectifs ? ✨</h2>
       <p class="qhi">Plusieurs réponses possibles</p>
@@ -463,7 +520,6 @@
       </div>
       <div class="qnw"><button class="qn" disabled>Suivant</button></div>
     </div>
-
     <div class="step" id="s9">
       <h2 class="qq">Coiffures protectrices ? 👑</h2>
       <div class="ch">
@@ -474,7 +530,6 @@
       </div>
       <div class="qnw"><button class="qn" disabled>Suivant</button></div>
     </div>
-
     <div class="step" id="s10">
       <h2 class="qq">Produits naturels ? 🌱</h2>
       <div class="ch">
@@ -484,7 +539,6 @@
       </div>
       <div class="qnw"><button class="qn" disabled>Suivant</button></div>
     </div>
-
     <div class="step" id="s11">
       <h2 class="qq">Des choses à écarter ? ❌</h2>
       <p class="qhi">Plusieurs réponses possibles</p>
@@ -498,13 +552,11 @@
       </div>
       <div class="qnw"><button class="qn" disabled>Suivant</button></div>
     </div>
-
     <div class="step" id="s12">
       <h2 class="qq">Tu souhaites me dire quelque chose ? 💕🌱✨</h2>
       <textarea class="qi" id="inp-libre" placeholder="Dis-moi..."></textarea>
       <div class="qnw"><button class="qn" id="next12">Suivant</button></div>
     </div>
-
     <div class="step" id="s13">
       <h2 class="qq" style="font-size:1.8rem">Prenons quelques photos 📸</h2>
       <div class="pl">
@@ -515,14 +567,12 @@
       <p class="pno" id="pno">3 photos requises pour le diagnostic complet de Seanamon</p>
       <div class="qnw"><button class="qn" id="btn-submit" disabled>Voir mon diagnostic ✨</button></div>
     </div>
-
     <div class="qld" id="qld">
       <img class="lg" src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Seanamon">
       <p class="lm" id="lm">Seanamon analyse ta couronne...</p>
       <p class="ls" id="ls">Prêt·e à en reprendre possession ? 🌱✨👑💕</p>
       <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
     </div>
-
     <div class="qr" id="qr">
       <div class="rw">
         <div class="rt">
@@ -575,8 +625,6 @@ function openModal(){document.getElementById('modal').classList.add('open');docu
 function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 
 document.addEventListener('DOMContentLoaded',function(){
-  document.getElementById('btn-hero').onclick=openModal;
-  document.getElementById('btn-cta').onclick=openModal;
   document.getElementById('btn-close').onclick=closeModal;
   document.getElementById('bsub').onclick=doSub;
   document.getElementById('btn-submit').onclick=submitAll;
@@ -700,9 +748,7 @@ async function doSub(){
   document.getElementById('eok').classList.add('show');
 }
 
-var actx=null,mOn=false,mg=null;
-var audioEl=null;
-
+var audioEl=null,mOn=false;
 document.getElementById('music-btn').addEventListener('click',function(){
   var btn=document.getElementById('music-btn');
   if(mOn){
@@ -714,7 +760,7 @@ document.getElementById('music-btn').addEventListener('click',function(){
       audioEl.loop=true;
       audioEl.volume=0.4;
     }
-    audioEl.play().catch(function(){console.log('Audio autoplay blocked');});
+    audioEl.play().catch(function(e){console.log('Audio blocked:',e);});
     mOn=true;btn.textContent='🔇';
   }
 });
