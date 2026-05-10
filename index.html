@@ -18,15 +18,12 @@
     }
     html{scroll-behavior:smooth}
     body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-
-    /* FOND FEUILLES GLOBAL */
-    .leaf-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.07}
-    section,header,footer,nav{position:relative;z-index:1}
+    .leaf-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.08}
+    .leaf-bg svg{width:100%;height:100%}
+    nav,header,section,.sw,.ew,footer,.modal,.music-btn{position:relative;z-index:1}
     .modal{z-index:500!important}
     nav{z-index:200!important}
     .music-btn{z-index:150!important}
-    .leaf-bg{z-index:0!important}
-
     .lbl{font-size:.67rem;letter-spacing:.4em;text-transform:uppercase;color:var(--or)}
     .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
     .reveal.in{opacity:1;transform:translateY(0)}
@@ -34,11 +31,9 @@
     .stagger.in>*:nth-child(1){opacity:1;transform:translateY(0)}
     .stagger.in>*:nth-child(2){opacity:1;transform:translateY(0);transition-delay:.12s}
     .stagger.in>*:nth-child(3){opacity:1;transform:translateY(0);transition-delay:.24s}
-
     nav{position:fixed;top:0;left:0;right:0;padding:1rem 2rem;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(14px);background:rgba(14,40,32,.88);border-bottom:1px solid var(--bo)}
     .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--or);letter-spacing:.12em;display:flex;align-items:center;gap:.8rem}
     .nav-logo img{height:36px;width:36px;object-fit:cover;border-radius:50%;border:1px solid var(--ord)}
-
     .hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 1.5rem 4rem;overflow:hidden}
     .hero-logo{width:clamp(80px,15vw,130px);height:clamp(80px,15vw,130px);object-fit:cover;border-radius:50%;border:2px solid var(--ord);margin-bottom:1.5rem;box-shadow:0 0 40px rgba(201,169,110,.2);opacity:0;animation:fadeIn 1s ease .2s forwards}
     .hero-ey{font-size:.67rem;letter-spacing:.42em;text-transform:uppercase;color:var(--or);margin-bottom:1rem;opacity:0;animation:fadeUp .8s ease .4s forwards}
@@ -50,13 +45,10 @@
     .scroll-h span{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,169,110,.4)}
     .scroll-l{width:1px;height:44px;background:linear-gradient(to bottom,var(--or),transparent);animation:sP 2.5s ease-in-out infinite}
     @keyframes sP{0%,100%{opacity:.25}50%{opacity:.9}}
-
     .music-btn{position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;border-radius:50%;background:rgba(14,40,32,.92);border:1px solid var(--bo);color:var(--or);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr);backdrop-filter:blur(10px)}
-
     .btn-gold{display:inline-flex;align-items:center;gap:.5rem;padding:1.1rem 2.8rem;background:var(--beige);color:#0F2922;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;border:none;border-radius:var(--rp);cursor:pointer;transition:all var(--tr);box-shadow:0 6px 28px rgba(212,184,150,.25)}
     .btn-gold:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(212,184,150,.4);background:var(--beige2)}
-
-    .manifeste{padding:9rem 1.5rem;background:rgba(10,31,24,.92);overflow:hidden}
+    .manifeste{padding:9rem 1.5rem;background:rgba(10,31,24,.9)}
     .manifeste::before{content:'\275D';position:absolute;top:-2rem;left:-1rem;font-size:20rem;color:rgba(201,169,110,.04);font-family:'Cormorant Garamond',serif;line-height:1;pointer-events:none}
     .man-in{max-width:760px;margin:0 auto}
     .man-intro{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;color:var(--or);margin-bottom:2rem}
@@ -68,7 +60,6 @@
     .sk-box{margin-top:2.5rem;padding:1.5rem 1.8rem;background:rgba(201,169,110,.06);border-left:3px solid var(--ord);border-radius:0 var(--rs) var(--rs) 0}
     .sk-lbl{font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:var(--or);margin-bottom:.5rem}
     .sk-txt{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--txs);line-height:1.6}
-
     .sw{padding:7rem 1.5rem;max-width:1180px;margin:0 auto}
     .sh{margin-bottom:3.5rem}
     .st{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,4.8rem);font-weight:400;line-height:1.05;margin-top:.6rem}
@@ -80,8 +71,7 @@
     .pi{font-size:2rem;margin-bottom:1rem;display:block}
     .pt{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--or);margin-bottom:.9rem}
     .pd{font-size:.93rem;color:var(--txm);line-height:1.75}
-
-    .ew{padding:9rem 1.5rem;background:rgba(10,31,24,.92)}
+    .ew{padding:9rem 1.5rem;background:rgba(10,31,24,.9)}
     .ei{max-width:1100px;margin:0 auto}
     .eg{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:4rem}
     @media(max-width:700px){.eg{grid-template-columns:1fr}}
@@ -91,23 +81,19 @@
     .en{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:400;color:var(--or);margin-bottom:1rem}
     .ed{font-size:.93rem;color:var(--txm);line-height:1.8}
     .eb{margin-top:1.8rem;padding:.9rem 1.1rem;background:rgba(201,169,110,.05);border-left:2px solid var(--ord);border-radius:0 var(--rs) var(--rs) 0;font-size:.84rem;color:var(--txm);font-style:italic;font-family:'Cormorant Garamond',serif}
-
-    .cs{padding:10rem 1.5rem;text-align:center}
+    .cs{padding:10rem 1.5rem;text-align:center;position:relative}
     .cs::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(201,169,110,.07) 0%,transparent 65%);pointer-events:none}
     .cb2{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(12rem,28vw,22rem);font-weight:300;color:rgba(201,169,110,.04);user-select:none;pointer-events:none;white-space:nowrap}
     .ci{position:relative;z-index:2}
     .ct{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:400;line-height:1.2;margin-top:.8rem;margin-bottom:.8rem}
     .csu{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.1rem,2.5vw,1.4rem);color:var(--txm);margin-bottom:2.8rem}
-
-    footer{padding:3rem 1.5rem;text-align:center;border-top:1px solid var(--bo);background:rgba(10,31,24,.92)}
+    footer{padding:3rem 1.5rem;text-align:center;border-top:1px solid var(--bo);background:rgba(10,31,24,.9)}
     .fl{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--or);letter-spacing:.12em;margin-bottom:.6rem;display:flex;align-items:center;justify-content:center;gap:.8rem}
     .fl img{height:30px;width:30px;object-fit:cover;border-radius:50%;border:1px solid var(--ord)}
     footer p{font-size:.82rem;color:var(--txm);line-height:1.8}
     .dv{display:flex;align-items:center;gap:1.2rem;padding:2rem 1.5rem;max-width:700px;margin:0 auto}
     .dl{flex:1;height:1px;background:var(--bo)}
     .ds{color:var(--or);font-size:1rem;opacity:.5}
-
-    /* MODAL */
     .modal{position:fixed;inset:0;background:var(--bmd);display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .4s ease}
     .modal.open{opacity:1;pointer-events:all}
     .qp{position:absolute;top:0;left:0;right:0;height:3px;background:rgba(201,169,110,.12)}
@@ -203,89 +189,67 @@
 </head>
 <body>
 
-<!-- FOND FEUILLES LINE ART -->
+<!-- FOND FEUILLES LINE ART — SVG propre et validé -->
 <div class="leaf-bg">
-<svg viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
-  <g stroke="#e8dcc8" stroke-width="0.7" fill="none">
-    <!-- Grande feuille haut gauche -->
-    <path d="M-100 0 C0 50 120 180 100 350 C80 520 20 600 -50 650"/>
-    <path d="M-100 0 C-60 120 -20 250 -50 650"/>
-    <path d="M-80 30 C10 75 110 195 92 358"/>
-    <path d="M-60 60 C20 100 100 210 84 366"/>
-    <path d="M-40 90 C30 125 90 225 76 374"/>
-    <path d="M-20 120 C40 150 80 240 68 382"/>
-    <path d="M0 150 C50 175 70 255 60 390"/>
-    <path d="M-90 35 C-40 140 0 270 -50 500"/>
-    <path d="M-80 70 C-30 170 8 295 -50 520"/>
-    <path d="M-70 105 C-20 200 16 320 -50 540"/>
-    <path d="M-60 140 C-10 230 24 345 -50 560"/>
-    <!-- Grande feuille centre haut -->
-    <path d="M580 -80 C640 20 680 160 660 310 C640 460 590 540 540 570"/>
-    <path d="M580 -80 C555 40 540 170 540 570"/>
-    <path d="M595 -50 C648 42 682 172 663 318"/>
-    <path d="M610 -20 C656 64 684 184 666 326"/>
-    <path d="M625 10 C664 86 686 196 669 334"/>
-    <path d="M588 -45 C568 65 556 188 540 420"/>
-    <path d="M596 -10 C574 96 560 212 540 440"/>
-    <path d="M604 25 C580 127 564 236 540 460"/>
-    <!-- Grande feuille droite haut -->
-    <path d="M1350 -50 C1280 30 1220 160 1230 320 C1240 480 1290 560 1350 590"/>
-    <path d="M1350 -50 C1370 80 1380 210 1350 590"/>
-    <path d="M1332 -22 C1268 52 1212 172 1222 328"/>
-    <path d="M1314 6 C1256 74 1204 184 1214 336"/>
-    <path d="M1296 34 C1244 96 1196 196 1206 344"/>
-    <path d="M1338 -18 C1352 90 1358 214 1350 440"/>
-    <path d="M1326 18 C1342 122 1350 238 1350 460"/>
-    <!-- Feuille milieu gauche -->
-    <path d="M-50 400 C80 340 220 360 280 480 C340 600 300 700 220 740"/>
-    <path d="M-50 400 C40 480 100 570 220 740"/>
-    <path d="M-25 420 C95 358 228 372 285 488"/>
-    <path d="M0 440 C110 376 236 384 290 496"/>
-    <path d="M25 460 C125 394 244 396 295 504"/>
-    <path d="M-30 430 C50 500 108 584 220 700"/>
-    <path d="M-10 460 C68 528 118 606 220 720"/>
-    <!-- Feuille milieu droite -->
-    <path d="M1490 350 C1370 300 1240 320 1190 440 C1140 560 1180 660 1250 700"/>
-    <path d="M1490 350 C1420 430 1380 520 1250 700"/>
-    <path d="M1468 372 C1354 318 1232 332 1184 448"/>
-    <path d="M1446 394 C1338 336 1224 344 1178 456"/>
-    <path d="M1472 362 C1412 438 1376 528 1250 668"/>
-    <path d="M1454 392 C1396 462 1364 546 1250 688"/>
-    <!-- Feuille bas gauche -->
-    <path d="M-80 700 C60 640 200 660 260 780 C290 840 270 900 220 920"/>
-    <path d="M-80 700 C20 760 80 840 220 920"/>
-    <path d="M-50 720 C80 658 210 672 262 788"/>
-    <path d="M-20 740 C100 676 220 684 264 796"/>
-    <path d="M-60 712 C30 768 88 848 220 900"/>
-    <!-- Feuille bas droite -->
-    <path d="M1520 680 C1390 630 1260 648 1210 758 C1180 818 1200 900 1250 920"/>
-    <path d="M1520 680 C1440 740 1400 820 1250 920"/>
-    <path d="M1498 702 C1376 648 1252 660 1204 766"/>
-    <path d="M1476 724 C1362 668 1244 672 1198 774"/>
-    <path d="M1504 692 C1432 748 1408 828 1250 900"/>
-    <!-- Feuille centre bas -->
-    <path d="M620 820 C680 760 760 750 800 830 C840 910 820 960 780 980"/>
-    <path d="M620 820 C660 870 710 920 780 980"/>
-    <path d="M638 838 C692 772 764 758 802 838"/>
-    <path d="M656 856 C704 784 768 766 804 846"/>
-    <path d="M632 830 C666 876 712 926 780 968"/>
-    <!-- Petites feuilles décoratives -->
-    <path d="M350 120 C380 95 420 105 430 145 C440 185 415 205 388 195 C361 185 348 155 350 120Z"/>
-    <path d="M363 135 C380 112 408 120"/>
-    <path d="M380 130 C375 148"/>
-    <path d="M900 60 C930 35 970 45 980 85 C990 125 965 145 938 135 C911 125 898 95 900 60Z"/>
-    <path d="M913 75 C930 52 958 60"/>
-    <path d="M930 70 C925 88"/>
-    <path d="M1100 500 C1130 475 1170 485 1180 525 C1190 565 1165 585 1138 575 C1111 565 1098 535 1100 500Z"/>
-    <path d="M1113 515 C1130 492 1158 500"/>
-    <path d="M250 500 C280 475 320 485 330 525 C340 565 315 585 288 575 C261 565 248 535 250 500Z"/>
-    <path d="M263 515 C280 492 308 500"/>
-    <path d="M700 400 C720 380 748 388 754 412 C760 436 742 448 720 442 C698 436 692 416 700 400Z"/>
-    <path d="M708 410 C720 392 740 398"/>
-    <path d="M450 650 C470 630 498 638 504 662 C510 686 492 698 470 692 C448 686 442 666 450 650Z"/>
-    <path d="M458 660 C470 642 490 648"/>
-    <path d="M1000 750 C1020 730 1048 738 1054 762 C1060 786 1042 798 1020 792 C998 786 992 766 1000 750Z"/>
-    <path d="M1008 760 C1020 742 1040 748"/>
+<svg viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <g stroke="#e8dcc8" stroke-width="0.8" fill="none">
+    <path d="M-80,20 C20,80 120,200 100,380 C80,520 20,600 -40,640"/>
+    <path d="M-80,20 C-40,140 -10,260 -40,640"/>
+    <path d="M-60,50 C30,105 110,215 92,388"/>
+    <path d="M-40,80 C40,130 100,230 84,396"/>
+    <path d="M-20,110 C50,155 90,245 76,404"/>
+    <path d="M-70,40 C-20,150 10,280 -40,480"/>
+    <path d="M-60,75 C-12,182 18,305 -40,500"/>
+    <path d="M-50,110 C-4,214 22,330 -40,520"/>
+    <path d="M580,-60 C640,40 670,170 655,320 C640,460 595,535 550,560"/>
+    <path d="M580,-60 C555,55 542,175 550,560"/>
+    <path d="M595,-32 C648,58 672,182 658,328"/>
+    <path d="M610,-4 C656,76 674,194 661,336"/>
+    <path d="M588,-38 C566,70 554,192 550,410"/>
+    <path d="M596,0 C572,104 558,218 550,430"/>
+    <path d="M1350,-30 C1285,45 1225,168 1232,322 C1239,476 1288,554 1344,580"/>
+    <path d="M1350,-30 C1368,88 1378,215 1344,580"/>
+    <path d="M1334,-4 C1272,64 1216,180 1223,330"/>
+    <path d="M1318,22 C1259,83 1207,192 1214,338"/>
+    <path d="M1336,2 C1350,108 1356,220 1344,440"/>
+    <path d="M1324,36 C1340,130 1348,234 1344,460"/>
+    <path d="M-40,420 C80,360 210,375 265,488 C320,601 288,695 215,730"/>
+    <path d="M-40,420 C45,495 100,575 215,730"/>
+    <path d="M-18,440 C94,376 218,387 268,496"/>
+    <path d="M4,460 C108,392 226,399 271,504"/>
+    <path d="M-22,448 C52,508 104,588 215,698"/>
+    <path d="M-4,476 C66,532 114,608 215,718"/>
+    <path d="M1490,380 C1375,328 1248,344 1198,458 C1148,572 1182,664 1248,700"/>
+    <path d="M1490,380 C1424,452 1386,528 1248,700"/>
+    <path d="M1469,400 C1360,344 1240,356 1192,466"/>
+    <path d="M1448,420 C1345,360 1232,368 1186,474"/>
+    <path d="M1471,390 C1416,454 1382,534 1248,668"/>
+    <path d="M450,60 C478,38 512,46 520,80 C528,114 508,130 482,122 C456,114 444,88 450,60Z"/>
+    <path d="M462,72 C478,52 506,60"/>
+    <path d="M478,68 C474,84"/>
+    <path d="M920,30 C948,8 982,16 990,50 C998,84 978,100 952,92 C926,84 914,58 920,30Z"/>
+    <path d="M932,42 C948,22 976,30"/>
+    <path d="M948,38 C944,54"/>
+    <path d="M250,480 C278,458 312,466 320,500 C328,534 308,550 282,542 C256,534 244,508 250,480Z"/>
+    <path d="M262,492 C278,472 306,480"/>
+    <path d="M1100,520 C1128,498 1162,506 1170,540 C1178,574 1158,590 1132,582 C1106,574 1094,548 1100,520Z"/>
+    <path d="M1112,532 C1128,512 1156,520"/>
+    <path d="M700,380 C720,364 744,370 750,394 C756,418 740,428 718,422 C696,416 692,400 700,380Z"/>
+    <path d="M708,388 C720,372 740,378"/>
+    <path d="M-60,700 C60,642 195,658 252,768 C280,826 268,900 220,910"/>
+    <path d="M-60,700 C30,758 82,836 220,910"/>
+    <path d="M-36,718 C78,658 200,670 254,776"/>
+    <path d="M-14,736 C96,674 208,682 256,784"/>
+    <path d="M-46,710 C32,764 84,840 220,900"/>
+    <path d="M1510,660 C1392,610 1262,624 1212,730 C1184,788 1196,900 1248,910"/>
+    <path d="M1510,660 C1434,716 1398,796 1248,910"/>
+    <path d="M1488,680 C1378,626 1254,638 1206,742"/>
+    <path d="M1466,700 C1364,646 1246,654 1200,750"/>
+    <path d="M1494,670 C1426,722 1404,798 1248,900"/>
+    <path d="M620,820 C674,762 752,752 792,828 C832,904 814,950 778,965"/>
+    <path d="M620,820 C658,868 706,916 778,965"/>
+    <path d="M638,836 C688,774 756,760 794,836"/>
+    <path d="M632,828 C664,874 710,920 778,954"/>
   </g>
 </svg>
 </div>
@@ -303,7 +267,7 @@
   <h1 class="hero-title">SANKTU<span class="ac">hair</span></h1>
   <p class="hero-sub">"Va chercher dans ton passé ce qui te rendra plus fort demain"</p>
   <div class="hero-cta">
-    <button class="btn-gold" onclick="openModal()"">Commencer mon initiation ✨</button>
+    <button class="btn-gold" onclick="openModal()">Commencer mon initiation ✨</button>
   </div>
   <div class="scroll-h"><div class="scroll-l"></div><span>Explorer</span></div>
 </header>
@@ -369,7 +333,7 @@
     <p class="lbl">Le Parcours Initiatique</p>
     <h2 class="ct">Prêt·e à reprendre<br>possession de ta <span style="color:var(--or)">Couronne</span> ?</h2>
     <p class="csu">13 étapes. Une révélation.</p>
-    <button class="btn-gold" onclick="openModal()"">Commencer mon initiation ✨</button>
+    <button class="btn-gold" onclick="openModal()">Commencer mon initiation ✨</button>
   </div>
 </section>
 
@@ -386,7 +350,7 @@
   <div class="qp"><div class="qpf" id="prog"></div></div>
   <div class="qh">
     <div class="ql">♛ Sankhtuhair</div>
-    <button class="qx" onclick="window.closeModal()">✕</button>
+    <button class="qx" onclick="closeModal()">✕</button>
   </div>
   <div class="qst" id="qst">
 
@@ -602,252 +566,157 @@
 </div>
 
 <script>
-// ============================================================
-// MODAL — déclarés sur window pour être accessibles partout
-// ============================================================
-function openModal() {
+function openModal(){
   document.getElementById('modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-};
-function closeModal() {
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
   document.getElementById('modal').classList.remove('open');
-  document.body.style.overflow = '';
-};
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') window.closeModal();
-});
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
 
-// ============================================================
-// QUESTIONNAIRE
-// ============================================================
-var cur=1, TOT=13, ans={}, imgs={1:null,2:null,3:null};
+var cur=1,TOT=13,ans={},imgs={1:null,2:null,3:null};
 var LM=[
   ['Seanamon étudie ta couronne...','Chaque fibre parle, elle écoute. 🌿'],
   ['Les ancêtres témoignent...','Le passé révèle ton avenir capillaire. ✨'],
   ["L'ordonnance prend forme...",'Précision d\'un labo, âme d\'un rituel. 🌱'],
   ['La révélation est presque prête...','Ta couronne mérite cette vérité. 👑💕']
 ];
-var li=0, lt=null;
+var li=0,lt=null;
 
-function setProg(s) {
-  document.getElementById('prog').style.width = Math.round(((s-1)/TOT)*100) + '%';
+function setProg(s){document.getElementById('prog').style.width=Math.round(((s-1)/TOT)*100)+'%';}
+
+function goNext(){
+  if(cur===1){var v=document.getElementById('inp-prenom').value.trim();if(!v)return;ans.prenom=v;}
+  if(cur===12){ans.texte_libre=document.getElementById('inp-libre').value.trim();}
+  var ce=document.getElementById('s'+cur),ne=document.getElementById('s'+(cur+1));
+  if(!ne)return;
+  ce.classList.remove('active');ce.classList.add('exit');
+  setTimeout(function(){ce.classList.remove('exit');ne.classList.add('active');cur++;setProg(cur);ne.scrollTop=0;},350);
 }
 
-function goNext() {
-  if (cur===1) {
-    var v = document.getElementById('inp-prenom').value.trim();
-    if (!v) return;
-    ans.prenom = v;
-  }
-  if (cur===12) {
-    ans.texte_libre = document.getElementById('inp-libre').value.trim();
-  }
-  var ce = document.getElementById('s'+cur);
-  var ne = document.getElementById('s'+(cur+1));
-  if (!ne) return;
-  ce.classList.remove('active');
-  ce.classList.add('exit');
-  setTimeout(function() {
-    ce.classList.remove('exit');
-    ne.classList.add('active');
-    cur++;
-    setProg(cur);
-    ne.scrollTop = 0;
-  }, 350);
-}
-
-function pick(btn, field, multi) {
-  var grid = btn.closest('.ch');
-  var nb = btn.closest('.step').querySelector('.qnw .qn');
-  if (multi) {
+function pick(btn,field,multi){
+  var grid=btn.closest('.ch');
+  var nb=btn.closest('.step').querySelector('.qnw .qn');
+  if(multi){
     btn.classList.toggle('sel');
-    var sel = Array.from(grid.querySelectorAll('.cb.sel'));
-    ans[field] = sel.map(function(b) { return b.textContent.trim(); });
-    if (nb) nb.disabled = (sel.length === 0);
-  } else {
-    grid.querySelectorAll('.cb').forEach(function(b) { b.classList.remove('sel'); });
+    var sel=Array.from(grid.querySelectorAll('.cb.sel'));
+    ans[field]=sel.map(function(b){return b.textContent.trim();});
+    if(nb)nb.disabled=(sel.length===0);
+  }else{
+    grid.querySelectorAll('.cb').forEach(function(b){b.classList.remove('sel');});
     btn.classList.add('sel');
-    ans[field] = btn.textContent.trim();
-    if (nb) nb.disabled = false;
+    ans[field]=btn.textContent.trim();
+    if(nb)nb.disabled=false;
   }
 }
 
-function pCnt() {
-  return Object.values(imgs).filter(Boolean).length;
-}
+function pCnt(){return Object.values(imgs).filter(Boolean).length;}
 
-function onPhoto(e, n) {
-  var file = e.target.files[0];
-  if (!file) return;
-  var canvas = document.createElement('canvas');
-  var ctx = canvas.getContext('2d');
-  var image = new Image();
-  image.onload = function() {
-    var max = 800, w = image.width, h = image.height;
-    if (w > h) { if (w > max) { h = Math.round(h*(max/w)); w = max; } }
-    else { if (h > max) { w = Math.round(w*(max/h)); h = max; } }
-    canvas.width = w; canvas.height = h;
-    ctx.drawImage(image, 0, 0, w, h);
-    var compressed = canvas.toDataURL('image/jpeg', 0.7);
-    imgs[n] = compressed;
-    document.getElementById('pi'+n).src = compressed;
+function onPhoto(e,n){
+  var file=e.target.files[0];if(!file)return;
+  var canvas=document.createElement('canvas');
+  var ctx=canvas.getContext('2d');
+  var image=new Image();
+  image.onload=function(){
+    var max=800,w=image.width,h=image.height;
+    if(w>h){if(w>max){h=Math.round(h*(max/w));w=max;}}
+    else{if(h>max){w=Math.round(w*(max/h));h=max;}}
+    canvas.width=w;canvas.height=h;
+    ctx.drawImage(image,0,0,w,h);
+    var compressed=canvas.toDataURL('image/jpeg',0.7);
+    imgs[n]=compressed;
+    document.getElementById('pi'+n).src=compressed;
     document.getElementById('pt'+n).classList.add('loaded');
     document.getElementById('pz'+n).classList.add('done');
-    var c = pCnt(), no = document.getElementById('pno');
-    if (c === 3) {
-      document.getElementById('btn-submit').disabled = false;
-      no.textContent = '3 photos ajoutées — Seanamon est prête ✨';
-      no.style.color = 'var(--ok)';
-    } else {
-      no.textContent = c + '/3 photos — encore ' + (3-c) + ' photo' + (3-c>1?'s':'');
-    }
+    var c=pCnt(),no=document.getElementById('pno');
+    if(c===3){document.getElementById('btn-submit').disabled=false;no.textContent='3 photos ajoutées — Seanamon est prête ✨';no.style.color='var(--ok)';}
+    else{no.textContent=c+'/3 photos — encore '+(3-c)+' photo'+(3-c>1?'s':'');}
   };
-  var r = new FileReader();
-  r.onload = function(ev) { image.src = ev.target.result; };
+  var r=new FileReader();
+  r.onload=function(ev){image.src=ev.target.result;};
   r.readAsDataURL(file);
 }
 
-function buildMsg() {
-  var a = ans, ar = function(v) { return Array.isArray(v) ? v.join(', ') : (v||'N/A'); };
-  return 'Prénom : '+(a.prenom||'N/A')+
-    '\nÂge : '+(a.age||'N/A')+
-    '\nType couronne déclaré : '+(a.type_cheveux||'N/A')+
-    '\nCuir chevelu : '+ar(a.cuir_chevelu)+
-    '\nProblématiques : '+ar(a.problematiques)+
-    '\nCause(s) : '+ar(a.cause)+
-    '\nFréquence lavage : '+(a.frequence_lavage||'N/A')+
-    '\nObjectifs : '+ar(a.objectifs)+
-    '\nCoiffures protectrices : '+(a.coiffures_protectrices||'N/A')+
-    '\nProduits naturels : '+(a.produits_naturels||'N/A')+
-    '\nÀ écarter : '+ar(a.ecarter)+
-    '\nMessage libre : '+(a.texte_libre||'Rien')+
-    '\nPhotos : '+pCnt()+
-    '\n\nATTENTION : Analyse les photos pour identifier le type RÉEL (Type 1-4, sous-types a/b/c). Si les photos contredisent le type déclaré, corrige-le explicitement. Tu DOIS adresser CHAQUE problématique déclarée dans ton diagnostic.';
+function buildMsg(){
+  var a=ans,ar=function(v){return Array.isArray(v)?v.join(', '):(v||'N/A');};
+  return 'Prénom : '+(a.prenom||'N/A')+'\nÂge : '+(a.age||'N/A')+'\nType couronne déclaré : '+(a.type_cheveux||'N/A')+'\nCuir chevelu : '+ar(a.cuir_chevelu)+'\nProblématiques : '+ar(a.problematiques)+'\nCause(s) : '+ar(a.cause)+'\nFréquence lavage : '+(a.frequence_lavage||'N/A')+'\nObjectifs : '+ar(a.objectifs)+'\nCoiffures protectrices : '+(a.coiffures_protectrices||'N/A')+'\nProduits naturels : '+(a.produits_naturels||'N/A')+'\nÀ écarter : '+ar(a.ecarter)+'\nMessage libre : '+(a.texte_libre||'Rien')+'\nPhotos : '+pCnt()+'\n\nATTENTION : Analyse les photos pour identifier le type RÉEL. Si les photos contredisent le type déclaré, corrige-le. Adresse CHAQUE problématique déclarée.';
 }
 
-async function submitAll() {
+async function submitAll(){
   document.getElementById('s13').classList.remove('active');
   document.getElementById('qld').classList.add('active');
-  document.getElementById('prog').style.width = '100%';
-  li = 0; updL();
-  lt = setInterval(function() { li = (li+1) % LM.length; updL(); }, 3000);
-  var content = [{type:'text', text:buildMsg()}];
-  for (var i=1; i<=3; i++) {
-    if (imgs[i]) content.push({type:'image_url', image_url:{url:imgs[i]}});
-  }
-  try {
-    var r = await fetch('/api/diagnose', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({prenom: ans.prenom||'', content: content})
-    });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    var d = await r.json();
-    showRes(d.result, ans.prenom||'');
-  } catch(err) {
-    console.error(err);
-    showRes('Seanamon est momentanément indisponible. Réessaie dans quelques instants. ✨', ans.prenom||'');
-  }
+  document.getElementById('prog').style.width='100%';
+  li=0;updL();lt=setInterval(function(){li=(li+1)%LM.length;updL();},3000);
+  var content=[{type:'text',text:buildMsg()}];
+  for(var i=1;i<=3;i++){if(imgs[i])content.push({type:'image_url',image_url:{url:imgs[i]}});}
+  try{
+    var r=await fetch('/api/diagnose',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prenom:ans.prenom||'',content:content})});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    var d=await r.json();showRes(d.result,ans.prenom||'');
+  }catch(err){console.error(err);showRes('Seanamon est momentanément indisponible. Réessaie dans quelques instants. ✨',ans.prenom||'');}
 }
 
-function updL() {
-  document.getElementById('lm').textContent = LM[li][0];
-  document.getElementById('ls').textContent = LM[li][1];
-}
+function updL(){document.getElementById('lm').textContent=LM[li][0];document.getElementById('ls').textContent=LM[li][1];}
 
-function showRes(text, prenom) {
+function showRes(text,prenom){
   clearInterval(lt);
   document.getElementById('qld').classList.remove('active');
-  document.getElementById('rby').textContent = 'Diagnostic de ' + prenom + ' · par Seanamon';
-  document.getElementById('rbody').innerHTML = parseSn(text);
+  document.getElementById('rby').textContent='Diagnostic de '+prenom+' · par Seanamon';
+  document.getElementById('rbody').innerHTML=parseSn(text);
   document.getElementById('qr').classList.add('active');
 }
 
-function parseSn(raw) {
-  var re = /(?:^|\n)(\d+)\.\s+([^\n:]+)\s*:\s*\n([\s\S]*?)(?=\n\d+\.|$)/g;
-  var secs = [], m, t = '\n' + raw;
-  while ((m = re.exec(t)) !== null) secs.push({num:m[1], title:m[2].trim(), body:m[3].trim()});
-  if (secs.length >= 2) return secs.map(function(s) {
-    return '<div class="snb"><div class="snh"><div class="snn">'+s.num+'</div><div class="snt">'+s.title+'</div></div><div class="snc">'+esc(s.body)+'</div></div>';
-  }).join('');
+function parseSn(raw){
+  var re=/(?:^|\n)(\d+)\.\s+([^\n:]+)\s*:\s*\n([\s\S]*?)(?=\n\d+\.|$)/g;
+  var secs=[],m,t='\n'+raw;
+  while((m=re.exec(t))!==null)secs.push({num:m[1],title:m[2].trim(),body:m[3].trim()});
+  if(secs.length>=2)return secs.map(function(s){return '<div class="snb"><div class="snh"><div class="snn">'+s.num+'</div><div class="snt">'+s.title+'</div></div><div class="snc">'+esc(s.body)+'</div></div>';}).join('');
   return '<div class="rr">'+esc(raw)+'</div>';
 }
-function esc(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
-async function doSub() {
-  var email = document.getElementById('einp').value.trim();
-  var cohorte = document.getElementById('esel').value;
-  var prenom = ans.prenom || '';
-  if (!email || !email.includes('@')) { document.getElementById('einp').style.borderColor='#e57373'; return; }
-  if (!cohorte) { document.getElementById('esel').style.borderColor='#e57373'; return; }
-  try {
-    await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({email:email, cohorte:cohorte, prenom:prenom})
-    });
-  } catch(e) {}
-  document.getElementById('efw').style.display = 'none';
-  document.getElementById('eokm').innerHTML = 'Ta couronne est enregistrée, '+prenom+'.<br>Bienvenue dans le Sanctuaire. 👑';
+async function doSub(){
+  var email=document.getElementById('einp').value.trim();
+  var cohorte=document.getElementById('esel').value;
+  var prenom=ans.prenom||'';
+  if(!email||!email.includes('@')){document.getElementById('einp').style.borderColor='#e57373';return;}
+  if(!cohorte){document.getElementById('esel').style.borderColor='#e57373';return;}
+  try{await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,cohorte:cohorte,prenom:prenom})});}catch(e){}
+  document.getElementById('efw').style.display='none';
+  document.getElementById('eokm').innerHTML='Ta couronne est enregistrée, '+prenom+'.<br>Bienvenue dans le Sanctuaire. 👑';
   document.getElementById('eok').classList.add('show');
 }
 
-// ============================================================
-// NAVIGATION — bouton Suivant pour toutes les étapes
-// ============================================================
-document.addEventListener('DOMContentLoaded', function() {
-  // Step 1
-  var inp = document.getElementById('inp-prenom');
-  var n1 = document.getElementById('next1');
-  n1.addEventListener('click', goNext);
-  inp.addEventListener('input', function(e) {
-    n1.disabled = !e.target.value.trim();
+document.addEventListener('DOMContentLoaded',function(){
+  var inp=document.getElementById('inp-prenom');
+  var n1=document.getElementById('next1');
+  n1.addEventListener('click',goNext);
+  inp.addEventListener('input',function(e){n1.disabled=!e.target.value.trim();});
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')goNext();});
+  document.getElementById('qst').addEventListener('click',function(e){
+    var b=e.target.closest('.qn');
+    if(b&&!b.disabled&&b.id!=='next1'&&b.id!=='btn-submit')goNext();
   });
-  inp.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') goNext();
-  });
-
-  // Tous les autres boutons Suivant via délégation
-  document.getElementById('qst').addEventListener('click', function(e) {
-    var b = e.target.closest('.qn');
-    if (b && !b.disabled && b.id !== 'next1' && b.id !== 'btn-submit') {
-      goNext();
-    }
-  });
-
-  // Scroll reveal
-  var io = new IntersectionObserver(function(entries) {
-    entries.forEach(function(en) {
-      if (en.isIntersecting) en.target.classList.add('in');
-    });
-  }, {threshold: .1});
-  document.querySelectorAll('.reveal, .stagger').forEach(function(el) { io.observe(el); });
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.1});
+  document.querySelectorAll('.reveal,.stagger').forEach(function(el){io.observe(el);});
 });
 
-// ============================================================
-// MUSIQUE — logique correcte
-// ============================================================
-var audioEl = null, mOn = false;
-
-document.getElementById('music-btn').addEventListener('click', function() {
-  var btn = document.getElementById('music-btn');
-  if (!mOn) {
-    // Démarrer la musique
-    if (!audioEl) {
-      audioEl = new Audio('https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/Sunlight_Through_Tall_Grass.mp3');
-      audioEl.loop = true;
-      audioEl.volume = 0.4;
+var audioEl=null,mOn=false;
+document.getElementById('music-btn').addEventListener('click',function(){
+  var btn=document.getElementById('music-btn');
+  if(!mOn){
+    if(!audioEl){
+      audioEl=new Audio('https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/Sunlight_Through_Tall_Grass.mp3');
+      audioEl.loop=true;
+      audioEl.volume=0.4;
     }
-    audioEl.play().catch(function(e) { console.log('Audio:', e); });
-    mOn = true;
-    btn.textContent = '🔊'; // musique ON = icône son
-  } else {
-    // Arrêter la musique
-    if (audioEl) { audioEl.pause(); audioEl.currentTime = 0; }
-    mOn = false;
-    btn.textContent = '🎵'; // musique OFF = icône note
+    audioEl.play().catch(function(e){console.log('Audio:',e);});
+    mOn=true;btn.textContent='🔊';
+  }else{
+    if(audioEl){audioEl.pause();audioEl.currentTime=0;}
+    mOn=false;btn.textContent='🎵';
   }
 });
 </script>
