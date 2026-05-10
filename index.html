@@ -201,7 +201,7 @@ function closeModal(){document.getElementById('modal').classList.remove('open');
   <h1 class="hero-title">SANKTU<span class="ac">hair</span></h1>
   <p class="hero-sub">"Va chercher dans ton passé ce qui te rendra plus fort demain"</p>
   <div class="hero-cta">
-    <button class="btn-gold" onclick="openModal()">Commencer mon initiation ✨</button>
+    <button class="btn-gold" onclick="(function(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';})()">Commencer mon initiation ✨</button>
   </div>
   <div class="scroll-h"><div class="scroll-l"></div><span>Explorer</span></div>
 </header>
@@ -267,7 +267,7 @@ function closeModal(){document.getElementById('modal').classList.remove('open');
     <p class="lbl">Le Parcours Initiatique</p>
     <h2 class="ct">Prêt·e à reprendre<br>possession de ta <span style="color:var(--or)">Couronne</span> ?</h2>
     <p class="csu">13 étapes. Une révélation.</p>
-    <button class="btn-gold" onclick="openModal()">Commencer mon initiation ✨</button>
+    <button class="btn-gold" onclick="(function(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';})()">Commencer mon initiation ✨</button>
   </div>
 </section>
 
