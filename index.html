@@ -621,7 +621,7 @@ var LM=[
 ];
 var li=0,lt=null;
 
-function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
+window.openModal = function(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
 function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 
 document.addEventListener('DOMContentLoaded',function(){
@@ -753,7 +753,7 @@ document.getElementById('music-btn').addEventListener('click',function(){
   var btn=document.getElementById('music-btn');
   if(mOn){
     if(audioEl){audioEl.pause();audioEl.currentTime=0;}
-    mOn=false;btn.textContent='🎵';
+   mOn=false;btn.textContent='🎵';
   }else{
     if(!audioEl){
       audioEl=new Audio('https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/Sunlight_Through_Tall_Grass.mp3');
@@ -761,7 +761,7 @@ document.getElementById('music-btn').addEventListener('click',function(){
       audioEl.volume=0.4;
     }
     audioEl.play().catch(function(e){console.log('Audio blocked:',e);});
-    mOn=true;btn.textContent='🔇';
+   mOn=true;btn.textContent='🔊';
   }
 });
 </script>
