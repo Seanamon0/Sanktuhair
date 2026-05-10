@@ -21,7 +21,7 @@
 
     /* FOND FEUILLES GLOBAL */
     .leaf-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.07}
-    section,header,div,footer,nav{position:relative;z-index:1}
+    section,header,footer,nav{position:relative;z-index:1}
     .modal{z-index:500!important}
     nav{z-index:200!important}
     .music-btn{z-index:150!important}
@@ -605,11 +605,11 @@
 // ============================================================
 // MODAL — déclarés sur window pour être accessibles partout
 // ============================================================
-window.openModal = function() {
+function openModal() {
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 };
-window.closeModal = function() {
+function closeModal() {
   document.getElementById('modal').classList.remove('open');
   document.body.style.overflow = '';
 };
