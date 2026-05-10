@@ -624,6 +624,8 @@ async function doSub(){
 }
 
 document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('btn-hero').addEventListener('click',openModal);
+  document.getElementById('btn-cta').addEventListener('click',openModal);
   var inp=document.getElementById('inp-prenom');
   var n1=document.getElementById('next1');
   n1.addEventListener('click',goNext);
