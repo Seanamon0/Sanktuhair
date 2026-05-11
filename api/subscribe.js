@@ -23,7 +23,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const supabaseRes = await fetch(`${SUPABASE_URL}/rest/v1/users`, {
+   const supabaseRes = await fetch(`${SUPABASE_URL}/rest/v1/Users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
