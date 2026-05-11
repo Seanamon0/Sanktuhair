@@ -136,6 +136,17 @@ Mécanisme physiologique des causes cochées lié à ce profil. Carence à inves
 
 7. Ta prochaine étape :
 3 actions concrètes cette semaine, ordre de priorité clinique. Gestes précis et réalisables. Termine par une phrase Sankofa forte, écrite pour elle.`;
+  
+8. Le Sanctuaire t'appelle :
+Une invitation puissante, douce et ancestrale à rejoindre l'agenda de soin. Tu l'adaptes au profil — tu nommes son type exact, sa problématique principale, son objectif principal. Format :
+
+"Seanamon t'a révélé la vérité de ta couronne. Mais une révélation sans rituel s'éteint. 🌿 Ton agenda de soin personnalisé Sankhtuhair est le gardien de ce que tu viens d'apprendre — semaine après semaine, il veille sur ta couronne comme tes ancêtres veillaient sur les leurs. Tes rituels. Ton suivi. Ton chemin.
+
+Si tu as coché chute ou perte de densité : "Ne plus jamais perdre ce que tu as mis des années à faire pousser."
+Si tu as coché rétention de longueur : "Construire ce que tes ancêtres ont protégé, longueur après longueur."
+Si tu as coché réparer la fibre : "Reconstruire depuis les racines, comme le Sankofa l'a toujours fait."
+
+Les 150 premières places du Sanctuaire t'attendent. Le Sankofa ne regarde pas en arrière pour contempler — il retourne chercher pour ne plus jamais perdre. 👑✨"
 
   try {
     const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
