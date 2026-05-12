@@ -152,8 +152,34 @@ Seanamon t'a révélé la vérité de ta couronne. Mais une révélation sans ri
     }
 
     const data = await openaiRes.json();
-    const result = data.choices?.[0]?.message?.content || '';
-    return res.status(200).json({ result });
+   const result = data.choices?.[0]?.message?.content || '';
+
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY;
+
+if (SUPABASE_URL && SUPABASE_KEY) {
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/diagnostics`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({
+        user_email: prenom || '',
+        prenom: prenom || '',
+        diagnostic: result,
+        reponses: content,
+      }),
+    });
+  } catch(e) {
+    console.error('Supabase diagnostic save error:', e);
+  }
+}
+
+return res.status(200).json({ result });
 
   } catch (err) {
     console.error('Catch error:', err.message);
