@@ -620,7 +620,7 @@ async function submitAll(){
   var content=[{type:'text',text:buildMsg()}];
   for(var i=1;i<=3;i++){if(imgs[i])content.push({type:'image_url',image_url:{url:imgs[i]}});}
   try{
-    var r=await fetch('/api/diagnose',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prenom:ans.prenom||'',content:content})});
+    var r=await fetch('/api/diagnose',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prenom:ans.prenom||'',content:content,imgs:imgs})});
     if(!r.ok)throw new Error('HTTP '+r.status);
     var d=await r.json();showRes(d.result,ans.prenom||'');
   }catch(err){console.error(err);showRes('Seanamon est momentanément indisponible. Réessaie dans quelques instants. ✨',ans.prenom||'');}
