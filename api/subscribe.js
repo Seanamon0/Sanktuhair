@@ -44,6 +44,11 @@ export default async function handler(req, res) {
       return res.status(200).json({ ok: true, mode: 'supabase-error' });
     }
 
+    await fetch(`https://${req.headers.host}/api/send-welcome`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ email, prenom }),
+});
     return res.status(200).json({ ok: true, mode: 'supabase' });
 
   } catch (err) {
