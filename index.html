@@ -609,7 +609,7 @@ function onPhoto(e,n){
 
 function buildMsg(){
   var a=ans,ar=function(v){return Array.isArray(v)?v.join(', '):(v||'N/A');};
-  return 'Prénom : '+(a.prenom||'N/A')+'\nÂge : '+(a.age||'N/A')+'\nType couronne déclaré : '+(a.type_cheveux||'N/A')+'\nCuir chevelu : '+ar(a.cuir_chevelu)+'\nProblématiques : '+ar(a.problematiques)+'\nCause(s) : '+ar(a.cause)+'\nFréquence lavage : '+(a.frequence_lavage||'N/A')+'\nObjectifs : '+ar(a.objectifs)+'\nCoiffures protectrices : '+(a.coiffures_protectrices||'N/A')+'\nProduits naturels : '+(a.produits_naturels||'N/A')+'\nÀ écarter : '+ar(a.ecarter)+'\nMessage libre : '+(a.texte_libre||'Rien')+'\nPhotos : '+pCnt()+'\n\nATTENTION : Analyse les photos pour identifier le type RÉEL (Type 1-4, sous-types a/b/c). Si les photos contredisent le type déclaré, corrige-le. Tu DOIS adresser CHAQUE problématique déclarée dans ton diagnostic.';
+return 'Prénom : '+(a.prenom||'N/A')+'\nÂge : '+(a.age||'N/A')+'\nType couronne déclaré : '+(a.type_cheveux||'N/A')+'\nCuir chevelu : '+ar(a.cuir_chevelu)+'\nProblématiques : '+ar(a.problematiques)+'\nCause(s) : '+ar(a.cause)+'\nFréquence lavage : '+(a.frequence_lavage||'N/A')+'\nObjectifs : '+ar(a.objectifs)+'\nCoiffures protectrices : '+(a.coiffures_protectrices||'N/A')+'\nProduits naturels : '+(a.produits_naturels||'N/A')+'\nÀ écarter : '+ar(a.ecarter)+'\nMessage libre : '+(a.texte_libre||'Rien')+'\nPhotos : '+pCnt()+'\n\nINSTRUCTION CRITIQUE : Les photos montrent uniquement des cheveux et un cuir chevelu. Analyse exclusivement la fibre capillaire, la texture des cheveux, l\'état du cuir chevelu et la porosité. Ignore complètement tout visage visible. Identifie le type réel (Type 1-4, sous-types a/b/c). Traite CHAQUE problématique déclarée.';
 }
 
 async function submitAll(){
