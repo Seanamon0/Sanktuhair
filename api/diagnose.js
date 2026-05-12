@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   const OPENAI_KEY = process.env.OPENAI_API_KEY;
   if (!OPENAI_KEY) return res.status(500).json({ error: 'Clé OpenAI manquante' });
 
-  const { prenom, content } = req.body;
+const { prenom, content, imgs } = req.body;
 
  const systemPrompt = `Tu es Seanamon, conseillère experte en soins capillaires et bien-être, spécialisée dans toutes les couronnes du Type 1 au Type 4, avec une expertise ancrée dans les traditions afro-diasporiques et pan-africaines. Tu fournis des conseils cosmétiques personnalisés — pas de diagnostic médical. Pour tout signe préoccupant tu orientes vers un professionnel de santé.
 
@@ -167,12 +167,13 @@ if (SUPABASE_URL && SUPABASE_KEY) {
         'Authorization': `Bearer ${SUPABASE_KEY}`,
         'Prefer': 'return=minimal'
       },
-      body: JSON.stringify({
-        user_email: prenom || '',
-        prenom: prenom || '',
-        diagnostic: result,
-        reponses: content,
-      }),
+     body: JSON.stringify({
+  user_email: prenom || '',
+  prenom: prenom || '',
+  diagnostic: result,
+  reponses: content,
+  photos_urls: imgs || [],
+}),
     });
   } catch(e) {
     console.error('Supabase diagnostic save error:', e);
