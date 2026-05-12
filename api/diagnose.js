@@ -172,7 +172,7 @@ if (SUPABASE_URL && SUPABASE_KEY) {
   prenom: prenom || '',
   diagnostic: result,
   reponses: content,
-  photos_urls: imgs || [],
+  photos_urls: imgs ? Object.values(imgs).filter(Boolean) : [],
 }),
     });
   } catch(e) {
