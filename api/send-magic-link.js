@@ -30,7 +30,7 @@ export default async function handler(req, res) {
   const magicLink = `${process.env.SITE_URL}/member.html?token=${token}`;
 
   await resend.emails.send({
-    from: 'Sankhtuhair <hello@sankhtuhair.com>',
+    from: 'Sankhtuhair <onboarding@resend.dev>',
     to: email,
     subject: '✨ Ton accès à ton espace membre',
     html: `
