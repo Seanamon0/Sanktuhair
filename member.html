@@ -4,126 +4,183 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mon Sanctuaire — Sankhtuhair</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: Georgia, serif;
-      background: #fdf9f4;
-      color: #3d2b1f;
-      min-height: 100vh;
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0F2922;--bdc:#172f25;--bdp:#0a1f18;--bmd:#0e2820;
+      --or:#c9a96e;--orl:#e8c98a;--ord:rgba(201,169,110,.35);
+      --tx:#e8dcc8;--txs:rgba(232,220,200,.82);--txm:rgba(232,220,200,.55);
+      --bo:rgba(201,169,110,.22);--ok:#5ecb8a;
+      --beige:#d4b896;--beige2:#e8cfb0;
+      --rp:50px;--rc:18px;--rs:10px;--tr:.3s cubic-bezier(.4,0,.2,1)
     }
-    .loading-screen {
-      position: fixed; inset: 0;
-      background: #fdf9f4;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 16px; z-index: 100;
-    }
-    .loading-screen p { color: #8b6f5e; font-size: 1.1rem; }
-    .spinner {
-      width: 40px; height: 40px;
-      border: 3px solid #e8d5c4;
-      border-top-color: #3d2b1f;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .error-screen {
-      display: none; flex-direction: column;
-      align-items: center; justify-content: center;
-      min-height: 100vh; gap: 16px; text-align: center; padding: 40px;
-    }
-    .error-screen h2 { font-size: 1.4rem; }
-    .error-screen p { color: #8b6f5e; }
-    .error-screen a {
-      margin-top: 8px; color: #3d2b1f;
-      text-decoration: underline; font-size: 0.95rem;
-    }
-    .member-space {
-      display: none;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 60px 24px;
-    }
-    .header { text-align: center; margin-bottom: 48px; }
-    .header img { height: 60px; margin-bottom: 16px; }
-    .header h1 { font-size: 1.8rem; margin-bottom: 8px; }
-    .header p { color: #8b6f5e; font-size: 1rem; }
-    .section {
-      background: white;
-      border-radius: 16px;
-      padding: 32px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 12px rgba(61,43,31,0.07);
-    }
-    .section h2 {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #f0e4d8;
-    }
-    textarea {
-      width: 100%; min-height: 120px;
-      border: 1px solid #e8d5c4;
-      border-radius: 10px; padding: 14px;
-      font-family: Georgia, serif; font-size: 0.95rem;
-      color: #3d2b1f; background: #fdf9f4;
-      resize: vertical; outline: none;
-    }
-    textarea:focus { border-color: #3d2b1f; }
-    .btn {
-      display: inline-block; margin-top: 16px;
-      padding: 12px 28px;
-      background: #3d2b1f; color: white;
-      border: none; border-radius: 8px;
-      font-family: Georgia, serif; font-size: 1rem;
-      cursor: pointer; transition: opacity 0.2s;
-    }
-    .btn:hover { opacity: 0.85; }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-    .result {
-      margin-top: 20px; padding: 20px;
-      background: #fdf9f4; border-radius: 10px;
-      line-height: 1.8; font-size: 0.95rem;
-      display: none; white-space: pre-wrap;
-    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh}
+
+    /* LOADING */
+    .loading-screen{position:fixed;inset:0;background:var(--bmd);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;z-index:100;transition:opacity .5s ease}
+    .loading-screen.hide{opacity:0;pointer-events:none}
+    .loading-logo{width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid var(--ord);animation:lp 2.5s ease-in-out infinite}
+    @keyframes lp{0%,100%{opacity:.5;transform:scale(.95)}50%{opacity:1;transform:scale(1.05)}}
+    .loading-txt{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:var(--txs)}
+    .dots{display:flex;gap:.5rem;justify-content:center}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--or);animation:db 1.6s ease-in-out infinite}
+    .dot:nth-child(2){animation-delay:.22s}.dot:nth-child(3){animation-delay:.44s}
+    @keyframes db{0%,100%{opacity:.25;transform:scale(.85)}50%{opacity:1;transform:scale(1.2)}}
+
+    /* ERROR */
+    .error-screen{display:none;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;gap:1rem}
+    .error-screen.show{display:flex}
+    .error-screen h2{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--or)}
+    .error-screen p{color:var(--txm);font-size:.95rem}
+    .error-screen a{color:var(--or);text-decoration:none;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;border-bottom:1px solid var(--ord);padding-bottom:.2rem}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(14px);background:rgba(14,40,32,.88);border-bottom:1px solid var(--bo)}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--or);letter-spacing:.12em;display:flex;align-items:center;gap:.7rem}
+    .nav-logo img{width:32px;height:32px;border-radius:50%;object-fit:cover;border:1px solid var(--ord)}
+    .nav-email{font-size:.72rem;letter-spacing:.15em;color:var(--txm)}
+
+    /* MAIN */
+    .member-space{display:none;padding:8rem 1.5rem 5rem;max-width:760px;margin:0 auto}
+    .member-space.show{display:block}
+
+    /* HEADER */
+    .mem-header{text-align:center;margin-bottom:4rem;position:relative}
+    .mem-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 45%,rgba(201,169,110,.08) 0%,transparent 70%);pointer-events:none}
+    .mem-logo{width:90px;height:90px;border-radius:50%;object-fit:cover;border:2px solid var(--ord);box-shadow:0 0 40px rgba(201,169,110,.2);margin-bottom:1.2rem}
+    .mem-eyebrow{font-size:.67rem;letter-spacing:.42em;text-transform:uppercase;color:var(--or);margin-bottom:.8rem}
+    .mem-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,8vw,5rem);font-weight:300;line-height:.95;letter-spacing:.06em}
+    .mem-title .ac{color:var(--or);font-style:italic}
+    .mem-welcome{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--txm);margin-top:.8rem}
+
+    /* DIVIDER */
+    .dv{display:flex;align-items:center;gap:1.2rem;padding:1.5rem 0;margin-bottom:2rem}
+    .dl{flex:1;height:1px;background:var(--bo)}
+    .ds{color:var(--or);font-size:1rem;opacity:.5}
+
+    /* CARDS */
+    .card{background:var(--bdc);border:1px solid var(--bo);border-radius:var(--rc);padding:2.5rem 2rem;margin-bottom:2rem;position:relative;overflow:hidden;transition:border-color var(--tr)}
+    .card:hover{border-color:var(--ord)}
+    .card::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:linear-gradient(to right,transparent,var(--or),transparent);opacity:0;transition:opacity var(--tr)}
+    .card:hover::after{opacity:1}
+    .card-tag{display:inline-block;border:1px solid var(--ord);border-radius:var(--rp);padding:.3rem 1rem;font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--or);margin-bottom:1.2rem}
+    .card-title{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--or);margin-bottom:.5rem}
+    .card-desc{font-size:.88rem;color:var(--txm);line-height:1.7;margin-bottom:1.8rem}
+
+    /* TEXTAREA */
+    .field{width:100%;background:rgba(10,31,24,.6);border:1.5px solid var(--bo);border-radius:var(--rs);padding:1.1rem 1.3rem;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:.92rem;font-weight:300;outline:none;transition:border-color var(--tr);resize:none;min-height:130px;line-height:1.65;margin-bottom:1.2rem}
+    .field:focus{border-color:var(--or)}
+    .field::placeholder{color:var(--txm)}
+
+    /* BUTTON */
+    .btn-gold{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.4rem;background:transparent;color:var(--or);font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;border:1.5px solid var(--ord);border-radius:var(--rp);cursor:pointer;transition:all var(--tr)}
+    .btn-gold:hover{background:var(--or);color:var(--bg);border-color:var(--or)}
+    .btn-gold:disabled{opacity:.35;cursor:not-allowed}
+    .btn-gold.loading{opacity:.6;cursor:not-allowed}
+
+    /* RESULT */
+    .result-wrap{margin-top:1.8rem;display:none}
+    .result-wrap.show{display:block}
+    .result-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+    .result-hl{flex:1;height:1px;background:var(--bo)}
+    .result-hg{color:var(--or);font-size:.7rem}
+    .result-body{background:var(--bdp);border:1px solid var(--bo);border-radius:var(--rc);overflow:hidden}
+    .snb{border-bottom:1px solid var(--bo)}
+    .snb:last-child{border-bottom:none}
+    .snh{display:flex;align-items:center;gap:1rem;padding:1rem 1.3rem;background:rgba(201,169,110,.04)}
+    .snn{width:28px;height:28px;border:1.5px solid var(--ord);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:.9rem;color:var(--or);flex-shrink:0}
+    .snt{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--txs)}
+    .snc{padding:1.2rem 1.3rem;font-size:.9rem;line-height:1.8;color:var(--txs);white-space:pre-line}
+    .result-raw{padding:1.5rem;font-size:.9rem;line-height:1.8;color:var(--txs);white-space:pre-line}
+
+    /* FOOTER */
+    .mem-footer{text-align:center;padding:3rem 0 1rem;border-top:1px solid var(--bo);margin-top:1rem}
+    .mem-footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--or);letter-spacing:.12em;display:flex;align-items:center;justify-content:center;gap:.7rem;margin-bottom:.4rem}
+    .mem-footer-logo img{width:26px;height:26px;border-radius:50%;object-fit:cover;border:1px solid var(--ord)}
+    .mem-footer p{font-size:.78rem;color:var(--txm)}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .member-space.show{animation:fadeUp .7s ease forwards}
   </style>
 </head>
 <body>
 
+  <!-- LOADING -->
   <div class="loading-screen" id="loadingScreen">
-    <div class="spinner"></div>
-    <p>Ouverture de ton sanctuaire…</p>
+    <img class="loading-logo" src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Sankhtuhair">
+    <p class="loading-txt">Ouverture de ton sanctuaire…</p>
+    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
   </div>
 
+  <!-- ERROR -->
   <div class="error-screen" id="errorScreen">
-    <h2>🌿 Lien invalide ou expiré</h2>
+    <img style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid var(--ord);opacity:.6" src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="">
+    <h2>Lien invalide ou expiré 🌿</h2>
     <p>Ce lien a déjà été utilisé ou a expiré après 15 minutes.</p>
-    <a href="/">← Retourner à l'accueil</a>
+    <a href="/">← Retourner au Sanctuaire</a>
   </div>
 
+  <!-- NAV -->
+  <nav id="mainNav" style="display:none">
+    <div class="nav-logo">
+      <img src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Logo">
+      Sankhtuhair
+    </div>
+    <span class="nav-email" id="navEmail"></span>
+  </nav>
+
+  <!-- ESPACE MEMBRE -->
   <div class="member-space" id="memberSpace">
-    <div class="header">
-      <img src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Sankhtuhair" />
-      <h1>Ton Sanctuaire 🌿</h1>
-      <p id="welcomeEmail"></p>
+
+    <div class="mem-header">
+      <img class="mem-logo" src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Sankhtuhair">
+      <p class="mem-eyebrow">Ton Espace · Fondé par Élodie</p>
+      <h1 class="mem-title">Mon <span class="ac">Sanctuaire</span></h1>
+      <p class="mem-welcome" id="memWelcome"></p>
     </div>
 
-    <!-- Diagnostic -->
-    <div class="section">
-      <h2>✨ Diagnostic Capillaire</h2>
-      <textarea id="diagInput" placeholder="Décris tes cheveux, tes problèmes, tes habitudes… Plus tu es précise, plus le diagnostic sera juste."></textarea>
-      <button class="btn" id="diagBtn">Obtenir mon diagnostic</button>
-      <div class="result" id="diagResult"></div>
+    <div class="dv"><div class="dl"></div><span class="ds">✦</span><div class="dl"></div></div>
+
+    <!-- DIAGNOSTIC -->
+    <div class="card">
+      <div class="card-tag">Intelligence Capillaire · Seanamon</div>
+      <h2 class="card-title">Diagnostic 🔬</h2>
+      <p class="card-desc">Décris tes cheveux, tes problèmes, tes habitudes. Plus tu es précise, plus l'ordonnance de Seanamon sera juste.</p>
+      <textarea class="field" id="diagInput" placeholder="Ex : cheveux type 4c, cuir chevelu sec, chute depuis 3 mois, je lave une fois par semaine avec du sulfate…"></textarea>
+      <button class="btn-gold" id="diagBtn">Obtenir mon diagnostic ✨</button>
+      <div class="result-wrap" id="diagResult">
+        <div class="result-header"><div class="result-hl"></div><span class="result-hg">✦ Révélation de Seanamon</span><div class="result-hl"></div></div>
+        <div class="result-body" id="diagBody"></div>
+      </div>
     </div>
 
-    <!-- Agenda -->
-    <div class="section">
-      <h2>📅 Mon Agenda Capillaire</h2>
-      <textarea id="agendaInput" placeholder="Décris ton quotidien, ton type de cheveux, combien de temps tu peux consacrer à ta routine…"></textarea>
-      <button class="btn" id="agendaBtn">Générer mon agenda</button>
-      <div class="result" id="agendaResult"></div>
+    <div class="dv"><div class="dl"></div><span class="ds">✦</span><div class="dl"></div></div>
+
+    <!-- AGENDA -->
+    <div class="card">
+      <div class="card-tag">Rituel Personnalisé · Seanamon</div>
+      <h2 class="card-title">Agenda Capillaire 📅</h2>
+      <p class="card-desc">Décris ton quotidien, ton type de cheveux, le temps que tu peux consacrer à ta couronne. Seanamon construit ta routine semaine par semaine.</p>
+      <textarea class="field" id="agendaInput" placeholder="Ex : type 4a, travaille 5j/7, 30 min max le dimanche, objectif repousse et rétention de longueur…"></textarea>
+      <button class="btn-gold" id="agendaBtn">Générer mon agenda 🌿</button>
+      <div class="result-wrap" id="agendaResult">
+        <div class="result-header"><div class="result-hl"></div><span class="result-hg">✦ Ton Programme Seanamon</span><div class="result-hl"></div></div>
+        <div class="result-body" id="agendaBody"></div>
+      </div>
     </div>
+
+    <div class="mem-footer">
+      <div class="mem-footer-logo">
+        <img src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Logo">
+        Sankhtuhair
+      </div>
+      <p>Sanctuaire Capillaire — Fondé par Élodie</p>
+      <p style="margin-top:.3rem;opacity:.4">Propulsé par Seanamon · Sankofah à venir</p>
+    </div>
+
   </div>
 
   <script>
@@ -131,70 +188,90 @@
 
     async function init() {
       if (!token) return showError();
-
       try {
-        const res = await fetch(`/api/get-member?token=${token}`);
+        const res = await fetch('/api/get-member?token=' + token);
         const data = await res.json();
-
         if (!res.ok || !data.email) return showError();
-
-        document.getElementById('welcomeEmail').textContent = `Bienvenue, ${data.email} 💛`;
-        document.getElementById('loadingScreen').style.display = 'none';
-        document.getElementById('memberSpace').style.display = 'block';
-
-      } catch {
+        document.getElementById('navEmail').textContent = data.email;
+        document.getElementById('memWelcome').textContent = 'Bienvenue, ' + data.email + ' 💛';
+        document.getElementById('loadingScreen').classList.add('hide');
+        document.getElementById('mainNav').style.display = 'flex';
+        document.getElementById('memberSpace').classList.add('show');
+      } catch(e) {
         showError();
       }
     }
 
     function showError() {
-      document.getElementById('loadingScreen').style.display = 'none';
-      document.getElementById('errorScreen').style.display = 'flex';
+      document.getElementById('loadingScreen').classList.add('hide');
+      document.getElementById('errorScreen').classList.add('show');
     }
 
-    // Diagnostic
+    // DIAGNOSTIC
     document.getElementById('diagBtn').addEventListener('click', async () => {
       const input = document.getElementById('diagInput').value.trim();
       if (!input) return;
       const btn = document.getElementById('diagBtn');
-      const result = document.getElementById('diagResult');
+      const wrap = document.getElementById('diagResult');
+      const body = document.getElementById('diagBody');
       btn.disabled = true;
-      btn.textContent = 'Analyse en cours…';
-      result.style.display = 'none';
-
-      const res = await fetch('/api/diagnose', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ description: input })
-      });
-      const data = await res.json();
-      result.textContent = data.result || data.error;
-      result.style.display = 'block';
+      btn.textContent = 'Seanamon analyse… 🌿';
+      wrap.classList.remove('show');
+      try {
+        const res = await fetch('/api/diagnose', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({description: input})
+        });
+        const data = await res.json();
+        body.innerHTML = parseSn(data.result || data.error);
+        wrap.classList.add('show');
+      } catch(e) {
+        body.innerHTML = '<div class="result-raw">Seanamon est momentanément indisponible. Réessaie. ✨</div>';
+        wrap.classList.add('show');
+      }
       btn.disabled = false;
-      btn.textContent = 'Obtenir mon diagnostic';
+      btn.textContent = 'Obtenir mon diagnostic ✨';
     });
 
-    // Agenda
+    // AGENDA
     document.getElementById('agendaBtn').addEventListener('click', async () => {
       const input = document.getElementById('agendaInput').value.trim();
       if (!input) return;
       const btn = document.getElementById('agendaBtn');
-      const result = document.getElementById('agendaResult');
+      const wrap = document.getElementById('agendaResult');
+      const body = document.getElementById('agendaBody');
       btn.disabled = true;
-      btn.textContent = 'Génération en cours…';
-      result.style.display = 'none';
-
-      const res = await fetch('/api/agenda', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ description: input })
-      });
-      const data = await res.json();
-      result.textContent = data.result || data.error;
-      result.style.display = 'block';
+      btn.textContent = 'Seanamon construit ton programme… 🌱';
+      wrap.classList.remove('show');
+      try {
+        const res = await fetch('/api/agenda', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({description: input})
+        });
+        const data = await res.json();
+        body.innerHTML = parseSn(data.result || data.error);
+        wrap.classList.add('show');
+      } catch(e) {
+        body.innerHTML = '<div class="result-raw">Seanamon est momentanément indisponible. Réessaie. ✨</div>';
+        wrap.classList.add('show');
+      }
       btn.disabled = false;
-      btn.textContent = 'Générer mon agenda';
+      btn.textContent = 'Générer mon agenda 🌿';
     });
+
+    function parseSn(raw) {
+      if (!raw) return '<div class="result-raw">Aucune réponse reçue.</div>';
+      const re = /(?:^|\n)(\d+)\.\s+([^\n:]+)\s*:\s*\n([\s\S]*?)(?=\n\d+\.|$)/g;
+      const secs = []; let m; const t = '\n' + raw;
+      while ((m = re.exec(t)) !== null) secs.push({num:m[1],title:m[2].trim(),body:m[3].trim()});
+      if (secs.length >= 2) return secs.map(s =>
+        `<div class="snb"><div class="snh"><div class="snn">${s.num}</div><div class="snt">${s.title}</div></div><div class="snc">${esc(s.body)}</div></div>`
+      ).join('');
+      return '<div class="result-raw">' + esc(raw) + '</div>';
+    }
+    function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
     init();
   </script>
