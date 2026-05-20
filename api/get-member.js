@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   const { token } = req.query;
   if (!token) return res.status(400).json({ error: 'Token manquant' });
 
-  // Chercher le token dans Supabase
+  // Valider le token
   const { data, error } = await supabase
     .from('magic_tokens')
     .select('*')
@@ -30,6 +30,25 @@ export default async function handler(req, res) {
     .update({ used: true })
     .eq('id', data.id);
 
-  // Retourner l'email de l'utilisateur
-  res.status(200).json({ email: data.email });
+  // Récupérer le prénom depuis subscribers
+  const { data: sub } = await supabase
+    .from('subscribers')
+    .select('prenom')
+    .eq('email', data.email)
+    .single();
+
+  // Récupérer le dernier diagnostic
+  const { data: diag } = await supabase
+    .from('diagnostics')
+    .select('result, created_at')
+    .eq('email', data.email)
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .single();
+
+  res.status(200).json({
+    email: data.email,
+    prenom: sub?.prenom || null,
+    diagnostic: diag?.result || null
+  });
 }
