@@ -12,7 +12,7 @@
       --bg:#0F2922;--bdc:#172f25;--bdp:#0a1f18;--bmd:#0e2820;
       --or:#c9a96e;--orl:#e8c98a;--ord:rgba(201,169,110,.35);
       --tx:#e8dcc8;--txs:rgba(232,220,200,.82);--txm:rgba(232,220,200,.55);
-      --bo:rgba(201,169,110,.22);--ok:#5ecb8a;
+      --bo:rgba(201,169,110,.22);--ok:#5ecb8a;--okd:rgba(94,203,138,.2);
       --beige:#d4b896;--beige2:#e8cfb0;
       --rp:50px;--rc:18px;--rs:10px;--tr:.3s cubic-bezier(.4,0,.2,1)
     }
@@ -20,7 +20,7 @@
     body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh}
 
     /* LOADING */
-    .loading-screen{position:fixed;inset:0;background:var(--bmd);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;z-index:100;transition:opacity .5s ease}
+    .loading-screen{position:fixed;inset:0;background:var(--bmd);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;z-index:100;transition:opacity .6s ease}
     .loading-screen.hide{opacity:0;pointer-events:none}
     .loading-logo{width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid var(--ord);animation:lp 2.5s ease-in-out infinite}
     @keyframes lp{0%,100%{opacity:.5;transform:scale(.95)}50%{opacity:1;transform:scale(1.05)}}
@@ -41,14 +41,23 @@
     nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(14px);background:rgba(14,40,32,.88);border-bottom:1px solid var(--bo)}
     .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--or);letter-spacing:.12em;display:flex;align-items:center;gap:.7rem}
     .nav-logo img{width:32px;height:32px;border-radius:50%;object-fit:cover;border:1px solid var(--ord)}
-    .nav-email{font-size:.72rem;letter-spacing:.15em;color:var(--txm)}
+    .nav-right{font-size:.72rem;letter-spacing:.15em;color:var(--txm)}
+
+    /* TABS */
+    .tabs{display:flex;gap:0;border-bottom:1px solid var(--bo);margin-bottom:2.5rem}
+    .tab{flex:1;padding:.9rem 1rem;text-align:center;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--txm);cursor:pointer;border-bottom:2px solid transparent;transition:all var(--tr);background:none;border-top:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif}
+    .tab:hover{color:var(--or)}
+    .tab.active{color:var(--or);border-bottom-color:var(--or)}
+    .tab-content{display:none}
+    .tab-content.active{display:block}
 
     /* MAIN */
-    .member-space{display:none;padding:8rem 1.5rem 5rem;max-width:760px;margin:0 auto}
-    .member-space.show{display:block}
+    .member-space{display:none;padding:7rem 1.5rem 5rem;max-width:780px;margin:0 auto}
+    .member-space.show{display:block;animation:fadeUp .7s ease forwards}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
     /* HEADER */
-    .mem-header{text-align:center;margin-bottom:4rem;position:relative}
+    .mem-header{text-align:center;margin-bottom:3rem;position:relative;padding:3rem 0 2rem}
     .mem-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 45%,rgba(201,169,110,.08) 0%,transparent 70%);pointer-events:none}
     .mem-logo{width:90px;height:90px;border-radius:50%;object-fit:cover;border:2px solid var(--ord);box-shadow:0 0 40px rgba(201,169,110,.2);margin-bottom:1.2rem}
     .mem-eyebrow{font-size:.67rem;letter-spacing:.42em;text-transform:uppercase;color:var(--or);margin-bottom:.8rem}
@@ -57,7 +66,7 @@
     .mem-welcome{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--txm);margin-top:.8rem}
 
     /* DIVIDER */
-    .dv{display:flex;align-items:center;gap:1.2rem;padding:1.5rem 0;margin-bottom:2rem}
+    .dv{display:flex;align-items:center;gap:1.2rem;padding:1.5rem 0}
     .dl{flex:1;height:1px;background:var(--bo)}
     .ds{color:var(--or);font-size:1rem;opacity:.5}
 
@@ -70,24 +79,11 @@
     .card-title{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--or);margin-bottom:.5rem}
     .card-desc{font-size:.88rem;color:var(--txm);line-height:1.7;margin-bottom:1.8rem}
 
-    /* TEXTAREA */
-    .field{width:100%;background:rgba(10,31,24,.6);border:1.5px solid var(--bo);border-radius:var(--rs);padding:1.1rem 1.3rem;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:.92rem;font-weight:300;outline:none;transition:border-color var(--tr);resize:none;min-height:130px;line-height:1.65;margin-bottom:1.2rem}
-    .field:focus{border-color:var(--or)}
-    .field::placeholder{color:var(--txm)}
-
-    /* BUTTON */
-    .btn-gold{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.4rem;background:transparent;color:var(--or);font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;border:1.5px solid var(--ord);border-radius:var(--rp);cursor:pointer;transition:all var(--tr)}
-    .btn-gold:hover{background:var(--or);color:var(--bg);border-color:var(--or)}
-    .btn-gold:disabled{opacity:.35;cursor:not-allowed}
-    .btn-gold.loading{opacity:.6;cursor:not-allowed}
-
-    /* RESULT */
-    .result-wrap{margin-top:1.8rem;display:none}
-    .result-wrap.show{display:block}
-    .result-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
-    .result-hl{flex:1;height:1px;background:var(--bo)}
-    .result-hg{color:var(--or);font-size:.7rem}
-    .result-body{background:var(--bdp);border:1px solid var(--bo);border-radius:var(--rc);overflow:hidden}
+    /* DIAGNOSTIC RESULT */
+    .diag-saved{background:var(--bdp);border:1px solid var(--bo);border-radius:var(--rc);overflow:hidden;margin-bottom:1.5rem}
+    .diag-saved-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.3rem;background:rgba(201,169,110,.04);border-bottom:1px solid var(--bo)}
+    .diag-saved-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--or)}
+    .diag-saved-date{font-size:.72rem;color:var(--txm);letter-spacing:.1em}
     .snb{border-bottom:1px solid var(--bo)}
     .snb:last-child{border-bottom:none}
     .snh{display:flex;align-items:center;gap:1rem;padding:1rem 1.3rem;background:rgba(201,169,110,.04)}
@@ -96,14 +92,70 @@
     .snc{padding:1.2rem 1.3rem;font-size:.9rem;line-height:1.8;color:var(--txs);white-space:pre-line}
     .result-raw{padding:1.5rem;font-size:.9rem;line-height:1.8;color:var(--txs);white-space:pre-line}
 
+    /* BUTTON */
+    .btn-gold{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.4rem;background:transparent;color:var(--or);font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;border:1.5px solid var(--ord);border-radius:var(--rp);cursor:pointer;transition:all var(--tr)}
+    .btn-gold:hover{background:var(--or);color:var(--bg);border-color:var(--or)}
+    .btn-gold:disabled{opacity:.35;cursor:not-allowed}
+    .btn-full{width:100%;justify-content:center}
+
+    /* AGENDA LOADING */
+    .agenda-loading{display:none;text-align:center;padding:3rem;flex-direction:column;align-items:center;gap:1rem}
+    .agenda-loading.show{display:flex}
+    .agenda-loading p{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--txs)}
+
+    /* CALENDAR */
+    .calendar{display:none}
+    .calendar.show{display:block}
+    .cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem}
+    .cal-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--or)}
+    .cal-stats{display:flex;gap:1rem}
+    .cal-stat{text-align:center;background:var(--bdp);border:1px solid var(--bo);border-radius:var(--rs);padding:.6rem 1rem}
+    .cal-stat-n{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--ok)}
+    .cal-stat-l{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--txm)}
+
+    /* DAY CARDS */
+    .day-card{background:var(--bdc);border:1px solid var(--bo);border-radius:var(--rc);margin-bottom:1rem;overflow:hidden;transition:border-color var(--tr)}
+    .day-card.today{border-color:var(--ord)}
+    .day-card.done{border-color:rgba(94,203,138,.35)}
+    .day-header{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.3rem;cursor:pointer;user-select:none}
+    .day-header:hover{background:rgba(201,169,110,.03)}
+    .day-left{display:flex;align-items:center;gap:1rem}
+    .day-num{width:36px;height:36px;border:1.5px solid var(--ord);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--or);flex-shrink:0}
+    .day-card.today .day-num{background:var(--or);color:var(--bg);border-color:var(--or)}
+    .day-card.done .day-num{background:var(--okd);border-color:var(--ok);color:var(--ok)}
+    .day-info{}
+    .day-date{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--txs)}
+    .day-type{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--txm);margin-top:.1rem}
+    .day-right{display:flex;align-items:center;gap:.8rem}
+    .day-progress{font-size:.75rem;color:var(--txm)}
+    .day-arrow{color:var(--or);font-size:.8rem;transition:transform var(--tr)}
+    .day-card.open .day-arrow{transform:rotate(90deg)}
+
+    /* TASKS */
+    .day-tasks{display:none;padding:0 1.3rem 1.3rem;border-top:1px solid var(--bo)}
+    .day-card.open .day-tasks{display:block}
+    .task{display:flex;align-items:flex-start;gap:.9rem;padding:.85rem 0;border-bottom:1px solid rgba(201,169,110,.08)}
+    .task:last-child{border-bottom:none}
+    .task-check{width:22px;height:22px;border-radius:6px;border:1.5px solid var(--bo);background:transparent;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all var(--tr);margin-top:.15rem}
+    .task-check:hover{border-color:var(--or)}
+    .task-check.checked{background:var(--ok);border-color:var(--ok)}
+    .task-check.checked::after{content:'✓';color:#0F2922;font-size:.75rem;font-weight:600}
+    .task-body{flex:1}
+    .task-time{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:.2rem}
+    .task-text{font-size:.9rem;color:var(--txs);line-height:1.6}
+    .task.done .task-text{color:var(--txm);text-decoration:line-through}
+
+    /* NO DIAG */
+    .no-diag{text-align:center;padding:3rem 2rem}
+    .no-diag-icon{font-size:2.5rem;margin-bottom:1rem}
+    .no-diag-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--or);margin-bottom:.5rem}
+    .no-diag-txt{font-size:.88rem;color:var(--txm);line-height:1.7;margin-bottom:1.5rem}
+
     /* FOOTER */
     .mem-footer{text-align:center;padding:3rem 0 1rem;border-top:1px solid var(--bo);margin-top:1rem}
     .mem-footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--or);letter-spacing:.12em;display:flex;align-items:center;justify-content:center;gap:.7rem;margin-bottom:.4rem}
     .mem-footer-logo img{width:26px;height:26px;border-radius:50%;object-fit:cover;border:1px solid var(--ord)}
     .mem-footer p{font-size:.78rem;color:var(--txm)}
-
-    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    .member-space.show{animation:fadeUp .7s ease forwards}
   </style>
 </head>
 <body>
@@ -129,7 +181,7 @@
       <img src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Logo">
       Sankhtuhair
     </div>
-    <span class="nav-email" id="navEmail"></span>
+    <span class="nav-right" id="navName"></span>
   </nav>
 
   <!-- ESPACE MEMBRE -->
@@ -142,34 +194,76 @@
       <p class="mem-welcome" id="memWelcome"></p>
     </div>
 
-    <div class="dv"><div class="dl"></div><span class="ds">✦</span><div class="dl"></div></div>
-
-    <!-- DIAGNOSTIC -->
-    <div class="card">
-      <div class="card-tag">Intelligence Capillaire · Seanamon</div>
-      <h2 class="card-title">Diagnostic 🔬</h2>
-      <p class="card-desc">Décris tes cheveux, tes problèmes, tes habitudes. Plus tu es précise, plus l'ordonnance de Seanamon sera juste.</p>
-      <textarea class="field" id="diagInput" placeholder="Ex : cheveux type 4c, cuir chevelu sec, chute depuis 3 mois, je lave une fois par semaine avec du sulfate…"></textarea>
-      <button class="btn-gold" id="diagBtn">Obtenir mon diagnostic ✨</button>
-      <div class="result-wrap" id="diagResult">
-        <div class="result-header"><div class="result-hl"></div><span class="result-hg">✦ Révélation de Seanamon</span><div class="result-hl"></div></div>
-        <div class="result-body" id="diagBody"></div>
-      </div>
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('diag')">🔬 Mon Diagnostic</button>
+      <button class="tab" onclick="switchTab('agenda')">📅 Mon Agenda</button>
     </div>
 
-    <div class="dv"><div class="dl"></div><span class="ds">✦</span><div class="dl"></div></div>
+    <!-- TAB DIAGNOSTIC -->
+    <div class="tab-content active" id="tab-diag">
 
-    <!-- AGENDA -->
-    <div class="card">
-      <div class="card-tag">Rituel Personnalisé · Seanamon</div>
-      <h2 class="card-title">Agenda Capillaire 📅</h2>
-      <p class="card-desc">Décris ton quotidien, ton type de cheveux, le temps que tu peux consacrer à ta couronne. Seanamon construit ta routine semaine par semaine.</p>
-      <textarea class="field" id="agendaInput" placeholder="Ex : type 4a, travaille 5j/7, 30 min max le dimanche, objectif repousse et rétention de longueur…"></textarea>
-      <button class="btn-gold" id="agendaBtn">Générer mon agenda 🌿</button>
-      <div class="result-wrap" id="agendaResult">
-        <div class="result-header"><div class="result-hl"></div><span class="result-hg">✦ Ton Programme Seanamon</span><div class="result-hl"></div></div>
-        <div class="result-body" id="agendaBody"></div>
+      <div id="diagSavedWrap" style="display:none">
+        <div class="diag-saved">
+          <div class="diag-saved-header">
+            <span class="diag-saved-title">✦ Ton Ordonnance Seanamon</span>
+            <span class="diag-saved-date" id="diagDate"></span>
+          </div>
+          <div id="diagSavedBody"></div>
+        </div>
+        <div class="dv"><div class="dl"></div><span class="ds">✦</span><div class="dl"></div></div>
+        <button class="btn-gold btn-full" id="genAgendaBtn" onclick="switchTab('agenda')">Générer mon agenda capillaire 🌿</button>
       </div>
+
+      <div id="noDiagWrap" style="display:none">
+        <div class="card">
+          <div class="no-diag">
+            <div class="no-diag-icon">🌿</div>
+            <h3 class="no-diag-title">Aucun diagnostic trouvé</h3>
+            <p class="no-diag-txt">Tu n'as pas encore fait ton parcours initiatique. Retourne sur la page d'accueil et commence tes 13 étapes pour que Seanamon révèle la vérité de ta couronne.</p>
+            <a href="/" class="btn-gold">Commencer mon initiation ✨</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TAB AGENDA -->
+    <div class="tab-content" id="tab-agenda">
+
+      <div class="agenda-loading" id="agendaLoading">
+        <img style="width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid var(--ord)" src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="">
+        <p>Seanamon construit ton programme sur 30 jours…</p>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      </div>
+
+      <div class="calendar" id="calendar">
+        <div class="cal-header">
+          <h2 class="cal-title">Ton Programme · 30 Jours</h2>
+          <div class="cal-stats">
+            <div class="cal-stat">
+              <div class="cal-stat-n" id="statDone">0</div>
+              <div class="cal-stat-l">Tâches ✓</div>
+            </div>
+            <div class="cal-stat">
+              <div class="cal-stat-n" id="statTotal">0</div>
+              <div class="cal-stat-l">Au total</div>
+            </div>
+          </div>
+        </div>
+        <div id="calendarBody"></div>
+      </div>
+
+      <div id="noAgendaWrap" style="display:none">
+        <div class="card">
+          <div class="no-diag">
+            <div class="no-diag-icon">📅</div>
+            <h3 class="no-diag-title">Ton agenda n'est pas encore généré</h3>
+            <p class="no-diag-txt">Fais d'abord ton diagnostic pour que Seanamon construise ton programme personnalisé sur 30 jours.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <div class="mem-footer">
@@ -185,21 +279,39 @@
 
   <script>
     const token = new URLSearchParams(window.location.search).get('token');
+    let memberData = {};
+    let agendaData = [];
+    let taskStates = {};
 
+    // INIT
     async function init() {
       if (!token) return showError();
       try {
         const res = await fetch('/api/get-member?token=' + token);
         const data = await res.json();
         if (!res.ok || !data.email) return showError();
-        document.getElementById('navEmail').textContent = data.email;
-        document.getElementById('memWelcome').textContent = 'Bienvenue, ' + data.email + ' 💛';
+
+        memberData = data;
+        const name = data.prenom || data.email;
+        document.getElementById('navName').textContent = name;
+        document.getElementById('memWelcome').textContent = 'Bienvenue, ' + name + ' 💛';
         document.getElementById('loadingScreen').classList.add('hide');
         document.getElementById('mainNav').style.display = 'flex';
         document.getElementById('memberSpace').classList.add('show');
-      } catch(e) {
-        showError();
-      }
+
+        // Charger le diagnostic sauvegardé
+        if (data.diagnostic) {
+          document.getElementById('diagSavedWrap').style.display = 'block';
+          document.getElementById('diagSavedBody').innerHTML = parseSn(data.diagnostic);
+        } else {
+          document.getElementById('noDiagWrap').style.display = 'block';
+        }
+
+        // Charger les états de tâches depuis localStorage
+        const saved = localStorage.getItem('skt_tasks_' + data.email);
+        if (saved) taskStates = JSON.parse(saved);
+
+      } catch(e) { showError(); }
     }
 
     function showError() {
@@ -207,62 +319,153 @@
       document.getElementById('errorScreen').classList.add('show');
     }
 
-    // DIAGNOSTIC
-    document.getElementById('diagBtn').addEventListener('click', async () => {
-      const input = document.getElementById('diagInput').value.trim();
-      if (!input) return;
-      const btn = document.getElementById('diagBtn');
-      const wrap = document.getElementById('diagResult');
-      const body = document.getElementById('diagBody');
-      btn.disabled = true;
-      btn.textContent = 'Seanamon analyse… 🌿';
-      wrap.classList.remove('show');
-      try {
-        const res = await fetch('/api/diagnose', {
-          method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify({description: input})
-        });
-        const data = await res.json();
-        body.innerHTML = parseSn(data.result || data.error);
-        wrap.classList.add('show');
-      } catch(e) {
-        body.innerHTML = '<div class="result-raw">Seanamon est momentanément indisponible. Réessaie. ✨</div>';
-        wrap.classList.add('show');
+    // TABS
+    function switchTab(tab) {
+      document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', (i===0&&tab==='diag')||(i===1&&tab==='agenda')));
+      document.getElementById('tab-diag').classList.toggle('active', tab === 'diag');
+      document.getElementById('tab-agenda').classList.toggle('active', tab === 'agenda');
+      if (tab === 'agenda' && agendaData.length === 0 && memberData.diagnostic) {
+        generateAgenda();
+      } else if (tab === 'agenda' && !memberData.diagnostic) {
+        document.getElementById('noAgendaWrap').style.display = 'block';
       }
-      btn.disabled = false;
-      btn.textContent = 'Obtenir mon diagnostic ✨';
-    });
+    }
 
-    // AGENDA
-    document.getElementById('agendaBtn').addEventListener('click', async () => {
-      const input = document.getElementById('agendaInput').value.trim();
-      if (!input) return;
-      const btn = document.getElementById('agendaBtn');
-      const wrap = document.getElementById('agendaResult');
-      const body = document.getElementById('agendaBody');
-      btn.disabled = true;
-      btn.textContent = 'Seanamon construit ton programme… 🌱';
-      wrap.classList.remove('show');
+    // GENERATE AGENDA
+    async function generateAgenda() {
+      document.getElementById('agendaLoading').classList.add('show');
+      document.getElementById('calendar').classList.remove('show');
+      document.getElementById('noAgendaWrap').style.display = 'none';
+
       try {
         const res = await fetch('/api/agenda', {
           method: 'POST',
           headers: {'Content-Type':'application/json'},
-          body: JSON.stringify({description: input})
+          body: JSON.stringify({
+            diagnostic: memberData.diagnostic,
+            prenom: memberData.prenom,
+            email: memberData.email
+          })
         });
         const data = await res.json();
-        body.innerHTML = parseSn(data.result || data.error);
-        wrap.classList.add('show');
+        if (data.result) {
+          agendaData = parseAgenda(data.result);
+          renderCalendar();
+        }
       } catch(e) {
-        body.innerHTML = '<div class="result-raw">Seanamon est momentanément indisponible. Réessaie. ✨</div>';
-        wrap.classList.add('show');
+        document.getElementById('noAgendaWrap').style.display = 'block';
       }
-      btn.disabled = false;
-      btn.textContent = 'Générer mon agenda 🌿';
-    });
+      document.getElementById('agendaLoading').classList.remove('show');
+    }
 
+    // PARSE AGENDA
+    function parseAgenda(raw) {
+      const days = [];
+      const dayBlocks = raw.split(/\n(?=JOUR\s+\d+)/);
+      for (const block of dayBlocks) {
+        if (!block.trim()) continue;
+        const lines = block.trim().split('\n');
+        const headerLine = lines[0];
+        const dayMatch = headerLine.match(/JOUR\s+(\d+)\s*[—-]\s*(.+)/);
+        if (!dayMatch) continue;
+        const dayNum = parseInt(dayMatch[1]);
+        const dateStr = dayMatch[2].trim();
+
+        const tasks = [];
+        let currentTime = '';
+        for (let i = 1; i < lines.length; i++) {
+          const line = lines[i].trim();
+          if (!line) continue;
+          if (/^(MATIN|SOIR|MATIN\s*&\s*SOIR|NUIT)/i.test(line)) {
+            currentTime = line;
+          } else if (line.startsWith('•') || line.startsWith('-')) {
+            tasks.push({
+              time: currentTime,
+              text: line.replace(/^[•\-]\s*/, '').trim(),
+              id: 'task_' + dayNum + '_' + tasks.length
+            });
+          }
+        }
+        if (tasks.length > 0) days.push({ num: dayNum, date: dateStr, tasks });
+      }
+      return days;
+    }
+
+    // RENDER CALENDAR
+    function renderCalendar() {
+      const body = document.getElementById('calendarBody');
+      body.innerHTML = '';
+      let totalTasks = 0;
+      let doneTasks = 0;
+
+      agendaData.forEach((day, idx) => {
+        totalTasks += day.tasks.length;
+        const dayDone = day.tasks.every(t => taskStates[t.id]);
+        if (dayDone && day.tasks.length > 0) doneTasks += day.tasks.filter(t => taskStates[t.id]).length;
+        else doneTasks += day.tasks.filter(t => taskStates[t.id]).length;
+
+        const isToday = idx === 0;
+        const card = document.createElement('div');
+        card.className = 'day-card' + (isToday ? ' today' : '') + (dayDone && day.tasks.length > 0 ? ' done' : '');
+        card.id = 'day_' + day.num;
+
+        const completedCount = day.tasks.filter(t => taskStates[t.id]).length;
+        const dayType = day.tasks.find(t => t.time)?.time || '';
+
+        card.innerHTML = `
+          <div class="day-header" onclick="toggleDay(${day.num})">
+            <div class="day-left">
+              <div class="day-num">${day.num}</div>
+              <div class="day-info">
+                <div class="day-date">${day.date}</div>
+                ${dayType ? `<div class="day-type">${dayType}</div>` : ''}
+              </div>
+            </div>
+            <div class="day-right">
+              <span class="day-progress">${completedCount}/${day.tasks.length}</span>
+              <span class="day-arrow">▶</span>
+            </div>
+          </div>
+          <div class="day-tasks">
+            ${day.tasks.map(t => `
+              <div class="task ${taskStates[t.id] ? 'done' : ''}" id="task_wrap_${t.id}">
+                <div class="task-check ${taskStates[t.id] ? 'checked' : ''}" onclick="toggleTask('${t.id}', ${day.num})" title="${taskStates[t.id] ? 'Marquer à faire' : 'Marquer comme fait'}"></div>
+                <div class="task-body">
+                  ${t.time ? `<div class="task-time">${t.time}</div>` : ''}
+                  <div class="task-text">${esc(t.text)}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        body.appendChild(card);
+        if (isToday) toggleDay(day.num);
+      });
+
+      document.getElementById('statDone').textContent = doneTasks;
+      document.getElementById('statTotal').textContent = totalTasks;
+      document.getElementById('calendar').classList.add('show');
+    }
+
+    // TOGGLE DAY
+    function toggleDay(num) {
+      const card = document.getElementById('day_' + num);
+      card.classList.toggle('open');
+    }
+
+    // TOGGLE TASK
+    function toggleTask(id, dayNum) {
+      taskStates[id] = !taskStates[id];
+      localStorage.setItem('skt_tasks_' + memberData.email, JSON.stringify(taskStates));
+      renderCalendar();
+      // Ré-ouvrir le jour
+      const card = document.getElementById('day_' + dayNum);
+      if (card) { card.classList.add('open'); card.scrollIntoView({behavior:'smooth', block:'nearest'}); }
+    }
+
+    // PARSE DIAGNOSTIC
     function parseSn(raw) {
-      if (!raw) return '<div class="result-raw">Aucune réponse reçue.</div>';
+      if (!raw) return '<div class="result-raw">Aucun diagnostic disponible.</div>';
       const re = /(?:^|\n)(\d+)\.\s+([^\n:]+)\s*:\s*\n([\s\S]*?)(?=\n\d+\.|$)/g;
       const secs = []; let m; const t = '\n' + raw;
       while ((m = re.exec(t)) !== null) secs.push({num:m[1],title:m[2].trim(),body:m[3].trim()});
@@ -271,7 +474,8 @@
       ).join('');
       return '<div class="result-raw">' + esc(raw) + '</div>';
     }
-    function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+    function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
     init();
   </script>
