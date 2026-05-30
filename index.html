@@ -486,13 +486,13 @@
 
     <div class="step" id="s13">
       <h2 class="qq" style="font-size:1.8rem">Prenons quelques photos 📸</h2>
+      <p style="text-align:center;color:var(--txm);font-size:.85rem;margin:.2rem 0 1rem;">⚠️ Ne pas mettre ton visage en photo — uniquement tes cheveux et ton cuir chevelu.</p>
       <div class="pl">
         <div class="pz" id="pz1"><input type="file" accept="image/*" onchange="onPhoto(event,1)"><div class="pth" id="pt1"><div class="ti">📷</div><img id="pi1" alt=""></div><div class="pin"><div class="ptt">Vue de face</div><div class="pds">Cheveux de face pour analyser ta couronne.</div></div><span class="pck">✓</span></div>
         <div class="pz" id="pz2"><input type="file" accept="image/*" onchange="onPhoto(event,2)"><div class="pth" id="pt2"><div class="ti">📷</div><img id="pi2" alt=""></div><div class="pin"><div class="ptt">Zone inquiétante</div><div class="pds">Chute, cuir chevelu, racines.</div></div><span class="pck">✓</span></div>
         <div class="pz" id="pz3"><input type="file" accept="image/*" onchange="onPhoto(event,3)"><div class="pth" id="pt3"><div class="ti">📷</div><img id="pi3" alt=""></div><div class="pin"><div class="ptt">Zoom pointes / mèche</div><div class="pds">Zoom max pour l'état des cuticules.</div></div><span class="pck">✓</span></div>
-        <div class="pz" id="pz4"><input type="file" accept="image/*" onchange="onPhoto(event,4)"><div class="pth" id="pt4"><div class="ti">📷</div><img id="pi4" alt=""></div><div class="pin"><div class="ptt">Longueur totale</div><div class="pds">Photo entière pour voir la longueur de ta couronne.</div></div><span class="pck">✓</span></div>
       </div>
-      <p class="pno" id="pno">4 photos requises pour le diagnostic complet de Seanamon</p>
+      <p class="pno" id="pno">3 photos requises pour le diagnostic complet de Seanamon</p>
       <div class="qnw"><button class="qn" id="btn-submit" disabled>Voir mon diagnostic ✨</button></div>
     </div>
 
@@ -564,7 +564,7 @@
 </div>
 
 <script>
-var cur=1,TOT=13,ans={},imgs={1:null,2:null,3:null,4:null};
+var cur=1,TOT=13,ans={},imgs={1:null,2:null,3:null};
 var LM=[
   ['Seanamon étudie ta couronne...','Chaque fibre parle, elle écoute. 🌿'],
   ['Les ancêtres témoignent...','Le passé révèle ton avenir capillaire. ✨'],
@@ -670,8 +670,8 @@ function onPhoto(e,n){
     document.getElementById('pt'+n).classList.add('loaded');
     document.getElementById('pz'+n).classList.add('done');
     var c=pCnt(),no=document.getElementById('pno');
-    if(c===4){document.getElementById('btn-submit').disabled=false;no.textContent='4 photos ajoutées — Seanamon est prête ✨';no.style.color='var(--ok)';}
-    else{no.textContent=c+'/4 photos — encore '+(4-c)+' photo'+(4-c>1?'s':'');}
+    if(c===3){document.getElementById('btn-submit').disabled=false;no.textContent='3 photos ajoutées — Seanamon est prête ✨';no.style.color='var(--ok)';}
+    else{no.textContent=c+'/3 photos — encore '+(3-c)+' photo'+(3-c>1?'s':'');}
   };
   var r=new FileReader();
   r.onload=function(ev){image.src=ev.target.result;};
