@@ -18,19 +18,19 @@ export default async function handler(req, res) {
 
   if (dbError) return res.status(500).json({ error: 'Erreur base de données' });
 
-  // 2. Envoi du mail de bienvenue via Resend
+  // 2. Envoi du mail de bienvenue via Brevo
   try {
-    await fetch('https://api.resend.com/emails', {
+    await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+        'api-key': process.env.BREVO_API_KEY,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Sankhtuhair <onboarding@resend.dev>',
-        to: email,
+        sender: { name: 'Sankhtuhair', email: 'sanktuhair@gmail.com' },
+        to: [{ email }],
         subject: '👑 Ta couronne est enregistrée, ' + (prenom || 'Reine') + '.',
-        html: `
+        htmlContent: `
           <div style="background:#0F2922;padding:40px 32px;font-family:Georgia,serif;max-width:520px;margin:0 auto;border-radius:12px">
             <p style="font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:#8a6e42;margin:0 0 20px">Sanctuaire Capillaire · IA</p>
             <h1 style="font-size:28px;font-weight:300;color:#e8dcc8;margin:0 0 8px">
@@ -47,14 +47,13 @@ export default async function handler(req, res) {
             <hr style="border:none;border-top:1px solid #2a4a38;margin:0 0 24px">
             <p style="font-size:12px;color:#5a4e3e;font-style:italic;margin:0">
               « Va chercher dans ton passé ce qui te rendra plus forte demain »<br>
-              <span style="color:#3a3a3a">— Seanamon, Sankhtuhair</span>
+              <span style="color:#6a6a6a">— Seanamon, Sankhtuhair</span>
             </p>
           </div>
         `,
       }),
     });
   } catch (mailError) {
-    // Le mail n'est pas bloquant — l'inscription est déjà sauvée
     console.error('Erreur envoi mail:', mailError);
   }
 
