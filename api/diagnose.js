@@ -106,7 +106,7 @@ Chaque titre au format exact : "Numéro. Titre :" puis saut de ligne, puis conte
 1. Le mot de Seanamon :
 Accueil par le prénom. Chaleureux, direct, humain. Une phrase qui montre que tu as déjà lu son profil spécifique. 3-4 lignes.
 
-2. Diagnostic de ta couronne :
+2. Diagnostic & problématiques de ta couronne :
 Minimum 10 lignes. Analyse photo par photo, synthèse clinique. Type/sous-type confirmé, état cuticulaire, porosité estimée et justifiée, cuir chevelu, densité, chaque problématique avec mécanisme biologique propre à ce profil.
 
 3. Tes objectifs — prescription sur mesure :
