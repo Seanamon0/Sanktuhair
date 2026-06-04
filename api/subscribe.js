@@ -17,6 +17,11 @@ export default async function handler(req, res) {
     .upsert({ email, cohorte, prenom }, { onConflict: 'email' });
 
   if (dbError) return res.status(500).json({ error: 'Erreur base de données' });
+  await supabase
+  .from('diagnostics')
+  .update({ user_email: email })
+  .eq('prenom', prenom)
+  .neq('user_email', email);
 
   // 2. Envoi du mail de bienvenue via Brevo
   try {
