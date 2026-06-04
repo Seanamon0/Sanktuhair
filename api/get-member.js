@@ -34,14 +34,14 @@ export default async function handler(req, res) {
   const { data: sub } = await supabase
     .from('subscribers')
     .select('prenom')
-    .eq('user_email', data.email)
+    .eq('email', data.email)
     .single();
 
   // Récupérer le dernier diagnostic
   const { data: diag } = await supabase
     .from('diagnostics')
     .select('diagnostic, created_at')
-    .eq('user_email', data.email)
+    .eq('email', data.email)
     .order('created_at', { ascending: false })
     .limit(1)
     .single();
