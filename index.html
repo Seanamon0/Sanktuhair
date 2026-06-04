@@ -692,9 +692,20 @@ function onPhoto(e,n){
 
 function buildMsg(){
   var a=ans,ar=function(v){return Array.isArray(v)?v.join(', '):(v||'N/A');};
-  return 'Prénom : '+(a.prenom||'N/A')+'\nÂge : '+(a.age||'N/A')+'\nType couronne déclaré : '+(a.type_cheveux||'N/A')+'\nCuir chevelu : '+ar(a.cuir_chevelu)+'\nProblématiques : '+ar(a.problematiques)+'\nCause(s) : '+ar(a.cause)+'\nFréquence lavage : '+(a.frequence_lavage||'N/A')+'\nObjectifs : '+ar(a.objectifs)+'\nCoiffures protectrices : '+(a.coiffures_protectrices||'N/A')+'\nProduits naturels : '+(a.produits_naturels||'N/A')+'\nÀ écarter : '+ar(a.ecarter)+'\nMessage libre : '+(a.texte_libre||'Rien')+'\nPhotos : '+pCnt()+'\n\nINSTRUCTION : Analyse exclusivement la fibre capillaire, la texture, l\'état du cuir chevelu et la porosité visible sur les photos. Ignore tout visage visible. Identifie le type réel (Type 1-4, sous-types a/b/c). Traite CHAQUE problématique déclarée.';
+  return 'Prénom : '+(a.prenom||'N/A')+
+'\nÂge : '+(a.age||'N/A')+
+'\nType couronne déclaré : '+(a.type_cheveux||'N/A')+
+'\nCuir chevelu : '+ar(a.cuir_chevelu)+
+'\nFréquence lavage : '+(a.frequence_lavage||'N/A')+
+'\nCoiffures protectrices : '+(a.coiffures_protectrices||'N/A')+
+'\nProduits naturels : '+(a.produits_naturels||'N/A')+
+'\nÀ écarter : '+ar(a.ecarter)+
+'\n\n━━━ PROBLÉMATIQUES (traiter chacune séparément, mécanisme biologique dédié) ━━━\n'+ar(a.problematiques)+
+'\n\n━━━ CAUSE(S) DÉCLARÉE(S) ━━━\n'+ar(a.cause)+
+'\n\n━━━ OBJECTIFS (prescription sur mesure pour chacun) ━━━\n'+ar(a.objectifs)+
+'\n\n━━━ MESSAGE LIBRE ━━━\n'+(a.texte_libre||'Rien')+
+'\n\nPhotos jointes : '+pCnt()+'/3';
 }
-
 async function submitAll(){
   var emailSub=document.getElementById('einp')?document.getElementById('einp').value.trim():'';
   document.getElementById('s13').classList.remove('active');
