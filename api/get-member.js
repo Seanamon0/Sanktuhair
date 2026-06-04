@@ -34,14 +34,14 @@ export default async function handler(req, res) {
   const { data: sub } = await supabase
     .from('subscribers')
     .select('prenom')
-    .eq('email', data.email)
+    .eq('user_email', data.email)
     .single();
 
   // Récupérer le dernier diagnostic
   const { data: diag } = await supabase
     .from('diagnostics')
-    .select('result, created_at')
-    .eq('email', data.email)
+    .select('diagnostic, created_at')
+    .eq('user_email', data.email)
     .order('created_at', { ascending: false })
     .limit(1)
     .single();
@@ -49,6 +49,6 @@ export default async function handler(req, res) {
   res.status(200).json({
     email: data.email,
     prenom: sub?.prenom || null,
-    diagnostic: diag?.result || null
+    diagnostic: diag?.diagnostic || null
   });
 }
