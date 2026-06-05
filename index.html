@@ -747,11 +747,6 @@ async function doSub(){
   if(!email||!email.includes('@')){document.getElementById('einp').style.borderColor='#e57373';return;}
   if(!cohorte){document.getElementById('esel').style.borderColor='#e57373';return;}
   try{await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,cohorte:cohorte,prenom:prenom})});}catch(e){}
-  // Sauvegarder le diagnostic avec l'email maintenant qu'on l'a
-  var diagResult=document.getElementById('rbody')?document.getElementById('rbody').innerText:'';
-  if(email&&diagResult){
-    try{await fetch('/api/diagnose',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,prenom:prenom,content:[{type:'text',text:'save_only'}],save_result:diagResult})});}catch(e){}
-  }
   document.getElementById('efw').style.display='none';
   document.getElementById('eokm').innerHTML='Ta couronne est enregistrée, '+prenom+'.<br>Bienvenue dans le Sanctuaire. 👑';
   document.getElementById('eok').classList.add('show');
