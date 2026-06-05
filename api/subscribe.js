@@ -11,10 +11,6 @@ export default async function handler(req, res) {
   if (!email) return res.status(400).json({ error: 'Email requis' });
 
   await supabase
-    .from('Users')
-    .insert({ email, cohorte, prenom });
-
-  await supabase
     .from('diagnostics')
     .update({ user_email: email })
     .eq('prenom', prenom)
@@ -35,4 +31,10 @@ export default async function handler(req, res) {
       + '<p style="font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:#8a6e42;margin:0 0 20px">Sanctuaire Capillaire</p>'
       + '<h1 style="font-size:26px;font-weight:300;color:#e8dcc8;margin:0 0 16px">Maintenant que tu as revele ta couronne, rejoins ton Sanctuaire.</h1>'
       + '<p style="font-size:14px;color:#a89880;line-height:1.7;margin:0 0 28px">Consulte ton diagnostic et ton agenda de soin personnalise.</p>'
-      + '<a href="' + magicLink + '" style="display:inline-block;padding:14px 32px;background:#c9a96e;color:#0F2922;text-decoration:none;border-radius:50px;font-size:13px;font-weight
+      + '<a href="' + magicLink + '" style="display:inline-block;padding:14px 32px;background:#c9a96e;color:#0F2922;text-decoration:none;border-radius:50px;font-size:13px;font-weight:500;letter-spacing:.15em;text-transform:uppercase">Acceder a mon Sanctuaire</a>'
+      + '<p style="margin-top:32px;font-size:11px;color:#5a4e3e;font-style:italic">Ce lien expire dans 15 minutes.</p>'
+      + '</div>'
+  });
+
+  res.status(200).json({ success: true });
+}
