@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   if (!email) return res.status(400).json({ error: 'Email requis' });
 
   const { error: dbError } = await supabase
-    .from('subscribers')
+    .from('Users')
     .upsert({ email, cohorte, prenom }, { onConflict: 'email' });
   if (dbError) return res.status(500).json({ error: 'Erreur base de donnees' });
 
