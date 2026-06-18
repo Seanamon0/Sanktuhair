@@ -52,162 +52,472 @@
     .manifeste{padding:9rem 1.5rem;background:var(--bdp);position:relative;overflow:hidden}
     .manifeste::before{content:'\275D';position:absolute;top:-2rem;left:-1rem;font-size:20rem;color:rgba(201,169,110,.04);font-family:'Cormorant Garamond',serif;line-height:1;pointer-events:none}
     .man-in{max-width:760px;margin:0 auto;position:relative}
-    .man-intro">Découvre le manifeste :</h2>
-    <blockquote class="man-q">"On passe notre temps à acheter des produits chimiques au pif parce qu'on ne comprend plus nos propres cheveux. On a perdu le <strong>mode d'emploi de notre propre couronne.</strong>"</blockquote>
-    <div class="man-b">
-      <p>Sankhtuhair marie Sankofah — la gamme de cosmétique biotechnologique capillaire (prochainement disponible) — avec l'intelligence artificielle Seanamon, pour révéler la vérité sur chaque couronne. Fondé par Élodie.</p>
-      <p>Le cheveu n'est pas un problème à résoudre. <strong>C'est une couronne à célébrer.</strong></p>
+    .man-intro{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;color:var(--or);margin-bottom:2rem;letter-spacing:.02em}
+    .man-q{font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,3.5vw,1.9rem);font-style:italic;font-weight:300;line-height:1.5;color:var(--txs);margin-bottom:2rem}
+    .man-q strong{color:var(--or);font-style:normal;font-weight:500}
+    .man-b{font-size:1rem;color:var(--txm);line-height:1.85}
+    .man-b p+p{margin-top:1.2rem}
+    .man-b strong{color:var(--txs);font-weight:400}
+    .sk-box{margin-top:2.5rem;padding:1.5rem 1.8rem;background:rgba(201,169,110,.06);border-left:3px solid var(--ord);border-radius:0 var(--rs) var(--rs) 0}
+    .sk-lbl{font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:var(--or);margin-bottom:.5rem}
+    .sk-txt{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--txs);line-height:1.6}
+    .sw{padding:7rem 1.5rem;max-width:1180px;margin:0 auto;position:relative}
+    .sh{margin-bottom:3.5rem}
+    .st{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,4.8rem);font-weight:400;line-height:1.05;margin-top:.6rem}
+    .st em{color:var(--or);font-style:italic}
+    .pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.5rem}
+    .pc{background:var(--bdc);border:1px solid var(--bo);border-radius:var(--rc);padding:2.5rem 2rem 2rem;position:relative;overflow:hidden;transition:border-color var(--tr),transform var(--tr)}
+    .pc:hover{border-color:var(--ord);transform:translateY(-5px)}
+    .pc::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:linear-gradient(to right,transparent,var(--or),transparent);opacity:0;transition:opacity var(--tr)}
+    .pc:hover::after{opacity:1}
+    .pn{font-family:'Cormorant Garamond',serif;font-size:6rem;font-weight:300;color:rgba(201,169,110,.07);line-height:1;margin-bottom:-2rem;user-select:none}
+    .pi{font-size:2rem;margin-bottom:1rem;display:block}
+    .pt{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--or);margin-bottom:.9rem}
+    .pd{font-size:.93rem;color:var(--txm);line-height:1.75}
+    .ew{padding:9rem 1.5rem;background:var(--bdp);position:relative;overflow:hidden}
+    .ei{max-width:1100px;margin:0 auto;position:relative}
+    .eg{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:4rem}
+    @media(max-width:700px){.eg{grid-template-columns:1fr}}
+    .ec{background:var(--bdc);border:1px solid var(--bo);border-radius:var(--rc);padding:2.8rem 2.2rem;transition:border-color var(--tr)}
+    .ec:hover{border-color:var(--ord)}
+    .et{display:inline-block;border:1px solid var(--ord);border-radius:var(--rp);padding:.3rem 1rem;font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--or);margin-bottom:1.4rem}
+    .en{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:400;color:var(--or);margin-bottom:1rem}
+    .ed{font-size:.93rem;color:var(--txm);line-height:1.8}
+    .eb{margin-top:1.8rem;padding:.9rem 1.1rem;background:rgba(201,169,110,.05);border-left:2px solid var(--ord);border-radius:0 var(--rs) var(--rs) 0;font-size:.84rem;color:var(--txm);font-style:italic;font-family:'Cormorant Garamond',serif}
+    .cs{padding:10rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+    .cs::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(201,169,110,.07) 0%,transparent 65%);pointer-events:none}
+    .cb2{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(12rem,28vw,22rem);font-weight:300;color:rgba(201,169,110,.04);user-select:none;pointer-events:none;white-space:nowrap}
+    .ci{position:relative;z-index:1}
+    .ct{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:400;line-height:1.2;margin-top:.8rem;margin-bottom:.8rem}
+    .csu{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.1rem,2.5vw,1.4rem);color:var(--txm);margin-bottom:2.8rem}
+    footer{padding:3rem 1.5rem;text-align:center;border-top:1px solid var(--bo)}
+    .fl{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--or);letter-spacing:.12em;margin-bottom:.6rem;display:flex;align-items:center;justify-content:center;gap:.8rem}
+    .fl img{width:30px;height:30px;border-radius:50%;object-fit:cover;border:1px solid var(--ord)}
+    footer p{font-size:.82rem;color:var(--txm);line-height:1.8}
+    footer a{cursor:pointer!important;pointer-events:all!important}
+    .dv{display:flex;align-items:center;gap:1.2rem;padding:2rem 1.5rem;max-width:700px;margin:0 auto}
+    .dl{flex:1;height:1px;background:var(--bo)}
+    .ds{color:var(--or);font-size:1rem;opacity:.5}
+    .modal{position:fixed;inset:0;z-index:500;background:var(--bmd);display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .4s ease}
+    .modal.open{opacity:1;pointer-events:all}
+    .qp{position:absolute;top:0;left:0;right:0;height:3px;background:rgba(201,169,110,.12);z-index:10}
+    .qpf{height:100%;background:linear-gradient(to right,var(--or),var(--orl));transition:width .5s cubic-bezier(.4,0,.2,1);width:0%}
+    .qh{display:flex;align-items:center;justify-content:space-between;padding:1.3rem 1.5rem 0;flex-shrink:0}
+    .ql">♛ Sankhtuhair</div><button class="qx" id="btn-close">✕</button></div>
+    <div class="qst" id="qst">
+  
+      <div class="step active" id="s1">
+        <h2 class="qq">Comment tu t'appelles ? 👋</h2>
+        <input class="qi" id="inp-prenom" type="text" placeholder="Ton prénom..." maxlength="60" autocomplete="given-name">
+        <div class="qnw"><button class="qn" id="next1" disabled>Suivant</button></div>
+      </div>
+  
+      <div class="step" id="s2">
+        <h2 class="qq">Quel âge as-tu ? 🎂</h2>
+        <div class="ch">
+          <button class="cb" onclick="pick(this,'age',false)">18-25 ans 🧑🏾</button>
+          <button class="cb" onclick="pick(this,'age',false)">26-40 ans ✨</button>
+          <button class="cb" onclick="pick(this,'age',false)">41-60 ans 🌱</button>
+          <button class="cb" onclick="pick(this,'age',false)">60+ ans ⭐</button>
+        </div>
+        <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      </div>
+  
+      <div class="step" id="s3">
+        <h2 class="qq">Ton type de cheveux ? 💇🏽</h2>
+        <div class="ch">
+          <button class="cb" onclick="pick(this,'type_cheveux',false)">Lisses 🌸 (Type 1)</button>
+          <button class="cb" onclick="pick(this,'type_cheveux',false)">Ondulés (Type 2) 🌊</button>
+          <button class="cb" onclick="pick(this,'type_cheveux',false)">Bouclés (Type 3) 🍃</button>
+          <button class="cb" onclick="pick(this,'type_cheveux',false)">Frisés / Coily (Type 4) 👑</button>
+          <button class="cb" onclick="pick(this,'type_cheveux',false)">Rasés / Tondus 🤭</button>
+          <button class="cb" onclick="pick(this,'type_cheveux',false)">Chauve / Très court ✨</button>
+          <button class="cb" onclick="pick(this,'type_cheveux',false)">Aide-moi à identifier 💕</button>
+        </div>
+        <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      </div>
+  
+      <div class="step" id="s4">
+        <h2 class="qq">Ton cuir chevelu ? 🧴</h2>
+        <p class="qhi">Plusieurs réponses possibles</p>
+        <div class="ch">
+          <button class="cb" onclick="pick(this,'cuir_chevelu',true)">Sec 🌵</button>
+          <button class="cb" onclick="pick(this,'cuir_chevelu',true)">Gras 💧</button>
+          <button class="cb" onclick="pick(this,'cuir_chevelu',true)">Sensible / Irrité ⚡</button>
+          <button class="cb" onclick="pick(this,'cuir_chevelu',true)">Pellicules ❄️</button>
+          <button class="cb" onclick="pick(this,'cuir_chevelu',true)">Démangeaisons 🌿</button>
+          <button class="cb" onclick="pick(this,'cuir_chevelu',true)">Tout va bien 🌱</button>
+        </div>
+        <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      </div>
+  
+      <div class="step" id="s5">
+        <h2 class="qq">Tes problématiques ? ✨</h2>
+        <p class="qhi">Plusieurs réponses possibles</p>
+        <div class="ch">
+          <button class="cb" onclick="pick(this,'problematiques',true)">Perte de cheveux 🌱</button>
+          <button class="cb" onclick="pick(this,'problematiques',true)">Pelade 💕</button>
+          <button class="cb" onclick="pick(this,'problematiques',true)">Post-greffe 🌱</button>
+          <button class="cb" onclick="pick(this,'problematiques',true)">Ménopause / Hormonal 🌸</button>
+          <button class="cb" onclick="pick(this,'problematiques',true)">Alopécie de traction 💕</button>
+          <button class="cb" onclick="pick(this,'problematiques',true)">Perte de densité / Calvitie 🌿</button>
+          <button class="cb" onclick="pick(this,'problematiques',true)">Casse / Pointes fourches ✂️</button>
+          <button class="cb" onclick="pick(this,'problematiques',true)">Cheveux ternes ✨</button>
+          <button class="cb" onclick="pick(this,'problematiques',true)">Rien de tout ça 🤔</button>
+        </div>
+        <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      </div>
+  
+      <div class="step" id="s6">
+        <h2 class="qq">La cause du changement ? 🌀</h2>
+        <p class="qhi">Plusieurs réponses possibles</p>
+        <div class="ch">
+          <button class="cb" onclick="pick(this,'cause',true)">Accouchement 🤱</button>
+          <button class="cb" onclick="pick(this,'cause',true)">Post-partum 🌙</button>
+          <button class="cb" onclick="pick(this,'cause',true)">Ménopause 🌸</button>
+          <button class="cb" onclick="pick(this,'cause',true)">Choc émotionnel ⚡</button>
+          <button class="cb" onclick="pick(this,'cause',true)">Rupture 💔</button>
+          <button class="cb" onclick="pick(this,'cause',true)">Maladie 🌿</button>
+          <button class="cb" onclick="pick(this,'cause',true)">Stress / Surmenage 😤</button>
+          <button class="cb" onclick="pick(this,'cause',true)">Traitement médical 💊</button>
+          <button class="cb" onclick="pick(this,'cause',true)">Hérédité / Génétique 🧬</button>
+          <button class="cb" onclick="pick(this,'cause',true)">Changement hormonal ⚖️</button>
+          <button class="cb" onclick="pick(this,'cause',true)">Je ne sais pas 🌱</button>
+        </div>
+        <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      </div>
+  
+      <div class="step" id="s7">
+        <h2 class="qq">Fréquence de lavage ? 🧼</h2>
+        <div class="ch">
+          <button class="cb" onclick="pick(this,'frequence_lavage',false)">Tous les jours 🌪️</button>
+          <button class="cb" onclick="pick(this,'frequence_lavage',false)">2 à 3 fois par semaine 💆</button>
+          <button class="cb" onclick="pick(this,'frequence_lavage',false)">1 fois par semaine 👌</button>
+          <button class="cb" onclick="pick(this,'frequence_lavage',false)">Toutes les 2 semaines ou plus ⏳</button>
+          <button class="cb" onclick="pick(this,'frequence_lavage',false)">Moins que ça 🌱</button>
+        </div>
+        <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      </div>
+  
+      <div class="step" id="s8">
+        <h2 class="qq">Tes objectifs ? ✨</h2>
+        <p class="qhi">Plusieurs réponses possibles</p>
+        <div class="ch">
+          <button class="cb" onclick="pick(this,'objectifs',true)">Stopper la chute 🚩</button>
+          <button class="cb" onclick="pick(this,'objectifs',true)">Booster la repousse 🌱</button>
+          <button class="cb" onclick="pick(this,'objectifs',true)">Densité & Épaisseur 🦁</button>
+          <button class="cb" onclick="pick(this,'objectifs',true)">Brillance ✨</button>
+          <button class="cb" onclick="pick(this,'objectifs',true)">Rétention de longueur 📏</button>
+          <button class="cb" onclick="pick(this,'objectifs',true)">Réparer la fibre ✂️</button>
+          <button class="cb" onclick="pick(this,'objectifs',true)">Apaiser le cuir chevelu 🍃</button>
+          <button class="cb" onclick="pick(this,'objectifs',true)">Éliminer les pellicules ❄️</button>
+          <button class="cb" onclick="pick(this,'objectifs',true)">Rien de tout ça ⭐</button>
+        </div>
+        <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      </div>
+  
+      <div class="step" id="s9">
+        <h2 class="qq">Coiffures protectrices ? 👑</h2>
+        <div class="ch">
+          <button class="cb" onclick="pick(this,'coiffures_protectrices',false)">Oui, souvent 🥹 (tresses, perruques, foulard...)</button>
+          <button class="cb" onclick="pick(this,'coiffures_protectrices',false)">Parfois 🤔</button>
+          <button class="cb" onclick="pick(this,'coiffures_protectrices',false)">Rarement 🌱</button>
+          <button class="cb" onclick="pick(this,'coiffures_protectrices',false)">Jamais 💕</button>
+        </div>
+        <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      </div>
+  
+      <div class="step" id="s10">
+        <h2 class="qq">Produits naturels ? 🌱</h2>
+        <div class="ch">
+          <button class="cb" onclick="pick(this,'produits_naturels',false)">Oui, principalement 🌿</button>
+          <button class="cb" onclick="pick(this,'produits_naturels',false)">De temps en temps ✨</button>
+          <button class="cb" onclick="pick(this,'produits_naturels',false)">Non, jamais 🤔</button>
+        </div>
+        <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      </div>
+  
+      <div class="step" id="s11">
+        <h2 class="qq">Des choses à écarter ? ❌</h2>
+        <p class="qhi">Plusieurs réponses possibles</p>
+        <div class="ch">
+          <button class="cb" onclick="pick(this,'ecarter',true)">Textures trop grasses ✨</button>
+          <button class="cb" onclick="pick(this,'ecarter',true)">Odeurs trop fortes 🌱</button>
+          <button class="cb" onclick="pick(this,'ecarter',true)">Ingrédients irritants 🌿</button>
+          <button class="cb" onclick="pick(this,'ecarter',true)">Effet "carton" 🌸</button>
+          <button class="cb" onclick="pick(this,'ecarter',true)">Produits trop longs à poser ⏳</button>
+          <button class="cb" onclick="pick(this,'ecarter',true)">Rien de particulier 👌</button>
+        </div>
+        <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      </div>
+  
+      <div class="step" id="s12">
+        <h2 class="qq">Qu'as-tu pensé du questionnaire ? 💕🌱✨</h2>
+        <textarea class="qi" id="inp-libre" placeholder="Dis-moi..."></textarea>
+        <div class="qnw"><button class="qn" id="next12">Suivant</button></div>
+      </div>
+  
+      <div class="step" id="s13">
+        <h2 class="qq" style="font-size:1.8rem">Prenons quelques photos 📸</h2>
+        <p style="text-align:center;color:var(--txm);font-size:.85rem;margin:.2rem 0 1rem;">⚠️ Ne pas mettre ton visage en photo — uniquement tes cheveux et ton cuir chevelu.</p>
+        <div class="pl">
+          <div class="pz" id="pz1"><input type="file" accept="image/*" onchange="onPhoto(event,1)"><div class="pth" id="pt1"><div class="ti">📷</div><img id="pi1" alt=""></div><div class="pin"><div class="ptt">Vue de face</div><div class="pds">Cheveux de face pour analyser ta couronne.</div></div><span class="pck">✓</span></div>
+          <div class="pz" id="pz2"><input type="file" accept="image/*" onchange="onPhoto(event,2)"><div class="pth" id="pt2"><div class="ti">📷</div><img id="pi2" alt=""></div><div class="pin"><div class="ptt">Zone inquiétante</div><div class="pds">Chute, cuir chevelu, racines.</div></div><span class="pck">✓</span></div>
+          <div class="pz" id="pz3"><input type="file" accept="image/*" onchange="onPhoto(event,3)"><div class="pth" id="pt3"><div class="ti">📷</div><img id="pi3" alt=""></div><div class="pin"><div class="ptt">Zoom pointes / mèche</div><div class="pds">Zoom max pour l'état des cuticules.</div></div><span class="pck">✓</span></div>
+        </div>
+        <p class="pno" id="pno">3 photos requises pour le diagnostic complet de Seanamon</p>
+        <div class="qnw"><button class="qn" id="btn-submit" disabled>Voir mon diagnostic ✨</button></div>
+      </div>
+  
+      <div class="qld" id="qld">
+        <img class="lg" src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Seanamon">
+        <p class="lm" id="lm">Seanamon analyse ta couronne...</p>
+        <p class="ls" id="ls">Prêt·e à en reprendre possession ? 🌱✨👑💕</p>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      </div>
+  
+      <div class="qr" id="qr">
+        <div class="rw">
+          <div class="rt">
+            <img class="rg" src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Seanamon">
+            <h2 class="rh">Ta Révélation</h2>
+            <p class="rb" id="rby">Diagnostic par Seanamon</p>
+          </div>
+          <div class="rhr"><div class="rhl"></div><span class="rhg">✦</span><div class="rhl"></div></div>
+          <div id="rbody"></div>
+         <div class="ebl">
+    <div class="ebdg">Accès Exclusif · NHA</div>
+    <h3 class="eti">L'agenda de soin arrive en août 🌿</h3>
+    <p class="esu">Quelque chose de beau se prépare. Si tu as scanné notre QR code, c'est que tu fais partie des élu·es — laisse ton email et reçois ton premier mois d'agenda de soin personnalisé offert dès l'ouverture en août.</p>
+    <div id="efw">
+      <div class="ef">
+        <input type="email" class="ei2" id="einp" placeholder="ton@email.com" autocomplete="email">
+        <select class="esl" id="esel">
+          <option value="" disabled selected>Comment tu nous as trouvé·e ?</option>
+          <option value="NHA">✦ NHA — Natural Hair Academy</option>
+          <option value="TikTok">✦ TikTok</option>
+          <option value="Cercle Privé">✦ Cercle Privé (Proches)</option>
+        </select>
+        <button class="bsub" id="bsub">Me prévenir à l'ouverture 👑</button>
+      </div>
     </div>
-    <div class="sk-box">
-      <div class="sk-lbl">✦ Le Concept Sankofa · En Twi — Langue du Peuple Akan, Ghana</div>
-      <p class="sk-txt">"Se Wo Were Fi Na Wosankofa A Yenkyi" — Il n'est pas interdit de retourner chercher ce qu'on a oublié. Va chercher dans ton passé ce qui te rendra plus fort demain.</p>
+    <div class="eok" id="eok"><div class="eoki">✨</div><p class="eokm" id="eokm">Ta couronne est enregistrée.<br>Bienvenue dans le Sanctuaire.</p></div>
+  </div>
+      </div>
+  
     </div>
-  </div>
-</section>
-
-<div class="dv"><div class="dl"></div><span class="ds">✦</span><div class="dl"></div></div>
-
-<div class="sw">
-  <div class="sh reveal">
-    <p class="lbl">L'Architecture du Sanctuaire</p>
-    <h2 class="st">Les <em>Trois</em> Piliers</h2>
-  </div>
-  <div class="pg stagger">
-    <div class="pc"><div class="pn">01</div><span class="pi">🔬</span><h3 class="pt">Science</h3><p class="pd">Trichologie moderne, analyse de la fibre, état cuticulaire, porosité, densité. Chaque diagnostic repose sur des données concrètes — jamais sur des suppositions.</p></div>
-    <div class="pc"><div class="pn">02</div><span class="pi">🌿</span><h3 class="pt">Tradition</h3><p class="pd">De Madagascar à La Réunion, du karité ghanéen aux rituels Wolof du Sénégal, des cérémonies Yoruba du Nigeria aux tresses éthiopiennes, des plantes médicinales des Antilles aux savoirs afro-latinos — une mémoire capillaire qui traverse les océans et unit les couronnes du monde.</p></div>
-    <div class="pc"><div class="pn">03</div><span class="pi">✨</span><h3 class="pt">Révélation</h3><p class="pd">Pas une liste de courses. Une ordonnance ancestrale — précision technologique et souffle poétique — qui révèle la vérité de ta nature capillaire.</p></div>
   </div>
 </div>
 
-<div class="ew" id="ecosysteme">
-  <div class="ei">
-    <div class="sh reveal">
-      <p class="lbl">L'Écosystème</p>
-      <h2 class="st">Deux <em>Gardiens</em><br>de ta Couronne</h2>
+<div class="modal-member" id="modal-member">
+  <div class="modal-member-bg" id="mm-bg"></div>
+  <div class="modal-member-box">
+    <button class="mm-close" id="mm-close">✕</button>
+    <img class="mm-logo" src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Sankhtuhair">
+    <h2 class="mm-title">Mon Sanctuaire 🌿</h2>
+    <p class="mm-sub">Entre ton email pour recevoir ton lien d'accès magique. Il expire après 15 minutes.</p>
+    <div id="mm-form">
+      <input class="mm-input" type="email" id="mm-email" placeholder="ton@email.com" autocomplete="email">
+      <div class="mm-err" id="mm-err">Vérifie ton adresse email.</div>
+      <button class="mm-btn" id="mm-btn">Recevoir mon lien ✨</button>
     </div>
-    <div class="eg stagger">
-      <div class="ec">
-        <div class="et">Marque Capillaire · Fondée par Élodie</div>
-        <h3 class="en">Sankofah</h3>
-        <p class="ed">La gamme de cosmétique biotechnologique née du concept Sankofa — l'oiseau Akan qui vole vers l'avant en regardant en arrière. Sankofah marie la sagesse des botaniques pan-africains avec la précision de la biotechnologie moderne.</p>
-        <div class="eb">À venir</div>
-      </div>
-      <div class="ec">
-        <div class="et">Intelligence Artificielle Gardienne</div>
-        <h3 class="en">Seanamon</h3>
-        <p class="ed">Seanamon, c'est le surnom d'Élodie — un fragment d'elle-même transmis au monde pour garder ta couronne. Trichologue experte aux connaissances pan-africaines. Elle ne suggère pas : elle prescrit. Elle ne liste pas : elle révèle.</p>
-        <div class="eb">🌿 Ton diagnostic via Sankhtuhair · Ton ordonnance sur liste d'attente</div>
-      </div>
+    <div class="mm-ok" id="mm-ok">
+      <div class="mm-ok-icon">📬</div>
+      <p class="mm-ok-msg">Ton lien d'accès vient d'être envoyé !</p>
+      <p class="mm-ok-sub">Vérifie ta boîte mail — il expire dans 15 minutes.</p>
     </div>
   </div>
 </div>
 
-<section class="cs" id="parcours">
-  <div class="cb2">13</div>
-  <div class="ci reveal">
-    <p class="lbl">Le Parcours Initiatique</p>
-    <h2 class="ct">Prêt·e à reprendre<br>possession de ta <span style="color:var(--or)">Couronne</span> ?</h2>
-    <p class="csu">13 étapes. Une révélation.</p>
-    <p style="font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--or);opacity:.6;">Clique sur le bouton en haut à droite pour commencer</p>
-  </div>
-</section>
+<script>
+var cur=1,TOT=13,ans={},imgs={1:null,2:null,3:null};
+var LM=[
+  ['Seanamon étudie ta couronne...','Chaque fibre parle, elle écoute. 🌿'],
+  ['Les ancêtres témoignent...','Le passé révèle ton avenir capillaire. ✨'],
+  ["L'ordonnance prend forme...",'Précision d\'un labo, âme d\'un rituel. 🌱'],
+  ['La révélation est presque prête...','Ta couronne mérite cette vérité. 👑💕']
+];
+var li=0,lt=null;
 
-<footer>
-  <div class="fl">
-    <img src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Logo">
-    <img src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Logo">
-    Sankhtuhair
-  </div>
-  <p>Sanctuaire Capillaire — Fondé par Élodie</p>
-  <div style="display:flex;justify-content:center;align-items:center;gap:1.5rem;margin-top:1rem">
-    <a href="https://www.instagram.com/sanktuhair?igsh=dmllZ2l1eXpxZzFk&utm_source=qr" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:.45rem;color:var(--or);text-decoration:none;font-size:.82rem;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-      @sanktuhair
-    </a>
-    <span style="color:var(--bo);opacity:.4">·</span>
-    <a href="mailto:sanktuhair@gmail.com" style="display:flex;align-items:center;gap:.45rem;color:var(--or);text-decoration:none;font-size:.82rem;opacity:.8;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-      sanktuhair@gmail.com
-    </a>
-  </div>
-  <p style="margin-top:1rem;opacity:.4">Propulsé par Seanamon · Sankofah à venir</p>
-</footer>
+function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+function openMember(){document.getElementById('modal-member').classList.add('open');document.body.style.overflow='hidden';}
+function closeMember(){document.getElementById('modal-member').classList.remove('open');document.body.style.overflow='';}
 
-<!-- MODAL DIAGNOSTIC -->
-<div id="modal" class="modal">
-  <div class="qp"><div class="qpf" id="prog"></div></div>
-  <div class="qh"><div class="ql">♛ Sankhtuhair</div><button class="qx" id="btn-close">✕</button></div>
-  <div class="qst" id="qst">
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('btn-nav').onclick=openModal;
+  document.getElementById('btn-close').onclick=closeModal;
+  document.getElementById('btn-member').onclick=openMember;
+  document.getElementById('mm-close').onclick=closeMember;
+  document.getElementById('mm-bg').onclick=closeMember;
+  document.getElementById('bsub').onclick=doSub;
+  document.getElementById('btn-submit').onclick=submitAll;
+  document.getElementById('next1').onclick=goNext;
+  document.getElementById('next12').onclick=goNext;
+  document.getElementById('mm-btn').onclick=sendMagicLink;
+  document.getElementById('mm-email').addEventListener('keydown',function(e){if(e.key==='Enter')sendMagicLink();});
+  document.getElementById('qst').addEventListener('click',function(e){
+    var b=e.target.closest('.qn');
+    if(b&&!b.disabled&&b.id!=='next1'&&b.id!=='next12'&&b.id!=='btn-submit'){goNext();}
+  });
+  document.getElementById('inp-prenom').addEventListener('input',function(e){
+    document.getElementById('next1').disabled=!e.target.value.trim();
+  });
+  document.getElementById('inp-prenom').addEventListener('keydown',function(e){if(e.key==='Enter')goNext();});
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.1});
+  document.querySelectorAll('.reveal,.stagger').forEach(function(el){io.observe(el);});
+});
 
-    <div class="step active" id="s1">
-      <h2 class="qq">Comment tu t'appelles ? 👋</h2>
-      <input class="qi" id="inp-prenom" type="text" placeholder="Ton prénom..." maxlength="60" autocomplete="given-name">
-      <div class="qnw"><button class="qn" id="next1" disabled>Suivant</button></div>
-    </div>
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeMember();}});
 
-    <!-- AJOUT ÉTAPE 4 : ÉPAISSEUR DES CHEVEUX -->
-    <div class="step" id="s4-epaisseur">
-      <h2 class="qq">Comment sont tes cheveux ? 🌿</h2>
-      <div class="ch">
-        <button class="cb" data-val="fin">🪶 Fin</button>
-        <button class="cb" data-val="normaux">🌿 Normaux</button>
-        <button class="cb" data-val="epais">🌳 Épais</button>
-      </div>
-      <div class="qnw"><button class="qn" id="next4-epaisseur" disabled>Suivant</button></div>
-    </div>
+async function sendMagicLink(){
+  var email=document.getElementById('mm-email').value.trim();
+  var errEl=document.getElementById('mm-err');
+  var btn=document.getElementById('mm-btn');
+  errEl.classList.remove('show');
+  if(!email||!email.includes('@')){errEl.classList.add('show');return;}
+  btn.disabled=true;btn.textContent='Envoi en cours…';
+  try{
+    var res=await fetch('/api/send-magic-link',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})});
+    if(!res.ok)throw new Error();
+    document.getElementById('mm-form').style.display='none';
+    document.getElementById('mm-ok').classList.add('show');
+  }catch(e){
+    errEl.textContent='Une erreur est survenue. Réessaie.';
+    errEl.classList.add('show');
+    btn.disabled=false;btn.textContent='Recevoir mon lien ✨';
+  }
+}
 
-    <!-- AJOUT ÉTAPE 6 : POROSITÉ DES CHEVEUX -->
-    <div class="step" id="s6-porosite">
-      <h2 class="qq">Connais-tu ta porosité ? 🌿</h2>
-      <div class="ch">
-        <button class="cb" data-val="faible">💧 Faible porosité</button>
-        <button class="cb" data-val="moyenne">✨ Porosité moyenne</button>
-        <button class="cb" data-val="forte">🧬 Forte porosité</button>
-        <button class="cb" data-val="ne-sais-pas">🤷 Se sais pas</button>
-      </div>
-      <div class="qnw"><button class="qn" id="next6-porosite" disabled>Suivant</button></div>
-    </div>
+function setProg(s){document.getElementById('prog').style.width=Math.round(((s-1)/TOT)*100)+'%';}
 
-    <!-- AJOUT ÉTAPE 10 : GESTES ACTUELS ET TEXTE LIBRE -->
-    <div class="step" id="s10-gestes">
-      <h2 class="qq">Quels sont tes gestes capillaires actuels ? 💇‍♀️</h2>
-      <p class="qhi">(Choix multiples)</p>
-      <div class="ch">
-        <button class="cb" data-val="shampoing">🧼 Shampoing régulier</button>
-        <button class="cb" data-val="soin-huile">🌱 Bains d'huile</button>
-        <button class="cb" data-val="hydratation">💦 Hydratation quotidienne</button>
-        <button class="cb" data-val="protection">👑 Coiffures protectrices</button>
-      </div>
-      <div style="width:100%; margin-top:1rem;">
-        <p class="qhi" style="text-align:left; margin-bottom:0.5rem;">Autre... (ex: microneedling, PRP, ...) 📝</p>
-        <textarea class="qi" id="txt-gestes-autre" placeholder="Partage ici tes autres habitudes ou traitements particuliers..."></textarea>
-      </div>
-      <div class="qnw"><button class="qn" id="next10-gestes">Suivant</button></div>
-    </div>
+function goNext(){
+  if(cur===1){var v=document.getElementById('inp-prenom').value.trim();if(!v)return;ans.prenom=v;}
+  if(cur===12){ans.texte_libre=document.getElementById('inp-libre').value.trim();}
+  var ce=document.getElementById('s'+cur),ne=document.getElementById('s'+(cur+1));
+  if(!ne)return;
+  ce.classList.remove('active');ce.classList.add('exit');
+  setTimeout(function(){ce.classList.remove('exit');ne.classList.add('active');cur++;setProg(cur);ne.scrollTop=0;},350);
+}
 
-    <!-- AJOUT ÉTAPE 11 : TRAITEMENTS RÉCENTS SANS LE MOT COURONNE -->
-    <div class="step" id="s11-traitements">
-      <h2 class="qq">Tes cheveux ont-ils subi l'un de ces traitements récemment ? 💆‍♀️✨</h2>
-      <div class="ch">
-        <button class="cb" data-val="coloration">🎨 Coloration / Décoloration</button>
-        <button class="cb" data-val="defrisage">🔥 Défrisage / Lissage chimique</button>
-        <button class="cb" data-val="permanente">🌀 Permanente</button>
-        <button class="cb" data-val="aucun">🌿 Aucun traitement chimique</button>
-      </div>
-      <div class="qnw"><button class="qn" id="next11-traitements" disabled>Suivant</button></div>
-    </div>
+function pick(btn,field,multi){
+  var grid=btn.closest('.ch');
+  var nb=btn.closest('.step').querySelector('.qnw .qn');
+  if(multi){
+    btn.classList.toggle('sel');
+    var sel=Array.from(grid.querySelectorAll('.cb.sel'));
+    ans[field]=sel.map(function(b){return b.textContent.trim();});
+    if(nb)nb.disabled=(sel.length===0);
+  }else{
+    grid.querySelectorAll('.cb').forEach(function(b){b.classList.remove('sel');});
+    btn.classList.add('sel');
+    ans[field]=btn.textContent.trim();
+    if(nb)nb.disabled=false;
+  }
+}
 
-    <!-- AJOUT ÉTAPE 12 : CLIMAT AVEC ÉMOJIS MÉTÉO -->
-    <div class="step" id="s12-climat">
-      <h2 class="qq">Quel est le climat dominant dans ton environnement actuel ? 🗺️</h2>
-      <div class="ch">
-        <button class="cb" data-val="sec-chaud">☀️ Sec et Chaud</button>
-        <button class="cb" data-val="humide-tropical">🌧️ Humide et Tropical</button>
-        <button class="cb" data-val="tempere">🍁 Tempéré</button>
-        <button class="cb" data-val="froid-sec">❄️ Froid et Sec</button>
-      </div>
-      <div class="qnw"><button class="qn" id="next12-climat" disabled>Suivant</button></div>
-    </div>
+function pCnt(){return Object.values(imgs).filter(Boolean).length;}
 
-  </div>
-</div>
+function onPhoto(e,n){
+  var file=e.target.files[0];if(!file)return;
+  var canvas=document.createElement('canvas');
+  var ctx=canvas.getContext('2d');
+  var image=new Image();
+  image.onload=function(){
+    var max=800;
+    var w=image.width,h=image.height;
+    if(w>h){if(w>max){h=Math.round(h*(max/w));w=max;}}
+    else{if(h>max){w=Math.round(w*(max/h));h=max;}}
+    canvas.width=w;canvas.height=h;
+    ctx.drawImage(image,0,0,w,h);
+    var compressed=canvas.toDataURL('image/jpeg',0.7);
+    imgs[n]=compressed;
+    document.getElementById('pi'+n).src=compressed;
+    document.getElementById('pt'+n).classList.add('loaded');
+    document.getElementById('pz'+n).classList.add('done');
+    var c=pCnt(),no=document.getElementById('pno');
+    if(c===3){document.getElementById('btn-submit').disabled=false;no.textContent='3 photos ajoutées — Seanamon est prête ✨';no.style.color='var(--ok)';}
+    else{no.textContent=c+'/3 photos — encore '+(3-c)+' photo'+(3-c>1?'s':'');}
+  };
+  var r=new FileReader();
+  r.onload=function(ev){image.src=ev.target.result;};
+  r.readAsDataURL(file);
+}
+
+function buildMsg(){
+  var a=ans,ar=function(v){return Array.isArray(v)?v.join(', '):(v||'N/A');};
+  return 'Prénom : '+(a.prenom||'N/A')+
+'\nÂge : '+(a.age||'N/A')+
+'\nType couronne déclaré : '+(a.type_cheveux||'N/A')+
+'\nCuir chevelu : '+ar(a.cuir_chevelu)+
+'\nFréquence lavage : '+(a.frequence_lavage||'N/A')+
+'\nCoiffures protectrices : '+(a.coiffures_protectrices||'N/A')+
+'\nProduits naturels : '+(a.produits_naturels||'N/A')+
+'\nÀ écarter : '+ar(a.ecarter)+
+'\n\n━━━ PROBLÉMATIQUES (traiter chacune séparément, mécanisme biologique dédié) ━━━\n'+ar(a.problematiques)+
+'\n\n━━━ CAUSE(S) DÉCLARÉE(S) ━━━\n'+ar(a.cause)+
+'\n\n━━━ OBJECTIFS (prescription sur mesure pour chacun) ━━━\n'+ar(a.objectifs)+
+'\n\n━━━ MESSAGE LIBRE ━━━\n'+(a.texte_libre||'Rien')+
+'\n\nPhotos jointes : '+pCnt()+'/3';
+}
+async function submitAll(){
+  var emailSub=document.getElementById('einp')?document.getElementById('einp').value.trim():'';
+  document.getElementById('s13').classList.remove('active');
+  document.getElementById('qld').classList.add('active');
+  document.getElementById('prog').style.width='100%';
+  li=0;updL();lt=setInterval(function(){li=(li+1)%LM.length;updL();},3000);
+  var content=[{type:'text',text:buildMsg()}];
+  for(var i=1;i<=3;i++){if(imgs[i])content.push({type:'image_url',image_url:{url:imgs[i]}});}
+  try{
+    var r=await fetch('/api/diagnose',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prenom:ans.prenom||'',email:emailSub||null,content:content,imgs:imgs})});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    var d=await r.json();showRes(d.result,ans.prenom||'');
+  }catch(err){console.error(err);showRes('Seanamon est momentanément indisponible. Réessaie dans quelques instants. ✨',ans.prenom||'');}
+}
+
+function updL(){document.getElementById('lm').textContent=LM[li][0];document.getElementById('ls').textContent=LM[li][1];}
+
+function showRes(text,prenom){
+  clearInterval(lt);
+  document.getElementById('qld').classList.remove('active');
+  document.getElementById('rby').textContent='Diagnostic de '+prenom+' · par Seanamon';
+  document.getElementById('rbody').innerHTML=parseSn(text);
+  document.getElementById('qr').classList.add('active');
+}
+
+function parseSn(raw){
+  var re=/(?:^|\n)(\d+)\.\s+([^\n:]+)\s*:\s*\n([\s\S]*?)(?=\n\d+\.|$)/g;
+  var secs=[],m,t='\n'+raw;
+  while((m=re.exec(t))!==null)secs.push({num:m[1],title:m[2].trim(),body:m[3].trim()});
+  if(secs.length>=2)return secs.map(function(s){return '<div class="snb"><div class="snh"><div class="snn">'+s.num+'</div><div class="snt">'+s.title+'</div></div><div class="snc">'+esc(s.body)+'</div></div>';}).join('');
+  return '<div class="rr">'+esc(raw)+'</div>';
+}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+async function doSub(){
+  var email=document.getElementById('einp').value.trim();
+  var cohorte=document.getElementById('esel').value;
+  var prenom=ans.prenom||'';
+  if(!email||!email.includes('@')){document.getElementById('einp').style.borderColor='#e57373';return;}
+  if(!cohorte){document.getElementById('esel').style.borderColor='#e57373';return;}
+  try{await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,cohorte:cohorte,prenom:prenom})});}catch(e){}
+  document.getElementById('efw').style.display='none';
+  document.getElementById('eokm').innerHTML='Ta couronne est enregistrée, '+prenom+'.<br>Bienvenue dans le Sanctuaire. 👑';
+  document.getElementById('eok').classList.add('show');
+}
+
+var audioEl=null,mOn=false;
+document.getElementById('music-btn').addEventListener('click',function(){
+  var btn=document.getElementById('music-btn');
+  if(!mOn){
+    if(!audioEl){audioEl=new Audio('https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/Sunlight_Through_Tall_Grass.mp3');audioEl.loop=true;audioEl.volume=0.4;}
+    audioEl.play().catch(function(e){console.log('Audio:',e);});
+    mOn=true;btn.textContent='🔊';
+  }else{
+    if(audioEl){audioEl.pause();audioEl.currentTime=0;}
+    mOn=false;btn.textContent='🎵';
+  }
+});
+</script>
+</body>
+</html>
