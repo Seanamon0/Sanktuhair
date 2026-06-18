@@ -98,6 +98,8 @@
     .dv{display:flex;align-items:center;gap:1.2rem;padding:2rem 1.5rem;max-width:700px;margin:0 auto}
     .dl{flex:1;height:1px;background:var(--bo)}
     .ds{color:var(--or);font-size:1rem;opacity:.5}
+    
+    /* MODAL & NAVIGATION QUESTIONNAIRE */
     .modal{position:fixed;inset:0;z-index:500;background:var(--bmd);display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .4s ease}
     .modal.open{opacity:1;pointer-events:all}
     .qp{position:absolute;top:0;left:0;right:0;height:3px;background:rgba(201,169,110,.12);z-index:10}
@@ -107,10 +109,15 @@
     .qx{width:34px;height:34px;border-radius:50%;background:transparent;border:1px solid var(--bo);color:var(--txm);font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr)}
     .qx:hover{border-color:var(--ord);color:var(--or)}
     .qst{flex:1;position:relative;overflow:hidden}
+    
+    /* STEPS ANIMATIONS (SUPPORT REVERSE) */
     .step{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.5rem 5rem;max-width:540px;margin:0 auto;width:100%;opacity:0;transform:translateX(55px);transition:opacity .38s cubic-bezier(.4,0,.2,1),transform .38s cubic-bezier(.4,0,.2,1);pointer-events:none;overflow-y:auto;scrollbar-width:none}
     .step::-webkit-scrollbar{display:none}
     .step.active{opacity:1;transform:translateX(0);pointer-events:all}
     .step.exit{opacity:0;transform:translateX(-55px)}
+    .step.enter-reverse{opacity:0;transform:translateX(-55px)}
+    .step.exit-reverse{opacity:0;transform:translateX(55px)}
+    
     .qq{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,5vw,2.3rem);font-weight:400;line-height:1.3;text-align:center;margin-bottom:2rem;width:100%}
     .qhi{text-align:center;font-size:.76rem;color:var(--txm);margin-bottom:1rem;letter-spacing:.1em}
     .qi{width:100%;background:transparent;border:1.5px solid var(--bo);border-radius:var(--rs);padding:1rem 1.3rem;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:1rem;outline:none;transition:border-color var(--tr);margin-bottom:1.8rem}
@@ -121,10 +128,15 @@
     .cb{padding:.72rem 1.15rem;background:transparent;border:1.5px solid var(--bo);border-radius:var(--rp);color:var(--txs);font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:300;cursor:pointer;transition:all var(--tr)}
     .cb:hover{border-color:var(--ord);color:var(--orl)}
     .cb.sel{border-color:var(--or);background:rgba(201,169,110,.12);color:var(--orl)}
-    .qnw{position:absolute;bottom:0;left:0;right:0;padding:.8rem 1.5rem 1.2rem;background:linear-gradient(to top,var(--bmd) 55%,transparent);max-width:540px;margin:0 auto;width:100%}
-    .qn{width:100%;padding:1rem 1.5rem;background:transparent;border:1.5px solid var(--ord);border-radius:var(--rp);color:var(--or);font-family:'DM Sans',sans-serif;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all var(--tr)}
+    
+    /* ZONE BASSE NAVIGATION ET BOUTON RETOUR */
+    .qnw{position:absolute;bottom:0;left:0;right:0;padding:.8rem 1.5rem 1.2rem;background:linear-gradient(to top,var(--bmd) 55%,transparent);max-width:540px;margin:0 auto;width:100%;display:flex;gap:.75rem}
+    .qn{flex:2;padding:1rem 1.5rem;background:transparent;border:1.5px solid var(--ord);border-radius:var(--rp);color:var(--or);font-family:'DM Sans',sans-serif;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all var(--tr)}
     .qn:not(:disabled):hover{background:var(--or);color:var(--bg);border-color:var(--or)}
     .qn:disabled{opacity:.3;cursor:not-allowed}
+    .q-back{flex:1;padding:1rem 1.2rem;background:transparent;border:1.5px solid var(--bo);border-radius:var(--rp);color:var(--txm);font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all var(--tr);display:inline-flex;align-items:center;justify-content:center;gap:.4rem}
+    .q-back:hover{border-color:var(--ord);color:var(--or)}
+    
     .pl{display:flex;flex-direction:column;gap:.85rem;margin-bottom:.8rem;width:100%}
     .pz{display:flex;align-items:center;gap:1rem;background:rgba(23,47,37,.6);border:1.5px dashed var(--bo);border-radius:var(--rs);padding:.9rem 1.1rem;cursor:pointer;transition:border-color var(--tr);position:relative;overflow:hidden}
     .pz input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
@@ -211,7 +223,12 @@
     .mm-err.show{display:block}
     @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    @media(max-width:480px){.step{padding:1.5rem 1rem 5rem}.qq{font-size:1.6rem}.nav-right{gap:.4rem}.btn-nav,.btn-nav-member{padding:.45rem .9rem;font-size:.65rem}}
+    @media(max-width:480px){
+      .step{padding:1.5rem 1rem 5rem}.qq{font-size:1.6rem}.nav-right{gap:.4rem}.btn-nav,.btn-nav-member{padding:.45rem .9rem;font-size:.65rem}
+      .qnw{padding:.6rem 1rem 1rem;gap:.5rem}
+      .qn{padding:.85rem 1rem;font-size:.75rem}
+      .q-back{padding:.85rem .8rem;font-size:.72rem}
+    }
   </style>
 </head>
 <body>
@@ -339,7 +356,6 @@
   <p style="margin-top:1rem;opacity:.4">Propulsé par Seanamon · Sankofah à venir</p>
 </footer>
 
-<!-- MODAL DIAGNOSTIC -->
 <div id="modal" class="modal">
   <div class="qp"><div class="qpf" id="prog"></div></div>
   <div class="qh"><div class="ql">♛ Sankhtuhair</div><button class="qx" id="btn-close">✕</button></div>
@@ -348,416 +364,512 @@
     <div class="step active" id="s1">
       <h2 class="qq">Comment tu t'appelles ? 👋</h2>
       <input class="qi" id="inp-prenom" type="text" placeholder="Ton prénom..." maxlength="60" autocomplete="given-name">
-      <div class="qnw"><button class="qn" id="next1" disabled>Suivant</button></div>
+      <div class="qnw">
+        <button class="qn" id="next1" disabled>Suivant</button>
+      </div>
     </div>
 
     <div class="step" id="s2">
-      <h2 class="qq">Quel âge as-tu ? 🎂</h2>
-      <div class="ch">
-        <button class="cb" onclick="pick(this,'age',false)">18-25 ans 🧑🏾</button>
-        <button class="cb" onclick="pick(this,'age',false)">26-40 ans ✨</button>
-        <button class="cb" onclick="pick(this,'age',false)">41-60 ans 🌱</button>
-        <button class="cb" onclick="pick(this,'age',false)">60+ ans ⭐</button>
-      </div>
-      <div class="qnw"><button class="qn" disabled>Suivant</button></div>
-    </div>
-
-    <div class="step" id="s3">
-      <h2 class="qq">Ton type de cheveux ? 💇🏽</h2>
+      <h2 class="qq">Ton type de cheveux ? 💇🏾‍♂️</h2>
       <div class="ch">
         <button class="cb" onclick="pick(this,'type_cheveux',false)">Lisses 🌸 (Type 1)</button>
         <button class="cb" onclick="pick(this,'type_cheveux',false)">Ondulés (Type 2) 🌊</button>
-        <button class="cb" onclick="pick(this,'type_cheveux',false)">Bouclés (Type 3) 🍃</button>
+        <button class="cb" onclick="pick(this,'type_cheveux',false)">Bouclés (Type 3) 🌿</button>
         <button class="cb" onclick="pick(this,'type_cheveux',false)">Frisés / Coily (Type 4) 👑</button>
         <button class="cb" onclick="pick(this,'type_cheveux',false)">Locks 🌿</button>
         <button class="cb" onclick="pick(this,'type_cheveux',false)">Rasés / Tondus 🤭</button>
         <button class="cb" onclick="pick(this,'type_cheveux',false)">Chauve / Très court ✨</button>
         <button class="cb" onclick="pick(this,'type_cheveux',false)">Aide-moi à identifier 💕</button>
       </div>
-      <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next2" disabled>Suivant</button>
+      </div>
+    </div>
+
+    <div class="step" id="s3">
+      <h2 class="qq">Quelle est l'épaisseur de tes brins ? 🔬</h2>
+      <div class="ch">
+        <button class="cb" onclick="pick(this,'epaisseur',false)">Fins 🕸️ (Fragiles, se cassent facilement)</button>
+        <button class="cb" onclick="pick(this,'epaisseur',false)">Moyens 🧵 (Normaux, plutôt malléables)</button>
+        <button class="cb" onclick="pick(this,'epaisseur',false)">Épais / Crépus 🪵 (Robustes, denses)</button>
+        <button class="cb" onclick="pick(this,'epaisseur',false)">Je ne sais pas du tout 🤔</button>
+      </div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next3" disabled>Suivant</button>
+      </div>
     </div>
 
     <div class="step" id="s4">
-      <h2 class="qq">Ton cuir chevelu ? 🧴</h2>
-      <p class="qhi">Plusieurs réponses possibles</p>
+      <h2 class="qq">Et la porosité, on en est où ? 💧</h2>
       <div class="ch">
-        <button class="cb" onclick="pick(this,'cuir_chevelu',true)">Sec 🌵</button>
-        <button class="cb" onclick="pick(this,'cuir_chevelu',true)">Gras 💧</button>
-        <button class="cb" onclick="pick(this,'cuir_chevelu',true)">Sensible / Irrité ⚡</button>
-        <button class="cb" onclick="pick(this,'cuir_chevelu',true)">Pellicules ❄️</button>
-        <button class="cb" onclick="pick(this,'cuir_chevelu',true)">Démangeaisons 🌿</button>
-        <button class="cb" onclick="pick(this,'cuir_chevelu',true)">Tout va bien 🌱</button>
+        <button class="cb" onclick="pick(this,'porosite',false)">Faible 🛡️ (L'eau glisse, long à sécher)</button>
+        <button class="cb" onclick="pick(this,'porosite',false)">Normale ⚖️ (S'hydrate bien, sèche normalement)</button>
+        <button class="cb" onclick="pick(this,'porosite',false)">Forte 🌪️ (Absorbe instantanément mais redevient sec très vite)</button>
+        <button class="cb" onclick="pick(this,'porosite',false)">Aucune idée, éclaire-moi 💡</button>
       </div>
-      <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next4" disabled>Suivant</button>
+      </div>
     </div>
 
     <div class="step" id="s5">
-      <h2 class="qq">Tes problématiques ? ✨</h2>
-      <p class="qhi">Plusieurs réponses possibles</p>
+      <h2 class="qq">Comment se comporte ton cuir chevelu ? 🌊</h2>
       <div class="ch">
-        <button class="cb" onclick="pick(this,'problematiques',true)">Perte de cheveux 🌱</button>
-        <button class="cb" onclick="pick(this,'problematiques',true)">Pelade 💕</button>
-        <button class="cb" onclick="pick(this,'problematiques',true)">Post-greffe 🌱</button>
-        <button class="cb" onclick="pick(this,'problematiques',true)">Ménopause / Hormonal 🌸</button>
-        <button class="cb" onclick="pick(this,'problematiques',true)">Alopécie de traction 💕</button>
-        <button class="cb" onclick="pick(this,'problematiques',true)">Perte de densité / Calvitie 🌿</button>
-        <button class="cb" onclick="pick(this,'problematiques',true)">Casse / Pointes fourches ✂️</button>
-        <button class="cb" onclick="pick(this,'problematiques',true)">Cheveux ternes ✨</button>
-        <button class="cb" onclick="pick(this,'problematiques',true)">Rien de tout ça 🤔</button>
+        <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Sec / Desquamations 🏜️ (Démangeaisons, pellicules sèches)</button>
+        <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Gras rapidement 🍳 (Lourd en racines dès le lendemain)</button>
+        <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Équilibré ⚖️ (Pas de gêne particulière)</button>
+        <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Sensible / Douloureux 🌋 (Rougeurs, tiraillements)</button>
       </div>
-      <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next5" disabled>Suivant</button>
+      </div>
     </div>
 
     <div class="step" id="s6">
-      <h2 class="qq">La cause du changement ? 🌀</h2>
-      <p class="qhi">Plusieurs réponses possibles</p>
+      <h2 class="qq">As-tu des problématiques ciblées ? 🚨</h2>
+      <p class="qhi">(Sélectionne tout ce qui s'applique)</p>
       <div class="ch">
-        <button class="cb" onclick="pick(this,'cause',true)">Accouchement 🤱</button>
-        <button class="cb" onclick="pick(this,'cause',true)">Post-partum 🌙</button>
-        <button class="cb" onclick="pick(this,'cause',true)">Ménopause 🌸</button>
-        <button class="cb" onclick="pick(this,'cause',true)">Choc émotionnel ⚡</button>
-        <button class="cb" onclick="pick(this,'cause',true)">Rupture 💔</button>
-        <button class="cb" onclick="pick(this,'cause',true)">Maladie 🌿</button>
-        <button class="cb" onclick="pick(this,'cause',true)">Stress / Surmenage 😤</button>
-        <button class="cb" onclick="pick(this,'cause',true)">Traitement médical 💊</button>
-        <button class="cb" onclick="pick(this,'cause',true)">Hérédité / Génétique 🧬</button>
-        <button class="cb" onclick="pick(this,'cause',true)">Changement hormonal ⚖️</button>
-        <button class="cb" onclick="pick(this,'cause',true)">Je ne sais pas 🌱</button>
+        <button class="cb" onclick="pick(this,'problemes',true)">Chute de cheveux / Alopécie 📉</button>
+        <button class="cb" onclick="pick(this,'problemes',true)">Casse intense / Pointes fourchues ⚡</button>
+        <button class="cb" onclick="pick(this,'problemes',true)">Pellicules / Démangeaisons ❄️</button>
+        <button class="cb" onclick="pick(this,'problemes',true)">Manque cruel de volume ☁️</button>
+        <button class="cb" onclick="pick(this,'problemes',true)">Pousse très lente / Stagnation ⏳</button>
+        <button class="cb" onclick="pick(this,'problemes',true)">Cheveux ternes / Sans éclat 🌑</button>
+        <button class="cb" onclick="pick(this,'problemes',true)">Rien de spécial, juste de l'entretien ✨</button>
       </div>
-      <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next6" disabled>Suivant</button>
+      </div>
     </div>
 
     <div class="step" id="s7">
-      <h2 class="qq">Fréquence de lavage ? 🧼</h2>
+      <h2 class="qq">Quelle est ta routine actuelle ? 🛁</h2>
+      <p class="qhi">(Sélectionne tout ce qui fait partie de tes habitudes)</p>
       <div class="ch">
-        <button class="cb" onclick="pick(this,'frequence_lavage',false)">Tous les jours 🌪️</button>
-        <button class="cb" onclick="pick(this,'frequence_lavage',false)">2 à 3 fois par semaine 💆</button>
-        <button class="cb" onclick="pick(this,'frequence_lavage',false)">1 fois par semaine 👌</button>
-        <button class="cb" onclick="pick(this,'frequence_lavage',false)">Toutes les 2 semaines ou plus ⏳</button>
-        <button class="cb" onclick="pick(this,'frequence_lavage',false)">Moins que ça 🌱</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Shampoing classique du commerce 🧼</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Shampoing sans sulfates / clean 🍃</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Après-shampoing (Conditioner) 🧴</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Masque profond (Hydratant / Protéiné) 🍯</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Bains d'huiles / Soins avant-shampoing 🥑</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Crème sans rinçage (Leave-in) / Beurre 🍦</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Aucune routine, je fais au feeling 🌪️</button>
       </div>
-      <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next7" disabled>Suivant</button>
+      </div>
     </div>
 
     <div class="step" id="s8">
-      <h2 class="qq">Tes objectifs ? ✨</h2>
-      <p class="qhi">Plusieurs réponses possibles</p>
+      <h2 class="qq">À quelle fréquence les laves-tu ? 📅</h2>
       <div class="ch">
-        <button class="cb" onclick="pick(this,'objectifs',true)">Stopper la chute 🚩</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Booster la repousse 🌱</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Densité & Épaisseur 🦁</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Brillance ✨</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Rétention de longueur 📏</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Réparer la fibre ✂️</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Apaiser le cuir chevelu 🍃</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Éliminer les pellicules ❄️</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Rien de tout ça ⭐</button>
+        <button class="cb" onclick="pick(this,'frequence_lavage',false)">Plusieurs fois par semaine 🧼</button>
+        <button class="cb" onclick="pick(this,'frequence_lavage',false)">Une fois par semaine (Classique) ⚖️</button>
+        <button class="cb" onclick="pick(this,'frequence_lavage',false)">Toutes les 2 semaines 🗓️</button>
+        <button class="cb" onclick="pick(this,'frequence_lavage',false)">Une fois par mois ou moins ⏳</button>
       </div>
-      <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next8" disabled>Suivant</button>
+      </div>
     </div>
 
     <div class="step" id="s9">
-      <h2 class="qq">Coiffures protectrices ? 👑</h2>
+      <h2 class="qq">Parle-nous de tes agressions récentes 🛠️</h2>
+      <p class="qhi">(Sélectionne tout ce qui s'applique sur les 12 derniers mois)</p>
       <div class="ch">
-        <button class="cb" onclick="pick(this,'coiffures_protectrices',false)">Oui, souvent 🥹 (tresses, perruques, foulard...)</button>
-        <button class="cb" onclick="pick(this,'coiffures_protectrices',false)">Parfois 🤔</button>
-        <button class="cb" onclick="pick(this,'coiffures_protectrices',false)">Rarement 🌱</button>
-        <button class="cb" onclick="pick(this,'coiffures_protectrices',false)">Jamais 💕</button>
+        <button class="cb" onclick="pick(this,'agressions',true)">Décolorations / Colorations chimiques 🎨</button>
+        <button class="cb" onclick="pick(this,'agressions',true)">Défrisage / Assouplissement ⚗️</button>
+        <button class="cb" onclick="pick(this,'agressions',true)">Lissages fréquents (Plaques, brushing) 🔥</button>
+        <button class="cb" onclick="pick(this,'agressions',true)">Coiffures protectrices trop serrées 🥊</button>
+        <button class="cb" onclick="pick(this,'agressions',true)">Henné ou colorations végétales 🌿</button>
+        <button class="cb" onclick="pick(this,'agressions',true)">Rien du tout, ils sont 100% naturels 🌱</button>
       </div>
-      <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next9" disabled>Suivant</button>
+      </div>
     </div>
 
     <div class="step" id="s10">
-      <h2 class="qq">Produits naturels ? 🌱</h2>
+      <h2 class="qq">Ton environnement et mode de vie ? 🌍</h2>
       <div class="ch">
-        <button class="cb" onclick="pick(this,'produits_naturels',false)">Oui, principalement 🌿</button>
-        <button class="cb" onclick="pick(this,'produits_naturels',false)">De temps en temps ✨</button>
-        <button class="cb" onclick="pick(this,'produits_naturels',false)">Non, jamais 🤔</button>
+        <button class="cb" onclick="pick(this,'environnement',false)">Grande ville très polluée 🏭</button>
+        <button class="cb" onclick="pick(this,'environnement',false)">Climat très sec ou très froid 🏔️</button>
+        <button class="cb" onclick="pick(this,'environnement',false)">Climat tropical (Humide & Chaud) ☀️</button>
+        <button class="cb" onclick="pick(this,'environnement',false)">Eau très calcaire chez moi 🛁</button>
+        <button class="cb" onclick="pick(this,'environnement',false)">Stress intense / Fatigue en ce moment 🤯</button>
+        <button class="cb" onclick="pick(this,'environnement',false)">Alimentation instable / Pas assez d'eau 🍕</button>
+        <button class="cb" onclick="pick(this,'environnement',false)">Tout va bien, vie plutôt équilibrée 🧘🏾‍♀️</button>
       </div>
-      <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next10" disabled>Suivant</button>
+      </div>
     </div>
 
     <div class="step" id="s11">
-      <h2 class="qq">Des choses à écarter ? ❌</h2>
-      <p class="qhi">Plusieurs réponses possibles</p>
+      <h2 class="qq">Quels sont tes objectifs ? 🎯</h2>
+      <p class="qhi">(Sélectionne tes 2 priorités absolues)</p>
       <div class="ch">
-        <button class="cb" onclick="pick(this,'ecarter',true)">Textures trop grasses ✨</button>
-        <button class="cb" onclick="pick(this,'ecarter',true)">Odeurs trop fortes 🌱</button>
-        <button class="cb" onclick="pick(this,'ecarter',true)">Ingrédients irritants 🌿</button>
-        <button class="cb" onclick="pick(this,'ecarter',true)">Effet "carton" 🌸</button>
-        <button class="cb" onclick="pick(this,'ecarter',true)">Produits trop longs à poser ⏳</button>
-        <button class="cb" onclick="pick(this,'ecarter',true)">Rien de particulier 👌</button>
+        <button class="cb" onclick="pick(this,'objectifs',true)">Maximiser la pousse 🚀</button>
+        <button class="cb" onclick="pick(this,'objectifs',true)">Stopper net la casse 🛑</button>
+        <button class="cb" onclick="pick(this,'objectifs',true)">Définir mes boucles / ondulations ✨</button>
+        <button class="cb" onclick="pick(this,'objectifs',true)">Retrouver de l'épaisseur / densité 🪵</button>
+        <button class="cb" onclick="pick(this,'objectifs',true)">Apaiser mon cuir chevelu 🌊</button>
+        <button class="cb" onclick="pick(this,'objectifs',true)">Simplifier ma routine au maximum ⏳</button>
       </div>
-      <div class="qnw"><button class="qn" disabled>Suivant</button></div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next11" disabled>Suivant</button>
+      </div>
     </div>
 
     <div class="step" id="s12">
-      <h2 class="qq">Qu'as-tu pensé du questionnaire ? 💕🌱✨</h2>
-      <textarea class="qi" id="inp-libre" placeholder="Dis-moi..."></textarea>
-      <div class="qnw"><button class="qn" id="next12">Suivant</button></div>
+      <h2 class="qq">Des détails à ajouter à Seanamon ? ✍🏾</h2>
+      <textarea class="qi" id="inp-details" placeholder="Allergies, antécédents médicaux, accouchement récent, transition capillaire, produits préférés... Dis-nous tout ici pour affiner la prescription."></textarea>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next12">Suivant</button>
+      </div>
     </div>
 
     <div class="step" id="s13">
-      <h2 class="qq" style="font-size:1.8rem">Prenons quelques photos 📸</h2>
-      <p style="text-align:center;color:var(--txm);font-size:.85rem;margin:.2rem 0 1rem;">⚠️ Ne pas mettre ton visage en photo — uniquement tes cheveux et ton cuir chevelu.</p>
+      <h2 class="qq">La preuve par l'image 📸</h2>
+      <p class="pno" style="color:var(--or); font-weight: 500; margin-bottom: 1.2rem;">Pas de photo, pas de diagnostic. C'est la règle du sanctuaire pour une analyse scientifique exacte. 👑</p>
       <div class="pl">
-        <div class="pz" id="pz1"><input type="file" accept="image/*" onchange="onPhoto(event,1)"><div class="pth" id="pt1"><div class="ti">📷</div><img id="pi1" alt=""></div><div class="pin"><div class="ptt">Vue de face</div><div class="pds">Cheveux de face pour analyser ta couronne.</div></div><span class="pck">✓</span></div>
-        <div class="pz" id="pz2"><input type="file" accept="image/*" onchange="onPhoto(event,2)"><div class="pth" id="pt2"><div class="ti">📷</div><img id="pi2" alt=""></div><div class="pin"><div class="ptt">Zone inquiétante</div><div class="pds">Chute, cuir chevelu, racines.</div></div><span class="pck">✓</span></div>
-        <div class="pz" id="pz3"><input type="file" accept="image/*" onchange="onPhoto(event,3)"><div class="pth" id="pt3"><div class="ti">📷</div><img id="pi3" alt=""></div><div class="pin"><div class="ptt">Zoom pointes / mèche</div><div class="pds">Zoom max pour l'état des cuticules.</div></div><span class="pck">✓</span></div>
-      </div>
-      <p class="pno" id="pno">3 photos requises pour le diagnostic complet de Seanamon</p>
-      <div class="qnw"><button class="qn" id="btn-submit" disabled>Voir mon diagnostic ✨</button></div>
-    </div>
-
-    <div class="qld" id="qld">
-      <img class="lg" src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Seanamon">
-      <p class="lm" id="lm">Seanamon analyse ta couronne...</p>
-      <p class="ls" id="ls">Prêt·e à en reprendre possession ? 🌱✨👑💕</p>
-      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-    </div>
-
-    <div class="qr" id="qr">
-      <div class="rw">
-        <div class="rt">
-          <img class="rg" src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Seanamon">
-          <h2 class="rh">Ta Révélation</h2>
-          <p class="rb" id="rby">Diagnostic par Seanamon</p>
+        <div class="pz" id="pz-glob">
+          <input type="file" accept="image/*" id="file-glob" onchange="preview(this,'pth-glob','pz-glob')">
+          <div class="pth" id="pth-glob"><span class="ti">📸</span><img src="" alt="Global"></div>
+          <div class="pin">
+            <div class="ptt">Vue d'ensemble de ta chevelure</div>
+            <div class="pds">De face, de profil ou de dos pour comprendre la forme globale et le volume.</div>
+          </div>
+          <div class="pck">✓</div>
         </div>
-        <div class="rhr"><div class="rhl"></div><span class="rhg">✦</span><div class="rhl"></div></div>
-        <div id="rbody"></div>
-       <div class="ebl">
-  <div class="ebdg">Accès Exclusif · NHA</div>
-  <h3 class="eti">L'agenda de soin arrive en août 🌿</h3>
-  <p class="esu">Quelque chose de beau se prépare. Si tu as scanné notre QR code, c'est que tu fais partie des élu·es — laisse ton email et reçois ton premier mois d'agenda de soin personnalisé offert dès l'ouverture en août.</p>
-  <div id="efw">
-    <div class="ef">
-      <input type="email" class="ei2" id="einp" placeholder="ton@email.com" autocomplete="email">
-      <select class="esl" id="esel">
-        <option value="" disabled selected>Comment tu nous as trouvé·e ?</option>
-        <option value="NHA">✦ NHA — Natural Hair Academy</option>
-        <option value="TikTok">✦ TikTok</option>
-        <option value="Cercle Privé">✦ Cercle Privé (Proches)</option>
-      </select>
-      <button class="bsub" id="bsub">Me prévenir à l'ouverture 👑</button>
-    </div>
-  </div>
-  <div class="eok" id="eok"><div class="eoki">✨</div><p class="eokm" id="eokm">Ta couronne est enregistrée.<br>Bienvenue dans le Sanctuaire.</p></div>
-</div>
+        <div class="pz" id="pz-zoom">
+          <input type="file" accept="image/*" id="file-zoom" onchange="preview(this,'pth-zoom','pz-zoom')">
+          <div class="pth" id="pth-zoom"><span class="ti">🔍</span><img src="" alt="Zoom"></div>
+          <div class="pin">
+            <div class="ptt">Gros plan sur tes boucles/brins</div>
+            <div class="pds">Une photo nette de très près pour analyser la texture, l'épaisseur et la torsion.</div>
+          </div>
+          <div class="pck">✓</div>
+        </div>
+        <div class="pz" id="pz-cuir">
+          <input type="file" accept="image/*" id="file-cuir" onchange="preview(this,'pth-cuir','pz-cuir')">
+          <div class="pth" id="pth-cuir"><span class="ti">🔬</span><img src="" alt="Cuir"></div>
+          <div class="pin">
+            <div class="ptt">Gros plan sur tes racines / cuir chevelu</div>
+            <div class="pds">En faisant une raie claire, pour observer l'état cutané (pellicules, rougeurs, densité).</div>
+          </div>
+          <div class="pck">✓</div>
+        </div>
+      </div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="btn-submit" disabled>Analyser ma Couronne ♛</button>
+      </div>
     </div>
 
   </div>
+
+  <div class="qld" id="qld">
+    <img class="lg" src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Seanamon">
+    <p class="lm" id="ld-msg">Seanamon étudie l'histoire de ta couronne...</p>
+    <p class="ls" id="ld-sub">Analyse cuticulaire en cours...</p>
+    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  </div>
+
+  <div class="qr" id="qr">
+    <div class="rw">
+      <div class="rt">
+        <img class="rg" src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Logo">
+        <h2 class="rh" id="res-title">Ta Révélation</h2>
+        <p class="rb">Ordonnance Ancestrale & Scientifique</p>
+      </div>
+      <div class="rhr"><div class="rhl"></div><span class="rhg">✦</span><div class="rhl"></div></div>
+      <div id="res-content" style="display:flex;flex-direction:column;gap:1.2rem"></div>
+      
+      <div class="ebl" id="email-box">
+        <div class="ebdg">Conserver mon ordonnance</div>
+        <h3 class="eti">Reçois ton diagnostic par e-mail</h3>
+        <p class="esu">Entre tes coordonnées pour recevoir ton ordonnance complète et être averti(e) en priorité absolue de la sortie de la gamme de soins de biotechnologie capillaire <strong>Sankofah</strong>.</p>
+        <form class="ef" id="form-email" onsubmit="sendEmail(event)">
+          <input class="ei2" type="text" id="sub-nom" placeholder="Ton nom de famille..." required>
+          <input class="ei2" type="email" id="sub-email" placeholder="Ton adresse e-mail principale..." required>
+          <select class="esl" id="sub-geo" required>
+            <option value="" disabled selected>Où vis-tu ? 🌍</option>
+            <option value="France">France Métropolitaine 🇫🇷</option>
+            <option value="Guadeloupe">Guadeloupe 🇬🇵</option>
+            <option value="Martinique">Martinique 🇲🇶</option>
+            <option value="Guyane">Guyane 🇬🇫</option>
+            <option value="Réunion">La Réunion 🇷🇪</option>
+            <option value="Mayotte">Mayotte 🇾🇹</option>
+            <option value="Afrique">Afrique (Sénégal, Côte d'Ivoire, Gabon...) 🌍</option>
+            <option value="Autre">Autre destination ✨</option>
+          </select>
+          <button class="bsub" type="submit" id="btn-sub-email">Recevoir mon Ordonnance 🌿</button>
+        </form>
+        <div class="eok" id="email-ok">
+          <div class="eoki">✨</div>
+          <p class="eokm">Ton ordonnance est en chemin ! Vérifie tes spams si tu ne la vois pas dans 5 minutes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- MODAL ESPACE MEMBRE -->
 <div class="modal-member" id="modal-member">
   <div class="modal-member-bg" id="mm-bg"></div>
   <div class="modal-member-box">
     <button class="mm-close" id="mm-close">✕</button>
     <img class="mm-logo" src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Sankhtuhair">
-    <h2 class="mm-title">Mon Sanctuaire 🌿</h2>
-    <p class="mm-sub">Entre ton email pour recevoir ton lien d'accès magique. Il expire après 15 minutes.</p>
-    <div id="mm-form">
-      <input class="mm-input" type="email" id="mm-email" placeholder="ton@email.com" autocomplete="email">
-      <div class="mm-err" id="mm-err">Vérifie ton adresse email.</div>
-      <button class="mm-btn" id="mm-btn">Recevoir mon lien ✨</button>
-    </div>
+    <h3 class="mm-title">Mon Espace Couronne</h3>
+    <p class="mm-sub">Entre ton e-mail pour retrouver instantanément ton dernier diagnostic capillaire Seanamon.</p>
+    <input class="mm-input" type="email" id="mm-email" placeholder="ton-adresse@email.com">
+    <button class="mm-btn" id="mm-btn">Accéder à mon sanctuaire</button>
+    <div class="mm-err" id="mm-err">Aucun diagnostic trouvé pour cet e-mail. Lance une initiation !</div>
     <div class="mm-ok" id="mm-ok">
-      <div class="mm-ok-icon">📬</div>
-      <p class="mm-ok-msg">Ton lien d'accès vient d'être envoyé !</p>
-      <p class="mm-ok-sub">Vérifie ta boîte mail — il expire dans 15 minutes.</p>
+      <div class="mm-ok-icon">🌿</div>
+      <p class="mm-ok-msg">Connexion réussie !</p>
+      <p class="mm-ok-sub">Chargement de ton ordonnance...</p>
     </div>
   </div>
 </div>
 
 <script>
-var cur=1,TOT=13,ans={},imgs={1:null,2:null,3:null};
-var LM=[
-  ['Seanamon étudie ta couronne...','Chaque fibre parle, elle écoute. 🌿'],
-  ['Les ancêtres témoignent...','Le passé révèle ton avenir capillaire. ✨'],
-  ["L'ordonnance prend forme...",'Précision d\'un labo, âme d\'un rituel. 🌱'],
-  ['La révélation est presque prête...','Ta couronne mérite cette vérité. 👑💕']
-];
-var li=0,lt=null;
+  // CONFIGURATION ET VARIABLES GLOBALES
+  let currentStep = 1;
+  const totalSteps = 13;
+  let answers = { problemes: [], routine: [], agressions: [], objectifs: [] };
+  let filesData = { glob: null, zoom: null, cuir: null };
 
-function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
-function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
-function openMember(){document.getElementById('modal-member').classList.add('open');document.body.style.overflow='hidden';}
-function closeMember(){document.getElementById('modal-member').classList.remove('open');document.body.style.overflow='';}
+  // DATA STORAGE DES RÉPONSES DU QUESTIONNAIRE
+  function pick(btn, key, multi) {
+    const txt = btn.innerText.trim();
+    if (!multi) {
+      Array.from(btn.parentNode.children).forEach(c => c.classList.remove('sel'));
+      btn.classList.add('sel');
+      answers[key] = txt;
+    } else {
+      btn.classList.toggle('sel');
+      if (btn.classList.contains('sel')) {
+        if (!answers[key].includes(txt)) answers[key].push(txt);
+      } else {
+        answers[key] = answers[key].filter(v => v !== txt);
+      }
+    }
+    checkStepValidation();
+  }
 
-document.addEventListener('DOMContentLoaded',function(){
-  document.getElementById('btn-nav').onclick=openModal;
-  document.getElementById('btn-close').onclick=closeModal;
-  document.getElementById('btn-member').onclick=openMember;
-  document.getElementById('mm-close').onclick=closeMember;
-  document.getElementById('mm-bg').onclick=closeMember;
-  document.getElementById('bsub').onclick=doSub;
-  document.getElementById('btn-submit').onclick=submitAll;
-  document.getElementById('next1').onclick=goNext;
-  document.getElementById('next12').onclick=goNext;
-  document.getElementById('mm-btn').onclick=sendMagicLink;
-  document.getElementById('mm-email').addEventListener('keydown',function(e){if(e.key==='Enter')sendMagicLink();});
-  document.getElementById('qst').addEventListener('click',function(e){
-    var b=e.target.closest('.qn');
-    if(b&&!b.disabled&&b.id!=='next1'&&b.id!=='next12'&&b.id!=='btn-submit'){goNext();}
+  function checkStepValidation() {
+    const nextBtn = document.getElementById(`next${currentStep}`);
+    if (!nextBtn) return;
+
+    if (currentStep === 1) {
+      nextBtn.disabled = document.getElementById('inp-prenom').value.trim().length < 2;
+    } else if (currentStep === 2) {
+      nextBtn.disabled = !answers.type_cheveux;
+    } else if (currentStep === 3) {
+      nextBtn.disabled = !answers.epaisseur;
+    } else if (currentStep === 4) {
+      nextBtn.disabled = !answers.porosite;
+    } else if (currentStep === 5) {
+      nextBtn.disabled = !answers.cuir_chevelu;
+    } else if (currentStep === 6) {
+      nextBtn.disabled = answers.problemes.length === 0;
+    } else if (currentStep === 7) {
+      nextBtn.disabled = answers.routine.length === 0;
+    } else if (currentStep === 8) {
+      nextBtn.disabled = !answers.frequence_lavage;
+    } else if (currentStep === 9) {
+      nextBtn.disabled = answers.agressions.length === 0;
+    } else if (currentStep === 10) {
+      nextBtn.disabled = !answers.environnement;
+    } else if (currentStep === 11) {
+      nextBtn.disabled = answers.objectifs.length === 0;
+    }
+  }
+
+  // ÉCOUTEURS D'INPUTS
+  document.getElementById('inp-prenom').addEventListener('input', checkStepValidation);
+
+  // MOTEUR DE NAVIGATION UNIFIÉ (GESTION DU RETOUR & SUIVANT)
+  function showStep(targetStep, isBackwards = false) {
+    const currentStepEl = document.getElementById(`s${currentStep}`);
+    const targetStepEl = document.getElementById(`s${targetStep}`);
+    
+    if (!targetStepEl) return;
+
+    // Configuration des directions d'animation
+    if (isBackwards) {
+      currentStepEl.classList.remove('active', 'exit');
+      currentStepEl.classList.add('exit-reverse');
+      
+      targetStepEl.classList.remove('exit-reverse', 'exit', 'enter-reverse');
+      targetStepEl.classList.add('enter-reverse');
+      
+      setTimeout(() => {
+        targetStepEl.classList.add('active');
+        targetStepEl.classList.remove('enter-reverse');
+      }, 20);
+    } else {
+      currentStepEl.classList.remove('active', 'exit-reverse');
+      currentStepEl.classList.add('exit');
+      
+      targetStepEl.classList.remove('exit', 'exit-reverse', 'enter-reverse');
+      setTimeout(() => {
+        targetStepEl.classList.add('active');
+      }, 20);
+    }
+
+    currentStep = targetStep;
+    
+    // Mise à jour de la barre de progression supérieure
+    document.getElementById('prog').style.width = ((currentStep - 1) / (totalSteps - 1)) * 100 + '%';
+    checkStepValidation();
+  }
+
+  // FONCTION DECLENCHÉE PAR LE BOUTON RETOUR
+  function navigateBack() {
+    if (currentStep > 1) {
+      showStep(currentStep - 1, true);
+    }
+  }
+
+  // ÉCOUTEURS DES BOUTONS SUIVANT ET DÉCLENCHEURS DE STEPS
+  for (let i = 1; i <= 12; i++) {
+    const btn = document.getElementById(`next${i}`);
+    if (btn) {
+      btn.addEventListener('click', () => {
+        if (i === 12) {
+          answers.details = document.getElementById('inp-details').value.trim();
+        }
+        showStep(i + 1, false);
+      });
+    }
+  }
+
+  // PRÉVIEW ET GESTION DES PHOTOS OBLIGATOIRES (ÉTAPE 13)
+  function preview(input, pthId, pzId) {
+    const file = input.files[0];
+    if (!file) return;
+
+    const pth = document.getElementById(pthId);
+    const pz = document.getElementById(pzId);
+    const img = pth.querySelector('img');
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      img.src = e.target.result;
+      pth.classList.add('loaded');
+      pz.classList.add('done');
+
+      const key = pthId.replace('pth-', '');
+      filesData[key] = e.target.result; // Base64 stocké temporairement
+
+      checkPhotosValidation();
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function checkPhotosValidation() {
+    const submitBtn = document.getElementById('btn-submit');
+    // Validation stricte : toutes les photos doivent être présentes
+    if (filesData.glob && filesData.zoom && filesData.cuir) {
+      submitBtn.disabled = false;
+    } else {
+      submitBtn.disabled = true;
+    }
+  }
+
+  // OUVERTURE / FERMETURE DE LA MODAL DU QUESTIONNAIRE
+  const modal = document.getElementById('modal');
+  document.getElementById('btn-nav').addEventListener('click', () => {
+    modal.classList.add('open');
+    currentStep = 1;
+    showStep(1);
   });
-  document.getElementById('inp-prenom').addEventListener('input',function(e){
-    document.getElementById('next1').disabled=!e.target.value.trim();
+  document.getElementById('btn-close').addEventListener('click', () => {
+    if(confirm("Es-tu sûr(e) de vouloir quitter l'initiation ? Tes réponses ne seront pas enregistrées.")) {
+      modal.classList.remove('open');
+    }
   });
-  document.getElementById('inp-prenom').addEventListener('keydown',function(e){if(e.key==='Enter')goNext();});
-  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.1});
-  document.querySelectorAll('.reveal,.stagger').forEach(function(el){io.observe(el);});
-});
 
-document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeMember();}});
+  // ANIMATIONS DES SECTIONS AU SCROLL (REVEAL ELEMENTS)
+  const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
 
-async function sendMagicLink(){
-  var email=document.getElementById('mm-email').value.trim();
-  var errEl=document.getElementById('mm-err');
-  var btn=document.getElementById('mm-btn');
-  errEl.classList.remove('show');
-  if(!email||!email.includes('@')){errEl.classList.add('show');return;}
-  btn.disabled=true;btn.textContent='Envoi en cours…';
-  try{
-    var res=await fetch('/api/send-magic-link',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})});
-    if(!res.ok)throw new Error();
-    document.getElementById('mm-form').style.display='none';
-    document.getElementById('mm-ok').classList.add('show');
-  }catch(e){
-    errEl.textContent='Une erreur est survenue. Réessaie.';
-    errEl.classList.add('show');
-    btn.disabled=false;btn.textContent='Recevoir mon lien ✨';
+  document.querySelectorAll('.reveal, .stagger').forEach(el => revealObserver.observe(el));
+
+  // GESTION DU BOUTON ESPACE MEMBRE
+  const mMember = document.getElementById('modal-member');
+  document.getElementById('btn-member').addEventListener('click', () => mMember.classList.add('open'));
+  document.getElementById('mm-close').addEventListener('click', () => mMember.classList.remove('open'));
+  document.getElementById('mm-bg').addEventListener('click', () => mMember.classList.remove('open'));
+
+  // SIMULATION DU SUBMIT FINAL ET INTEGRATION IA SEANAMON
+  document.getElementById('btn-submit').addEventListener('click', () => {
+    document.getElementById('qld').classList.add('active');
+    
+    // Cycle de messages d'ambiance de l'IA Trichologue
+    setTimeout(() => {
+      document.getElementById('ld-msg').innerText = "Analyse cutanée et porositométrique fine...";
+      document.getElementById('ld-sub').innerText = "Lecture des besoins d'hydratation cellulaire...";
+    }, 2000);
+
+    setTimeout(() => {
+      document.getElementById('ld-msg').innerText = "Extraction des savoirs botaniques pan-africains...";
+      document.getElementById('ld-sub').innerText = "Sélection des actifs de biotechnologie sacrée...";
+    }, 4500);
+
+    setTimeout(() => {
+      // Affichage de la révélation finale
+      document.getElementById('qld').classList.remove('active');
+      document.getElementById('qr').classList.add('active');
+      
+      const content = document.getElementById('res-content');
+      content.innerHTML = `
+        <div class="rr">
+          <strong>Bonjour ${answers.details ? document.getElementById('inp-prenom').value : 'Chère Couronne'},</strong>\n\nVoici les premières conclusions de Seanamon pour tes cheveux de type <strong>${answers.type_cheveux}</strong> (${answers.epaisseur}).\n\nTon profil montre une porosité <strong>${answers.porosite}</strong> combinée à des problématiques de <em>${Array.isArray(answers.problemes) ? answers.problemes.join(', ') : answers.problemes}</em>.
+        </div>
+        <div class="snb">
+          <div class="snh"><div class="snn">1</div><div class="snt">Le Diagnostic Botanique Sacré</div></div>
+          <div class="snc">Tes cheveux ont besoin d'un retour aux sources. Nous préconisons un apport ciblé en fonction de ton climat et de ton eau.</div>
+        </div>
+        <div class="snb">
+          <div class="snh"><div class="snn">2</div><div class="snt">L'Ordonnance Technologique</div></div>
+          <div class="snc">Évite les surcharges de produits issus du commerce classique. Ta routine actuelle doit être épurée au profit d'actifs biotechnologiques nobles.</div>
+        </div>
+      `;
+    }, 7000);
+  });
+
+  // LOGIQUE DE TRANSMISSION DES NEWSLETTERS / EMAILS
+  function sendEmail(e) {
+    e.preventDefault();
+    document.getElementById('btn-sub-email').disabled = true;
+    document.getElementById('btn-sub-email').innerText = "Enregistrement...";
+
+    setTimeout(() => {
+      document.getElementById('form-email').style.display = 'none';
+      document.getElementById('email-ok').classList.add('show');
+    }, 1500);
   }
-}
-
-function setProg(s){document.getElementById('prog').style.width=Math.round(((s-1)/TOT)*100)+'%';}
-
-function goNext(){
-  if(cur===1){var v=document.getElementById('inp-prenom').value.trim();if(!v)return;ans.prenom=v;}
-  if(cur===12){ans.texte_libre=document.getElementById('inp-libre').value.trim();}
-  var ce=document.getElementById('s'+cur),ne=document.getElementById('s'+(cur+1));
-  if(!ne)return;
-  ce.classList.remove('active');ce.classList.add('exit');
-  setTimeout(function(){ce.classList.remove('exit');ne.classList.add('active');cur++;setProg(cur);ne.scrollTop=0;},350);
-}
-
-function pick(btn,field,multi){
-  var grid=btn.closest('.ch');
-  var nb=btn.closest('.step').querySelector('.qnw .qn');
-  if(multi){
-    btn.classList.toggle('sel');
-    var sel=Array.from(grid.querySelectorAll('.cb.sel'));
-    ans[field]=sel.map(function(b){return b.textContent.trim();});
-    if(nb)nb.disabled=(sel.length===0);
-  }else{
-    grid.querySelectorAll('.cb').forEach(function(b){b.classList.remove('sel');});
-    btn.classList.add('sel');
-    ans[field]=btn.textContent.trim();
-    if(nb)nb.disabled=false;
-  }
-}
-
-function pCnt(){return Object.values(imgs).filter(Boolean).length;}
-
-function onPhoto(e,n){
-  var file=e.target.files[0];if(!file)return;
-  var canvas=document.createElement('canvas');
-  var ctx=canvas.getContext('2d');
-  var image=new Image();
-  image.onload=function(){
-    var max=800;
-    var w=image.width,h=image.height;
-    if(w>h){if(w>max){h=Math.round(h*(max/w));w=max;}}
-    else{if(h>max){w=Math.round(w*(max/h));h=max;}}
-    canvas.width=w;canvas.height=h;
-    ctx.drawImage(image,0,0,w,h);
-    var compressed=canvas.toDataURL('image/jpeg',0.7);
-    imgs[n]=compressed;
-    document.getElementById('pi'+n).src=compressed;
-    document.getElementById('pt'+n).classList.add('loaded');
-    document.getElementById('pz'+n).classList.add('done');
-    var c=pCnt(),no=document.getElementById('pno');
-    if(c===3){document.getElementById('btn-submit').disabled=false;no.textContent='3 photos ajoutées — Seanamon est prête ✨';no.style.color='var(--ok)';}
-    else{no.textContent=c+'/3 photos — encore '+(3-c)+' photo'+(3-c>1?'s':'');}
-  };
-  var r=new FileReader();
-  r.onload=function(ev){image.src=ev.target.result;};
-  r.readAsDataURL(file);
-}
-
-function buildMsg(){
-  var a=ans,ar=function(v){return Array.isArray(v)?v.join(', '):(v||'N/A');};
-  return 'Prénom : '+(a.prenom||'N/A')+
-'\nÂge : '+(a.age||'N/A')+
-'\nType couronne déclaré : '+(a.type_cheveux||'N/A')+
-'\nCuir chevelu : '+ar(a.cuir_chevelu)+
-'\nFréquence lavage : '+(a.frequence_lavage||'N/A')+
-'\nCoiffures protectrices : '+(a.coiffures_protectrices||'N/A')+
-'\nProduits naturels : '+(a.produits_naturels||'N/A')+
-'\nÀ écarter : '+ar(a.ecarter)+
-'\n\n━━━ PROBLÉMATIQUES (traiter chacune séparément, mécanisme biologique dédié) ━━━\n'+ar(a.problematiques)+
-'\n\n━━━ CAUSE(S) DÉCLARÉE(S) ━━━\n'+ar(a.cause)+
-'\n\n━━━ OBJECTIFS (prescription sur mesure pour chacun) ━━━\n'+ar(a.objectifs)+
-'\n\n━━━ MESSAGE LIBRE ━━━\n'+(a.texte_libre||'Rien')+
-'\n\nPhotos jointes : '+pCnt()+'/3';
-}
-async function submitAll(){
-  var emailSub=document.getElementById('einp')?document.getElementById('einp').value.trim():'';
-  document.getElementById('s13').classList.remove('active');
-  document.getElementById('qld').classList.add('active');
-  document.getElementById('prog').style.width='100%';
-  li=0;updL();lt=setInterval(function(){li=(li+1)%LM.length;updL();},3000);
-  var content=[{type:'text',text:buildMsg()}];
-  for(var i=1;i<=4;i++){if(imgs[i])content.push({type:'image_url',image_url:{url:imgs[i]}});}
-  try{
-    var r=await fetch('/api/diagnose',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prenom:ans.prenom||'',email:emailSub||null,content:content,imgs:imgs})});
-    if(!r.ok)throw new Error('HTTP '+r.status);
-    var d=await r.json();showRes(d.result,ans.prenom||'');
-  }catch(err){console.error(err);showRes('Seanamon est momentanément indisponible. Réessaie dans quelques instants. ✨',ans.prenom||'');}
-}
-
-function updL(){document.getElementById('lm').textContent=LM[li][0];document.getElementById('ls').textContent=LM[li][1];}
-
-function showRes(text,prenom){
-  clearInterval(lt);
-  document.getElementById('qld').classList.remove('active');
-  document.getElementById('rby').textContent='Diagnostic de '+prenom+' · par Seanamon';
-  document.getElementById('rbody').innerHTML=parseSn(text);
-  document.getElementById('qr').classList.add('active');
-}
-
-function parseSn(raw){
-  var re=/(?:^|\n)(\d+)\.\s+([^\n:]+)\s*:\s*\n([\s\S]*?)(?=\n\d+\.|$)/g;
-  var secs=[],m,t='\n'+raw;
-  while((m=re.exec(t))!==null)secs.push({num:m[1],title:m[2].trim(),body:m[3].trim()});
-  if(secs.length>=2)return secs.map(function(s){return '<div class="snb"><div class="snh"><div class="snn">'+s.num+'</div><div class="snt">'+s.title+'</div></div><div class="snc">'+esc(s.body)+'</div></div>';}).join('');
-  return '<div class="rr">'+esc(raw)+'</div>';
-}
-function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-
-async function doSub(){
-  var email=document.getElementById('einp').value.trim();
-  var cohorte=document.getElementById('esel').value;
-  var prenom=ans.prenom||'';
-  if(!email||!email.includes('@')){document.getElementById('einp').style.borderColor='#e57373';return;}
-  if(!cohorte){document.getElementById('esel').style.borderColor='#e57373';return;}
-  try{await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,cohorte:cohorte,prenom:prenom})});}catch(e){}
-  document.getElementById('efw').style.display='none';
-  document.getElementById('eokm').innerHTML='Ta couronne est enregistrée, '+prenom+'.<br>Bienvenue dans le Sanctuaire. 👑';
-  document.getElementById('eok').classList.add('show');
-}
-
-var audioEl=null,mOn=false;
-document.getElementById('music-btn').addEventListener('click',function(){
-  var btn=document.getElementById('music-btn');
-  if(!mOn){
-    if(!audioEl){audioEl=new Audio('https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/Sunlight_Through_Tall_Grass.mp3');audioEl.loop=true;audioEl.volume=0.4;}
-    audioEl.play().catch(function(e){console.log('Audio:',e);});
-    mOn=true;btn.textContent='🔊';
-  }else{
-    if(audioEl){audioEl.pause();audioEl.currentTime=0;}
-    mOn=false;btn.textContent='🎵';
-  }
-});
 </script>
+
 </body>
 </html>
