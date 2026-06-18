@@ -98,7 +98,7 @@
     .dv{display:flex;align-items:center;gap:1.2rem;padding:2rem 1.5rem;max-width:700px;margin:0 auto}
     .dl{flex:1;height:1px;background:var(--bo)}
     .ds{color:var(--or);font-size:1rem;opacity:.5}
-    
+
     /* MODAL & NAVIGATION QUESTIONNAIRE */
     .modal{position:fixed;inset:0;z-index:500;background:var(--bmd);display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .4s ease}
     .modal.open{opacity:1;pointer-events:all}
@@ -109,7 +109,7 @@
     .qx{width:34px;height:34px;border-radius:50%;background:transparent;border:1px solid var(--bo);color:var(--txm);font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr)}
     .qx:hover{border-color:var(--ord);color:var(--or)}
     .qst{flex:1;position:relative;overflow:hidden}
-    
+
     /* STEPS ANIMATIONS (SUPPORT REVERSE) */
     .step{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.5rem 5rem;max-width:540px;margin:0 auto;width:100%;opacity:0;transform:translateX(55px);transition:opacity .38s cubic-bezier(.4,0,.2,1),transform .38s cubic-bezier(.4,0,.2,1);pointer-events:none;overflow-y:auto;scrollbar-width:none}
     .step::-webkit-scrollbar{display:none}
@@ -117,7 +117,7 @@
     .step.exit{opacity:0;transform:translateX(-55px)}
     .step.enter-reverse{opacity:0;transform:translateX(-55px)}
     .step.exit-reverse{opacity:0;transform:translateX(55px)}
-    
+
     .qq{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,5vw,2.3rem);font-weight:400;line-height:1.3;text-align:center;margin-bottom:2rem;width:100%}
     .qhi{text-align:center;font-size:.76rem;color:var(--txm);margin-bottom:1rem;letter-spacing:.1em}
     .qi{width:100%;background:transparent;border:1.5px solid var(--bo);border-radius:var(--rs);padding:1rem 1.3rem;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:1rem;outline:none;transition:border-color var(--tr);margin-bottom:1.8rem}
@@ -128,7 +128,12 @@
     .cb{padding:.72rem 1.15rem;background:transparent;border:1.5px solid var(--bo);border-radius:var(--rp);color:var(--txs);font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:300;cursor:pointer;transition:all var(--tr)}
     .cb:hover{border-color:var(--ord);color:var(--orl)}
     .cb.sel{border-color:var(--or);background:rgba(201,169,110,.12);color:var(--orl)}
-    
+
+    /* champ texte libre "Autre" sous les choices chips */
+    .other-wrap{width:100%;max-width:460px;margin:0 auto 1.5rem;display:none}
+    .other-wrap.show{display:block}
+    .other-wrap .qi{margin-bottom:0}
+
     /* ZONE BASSE NAVIGATION ET BOUTON RETOUR */
     .qnw{position:absolute;bottom:0;left:0;right:0;padding:.8rem 1.5rem 1.2rem;background:linear-gradient(to top,var(--bmd) 55%,transparent);max-width:540px;margin:0 auto;width:100%;display:flex;gap:.75rem}
     .qn{flex:2;padding:1rem 1.5rem;background:transparent;border:1.5px solid var(--ord);border-radius:var(--rp);color:var(--or);font-family:'DM Sans',sans-serif;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all var(--tr)}
@@ -136,7 +141,7 @@
     .qn:disabled{opacity:.3;cursor:not-allowed}
     .q-back{flex:1;padding:1rem 1.2rem;background:transparent;border:1.5px solid var(--bo);border-radius:var(--rp);color:var(--txm);font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all var(--tr);display:inline-flex;align-items:center;justify-content:center;gap:.4rem}
     .q-back:hover{border-color:var(--ord);color:var(--or)}
-    
+
     .pl{display:flex;flex-direction:column;gap:.85rem;margin-bottom:.8rem;width:100%}
     .pz{display:flex;align-items:center;gap:1rem;background:rgba(23,47,37,.6);border:1.5px dashed var(--bo);border-radius:var(--rs);padding:.9rem 1.1rem;cursor:pointer;transition:border-color var(--tr);position:relative;overflow:hidden}
     .pz input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
@@ -327,11 +332,11 @@
 </div>
 
 <section class="cs" id="parcours">
-  <div class="cb2">13</div>
+  <div class="cb2">17</div>
   <div class="ci reveal">
     <p class="lbl">Le Parcours Initiatique</p>
     <h2 class="ct">Prêt·e à reprendre<br>possession de ta <span style="color:var(--or)">Couronne</span> ?</h2>
-    <p class="csu">13 étapes. Une révélation.</p>
+    <p class="csu">17 étapes. Une révélation.</p>
     <p style="font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--or);opacity:.6;">Clique sur le bouton en haut à droite pour commencer</p>
   </div>
 </section>
@@ -387,7 +392,22 @@
       </div>
     </div>
 
+    <!-- NOUVELLE ÉTAPE : Comment sont tes cheveux (texture/toucher) -->
     <div class="step" id="s3">
+      <h2 class="qq">Comment sont tes cheveux ? 🌸</h2>
+      <p class="qhi">Au toucher, en une mèche dans la main</p>
+      <div class="ch">
+        <button class="cb" onclick="pick(this,'texture_toucher',false)">Fins 🪶 (Légers, presque invisibles en mèche)</button>
+        <button class="cb" onclick="pick(this,'texture_toucher',false)">Normaux 🌿 (Ni trop fins, ni trop épais)</button>
+        <button class="cb" onclick="pick(this,'texture_toucher',false)">Épais 🪵 (Denses, on sent bien chaque mèche)</button>
+      </div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next3" disabled>Suivant</button>
+      </div>
+    </div>
+
+    <div class="step" id="s4">
       <h2 class="qq">Quelle est l'épaisseur de tes brins ? 🔬</h2>
       <div class="ch">
         <button class="cb" onclick="pick(this,'epaisseur',false)">Fins 🕸️ (Fragiles, se cassent facilement)</button>
@@ -397,11 +417,11 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next3" disabled>Suivant</button>
+        <button class="qn" id="next4" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step" id="s4">
+    <div class="step" id="s5">
       <h2 class="qq">Et la porosité, on en est où ? 💧</h2>
       <div class="ch">
         <button class="cb" onclick="pick(this,'porosite',false)">Faible 🛡️ (L'eau glisse, long à sécher)</button>
@@ -411,11 +431,11 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next4" disabled>Suivant</button>
+        <button class="qn" id="next5" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step" id="s5">
+    <div class="step" id="s6">
       <h2 class="qq">Comment se comporte ton cuir chevelu ? 🌊</h2>
       <div class="ch">
         <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Sec / Desquamations 🏜️ (Démangeaisons, pellicules sèches)</button>
@@ -425,11 +445,11 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next5" disabled>Suivant</button>
+        <button class="qn" id="next6" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step" id="s6">
+    <div class="step" id="s7">
       <h2 class="qq">As-tu des problématiques ciblées ? 🚨</h2>
       <p class="qhi">(Sélectionne tout ce qui s'applique)</p>
       <div class="ch">
@@ -443,11 +463,11 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next6" disabled>Suivant</button>
+        <button class="qn" id="next7" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step" id="s7">
+    <div class="step" id="s8">
       <h2 class="qq">Quelle est ta routine actuelle ? 🛁</h2>
       <p class="qhi">(Sélectionne tout ce qui fait partie de tes habitudes)</p>
       <div class="ch">
@@ -461,11 +481,11 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next7" disabled>Suivant</button>
+        <button class="qn" id="next8" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step" id="s8">
+    <div class="step" id="s9">
       <h2 class="qq">À quelle fréquence les laves-tu ? 📅</h2>
       <div class="ch">
         <button class="cb" onclick="pick(this,'frequence_lavage',false)">Plusieurs fois par semaine 🧼</button>
@@ -475,11 +495,50 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next8" disabled>Suivant</button>
+        <button class="qn" id="next9" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step" id="s9">
+    <!-- NOUVELLE ÉTAPE : Gestes actuels / soins spécifiques -->
+    <div class="step" id="s10">
+      <h2 class="qq">Fais-tu des soins spécifiques actuellement ? 🧖🏾‍♀️</h2>
+      <p class="qhi">(Sélectionne tout ce qui s'applique)</p>
+      <div class="ch" id="gestes-ch">
+        <button class="cb" onclick="pickGeste(this,'Bain d\'huile 🥥')">Bain d'huile 🥥</button>
+        <button class="cb" onclick="pickGeste(this,'Massage du cuir chevelu 💆🏾')">Massage du cuir chevelu 💆🏾</button>
+        <button class="cb" onclick="pickGeste(this,'Co-wash 🌊')">Co-wash 🌊</button>
+        <button class="cb" onclick="pickGeste(this,'Masque hydratant 🍯')">Masque hydratant 🍯</button>
+        <button class="cb" onclick="pickGeste(this,'Protéinage 🧬')">Protéinage 🧬</button>
+        <button class="cb" onclick="pickGeste(this,'Gommage du cuir chevelu 🌾')">Gommage du cuir chevelu 🌾</button>
+        <button class="cb" onclick="pickGeste(this,'Aromathérapie / Huiles essentielles 🌸')">Aromathérapie / Huiles essentielles 🌸</button>
+        <button class="cb" id="cb-autre-geste" onclick="toggleAutreGeste(this)">Autre 📝</button>
+        <button class="cb" onclick="pickGeste(this,'Je ne fais rien de particulier 🙅🏾‍♀️',true)">Je ne fais rien de particulier 🙅🏾‍♀️</button>
+      </div>
+      <div class="other-wrap" id="autre-geste-wrap">
+        <input class="qi" id="inp-autre-geste" type="text" placeholder="Ex : microneedling, PRP, mésothérapie... 💉">
+      </div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next10" disabled>Suivant</button>
+      </div>
+    </div>
+
+    <!-- NOUVELLE ÉTAPE : Fréquence des soins -->
+    <div class="step" id="s11">
+      <h2 class="qq">À quelle fréquence fais-tu ces soins ? ⏰</h2>
+      <div class="ch">
+        <button class="cb" onclick="pick(this,'frequence_soins',false)">1 fois par semaine 🗓️</button>
+        <button class="cb" onclick="pick(this,'frequence_soins',false)">1 fois toutes les 2 semaines 📆</button>
+        <button class="cb" onclick="pick(this,'frequence_soins',false)">1 fois par mois 🌙</button>
+        <button class="cb" onclick="pick(this,'frequence_soins',false)">Je ne fais aucun soin actuellement 🙅🏾‍♀️</button>
+      </div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next11" disabled>Suivant</button>
+      </div>
+    </div>
+
+    <div class="step" id="s12">
       <h2 class="qq">Parle-nous de tes agressions récentes 🛠️</h2>
       <p class="qhi">(Sélectionne tout ce qui s'applique sur les 12 derniers mois)</p>
       <div class="ch">
@@ -492,11 +551,30 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next9" disabled>Suivant</button>
+        <button class="qn" id="next12" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step" id="s10">
+    <!-- NOUVELLE ÉTAPE : Traitements récents (reformulation chaleureuse) -->
+    <div class="step" id="s13">
+      <h2 class="qq">Tes cheveux ont-ils subi l'un de ces traitements récemment ? 💆‍♀️✨</h2>
+      <p class="qhi">(Sélectionne tout ce qui s'applique sur les 6 derniers mois)</p>
+      <div class="ch">
+        <button class="cb" onclick="pick(this,'traitements_recents',true)">Chaleur fréquente (lisseur, fer, brushing) 🔥</button>
+        <button class="cb" onclick="pick(this,'traitements_recents',true)">Défrisage chimique 🧪</button>
+        <button class="cb" onclick="pick(this,'traitements_recents',true)">Coloration / Décoloration 🎨</button>
+        <button class="cb" onclick="pick(this,'traitements_recents',true)">Permanente / Mise en forme chimique 🌀</button>
+        <button class="cb" onclick="pick(this,'traitements_recents',true)">Extensions / Tissage 💁🏾‍♀️</button>
+        <button class="cb" onclick="pick(this,'traitements_recents',true)">Tresses très serrées / Box braids 🎀</button>
+        <button class="cb" onclick="pick(this,'traitements_recents',true)">Aucun traitement particulier 🌱</button>
+      </div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next13" disabled>Suivant</button>
+      </div>
+    </div>
+
+    <div class="step" id="s14">
       <h2 class="qq">Ton environnement et mode de vie ? 🌍</h2>
       <div class="ch">
         <button class="cb" onclick="pick(this,'environnement',false)">Grande ville très polluée 🏭</button>
@@ -509,11 +587,11 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next10" disabled>Suivant</button>
+        <button class="qn" id="next14" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step" id="s11">
+    <div class="step" id="s15">
       <h2 class="qq">Quels sont tes objectifs ? 🎯</h2>
       <p class="qhi">(Sélectionne tes 2 priorités absolues)</p>
       <div class="ch">
@@ -526,20 +604,20 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next11" disabled>Suivant</button>
+        <button class="qn" id="next15" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step" id="s12">
+    <div class="step" id="s16">
       <h2 class="qq">Des détails à ajouter à Seanamon ? ✍🏾</h2>
       <textarea class="qi" id="inp-details" placeholder="Allergies, antécédents médicaux, accouchement récent, transition capillaire, produits préférés... Dis-nous tout ici pour affiner la prescription."></textarea>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next12">Suivant</button>
+        <button class="qn" id="next16">Suivant</button>
       </div>
     </div>
 
-    <div class="step" id="s13">
+    <div class="step" id="s17">
       <h2 class="qq">La preuve par l'image 📸</h2>
       <p class="pno" style="color:var(--or); font-weight: 500; margin-bottom: 1.2rem;">Pas de photo, pas de diagnostic. C'est la règle du sanctuaire pour une analyse scientifique exacte. 👑</p>
       <div class="pl">
@@ -595,7 +673,7 @@
       </div>
       <div class="rhr"><div class="rhl"></div><span class="rhg">✦</span><div class="rhl"></div></div>
       <div id="res-content" style="display:flex;flex-direction:column;gap:1.2rem"></div>
-      
+
       <div class="ebl" id="email-box">
         <div class="ebdg">Conserver mon ordonnance</div>
         <h3 class="eti">Reçois ton diagnostic par e-mail</h3>
@@ -646,8 +724,8 @@
 <script>
   // CONFIGURATION ET VARIABLES GLOBALES
   let currentStep = 1;
-  const totalSteps = 13;
-  let answers = { problemes: [], routine: [], agressions: [], objectifs: [] };
+  const totalSteps = 17;
+  let answers = { problemes: [], routine: [], agressions: [], objectifs: [], gestes_actuels: [], traitements_recents: [] };
   let filesData = { glob: null, zoom: null, cuir: null };
 
   // DATA STORAGE DES RÉPONSES DU QUESTIONNAIRE
@@ -668,6 +746,56 @@
     checkStepValidation();
   }
 
+  // GESTION SPÉCIFIQUE DES GESTES ACTUELS (avec option "Je ne fais rien" exclusive + "Autre" texte libre)
+  function pickGeste(btn, label, exclusive) {
+    if (exclusive) {
+      // "Je ne fais rien" désélectionne tout le reste
+      document.querySelectorAll('#gestes-ch .cb').forEach(b => b.classList.remove('sel'));
+      document.getElementById('autre-geste-wrap').classList.remove('show');
+      document.getElementById('inp-autre-geste').value = '';
+      btn.classList.add('sel');
+      answers.gestes_actuels = [label];
+    } else {
+      // toute autre sélection désélectionne "Je ne fais rien"
+      document.querySelectorAll('#gestes-ch .cb').forEach(b => {
+        if (b.onclick && b.onclick.toString().includes('rien de particulier')) b.classList.remove('sel');
+      });
+      answers.gestes_actuels = answers.gestes_actuels.filter(v => !v.includes('rien de particulier'));
+
+      btn.classList.toggle('sel');
+      if (btn.classList.contains('sel')) {
+        if (!answers.gestes_actuels.includes(label)) answers.gestes_actuels.push(label);
+      } else {
+        answers.gestes_actuels = answers.gestes_actuels.filter(v => v !== label);
+      }
+    }
+    checkStepValidation();
+  }
+
+  function toggleAutreGeste(btn) {
+    // désélectionne "Je ne fais rien" si actif
+    document.querySelectorAll('#gestes-ch .cb').forEach(b => {
+      if (b.onclick && b.onclick.toString().includes('rien de particulier')) b.classList.remove('sel');
+    });
+    answers.gestes_actuels = answers.gestes_actuels.filter(v => !v.includes('rien de particulier'));
+
+    btn.classList.toggle('sel');
+    const wrap = document.getElementById('autre-geste-wrap');
+    if (btn.classList.contains('sel')) {
+      wrap.classList.add('show');
+      document.getElementById('inp-autre-geste').focus();
+    } else {
+      wrap.classList.remove('show');
+      document.getElementById('inp-autre-geste').value = '';
+    }
+    checkStepValidation();
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const autreInput = document.getElementById('inp-autre-geste');
+    if (autreInput) autreInput.addEventListener('input', checkStepValidation);
+  });
+
   function checkStepValidation() {
     const nextBtn = document.getElementById(`next${currentStep}`);
     if (!nextBtn) return;
@@ -677,22 +805,33 @@
     } else if (currentStep === 2) {
       nextBtn.disabled = !answers.type_cheveux;
     } else if (currentStep === 3) {
-      nextBtn.disabled = !answers.epaisseur;
+      nextBtn.disabled = !answers.texture_toucher;
     } else if (currentStep === 4) {
-      nextBtn.disabled = !answers.porosite;
+      nextBtn.disabled = !answers.epaisseur;
     } else if (currentStep === 5) {
-      nextBtn.disabled = !answers.cuir_chevelu;
+      nextBtn.disabled = !answers.porosite;
     } else if (currentStep === 6) {
-      nextBtn.disabled = answers.problemes.length === 0;
+      nextBtn.disabled = !answers.cuir_chevelu;
     } else if (currentStep === 7) {
-      nextBtn.disabled = answers.routine.length === 0;
+      nextBtn.disabled = answers.problemes.length === 0;
     } else if (currentStep === 8) {
-      nextBtn.disabled = !answers.frequence_lavage;
+      nextBtn.disabled = answers.routine.length === 0;
     } else if (currentStep === 9) {
-      nextBtn.disabled = answers.agressions.length === 0;
+      nextBtn.disabled = !answers.frequence_lavage;
     } else if (currentStep === 10) {
-      nextBtn.disabled = !answers.environnement;
+      const autreSel = document.getElementById('cb-autre-geste').classList.contains('sel');
+      const autreTexte = document.getElementById('inp-autre-geste').value.trim();
+      const valid = answers.gestes_actuels.length > 0 && (!autreSel || autreTexte.length > 0);
+      nextBtn.disabled = !valid;
     } else if (currentStep === 11) {
+      nextBtn.disabled = !answers.frequence_soins;
+    } else if (currentStep === 12) {
+      nextBtn.disabled = answers.agressions.length === 0;
+    } else if (currentStep === 13) {
+      nextBtn.disabled = answers.traitements_recents.length === 0;
+    } else if (currentStep === 14) {
+      nextBtn.disabled = !answers.environnement;
+    } else if (currentStep === 15) {
       nextBtn.disabled = answers.objectifs.length === 0;
     }
   }
@@ -704,17 +843,16 @@
   function showStep(targetStep, isBackwards = false) {
     const currentStepEl = document.getElementById(`s${currentStep}`);
     const targetStepEl = document.getElementById(`s${targetStep}`);
-    
+
     if (!targetStepEl) return;
 
-    // Configuration des directions d'animation
     if (isBackwards) {
       currentStepEl.classList.remove('active', 'exit');
       currentStepEl.classList.add('exit-reverse');
-      
+
       targetStepEl.classList.remove('exit-reverse', 'exit', 'enter-reverse');
       targetStepEl.classList.add('enter-reverse');
-      
+
       setTimeout(() => {
         targetStepEl.classList.add('active');
         targetStepEl.classList.remove('enter-reverse');
@@ -722,7 +860,7 @@
     } else {
       currentStepEl.classList.remove('active', 'exit-reverse');
       currentStepEl.classList.add('exit');
-      
+
       targetStepEl.classList.remove('exit', 'exit-reverse', 'enter-reverse');
       setTimeout(() => {
         targetStepEl.classList.add('active');
@@ -730,13 +868,11 @@
     }
 
     currentStep = targetStep;
-    
-    // Mise à jour de la barre de progression supérieure
+
     document.getElementById('prog').style.width = ((currentStep - 1) / (totalSteps - 1)) * 100 + '%';
     checkStepValidation();
   }
 
-  // FONCTION DECLENCHÉE PAR LE BOUTON RETOUR
   function navigateBack() {
     if (currentStep > 1) {
       showStep(currentStep - 1, true);
@@ -744,11 +880,15 @@
   }
 
   // ÉCOUTEURS DES BOUTONS SUIVANT ET DÉCLENCHEURS DE STEPS
-  for (let i = 1; i <= 12; i++) {
+  for (let i = 1; i <= 16; i++) {
     const btn = document.getElementById(`next${i}`);
     if (btn) {
       btn.addEventListener('click', () => {
-        if (i === 12) {
+        if (i === 10) {
+          const autreTexte = document.getElementById('inp-autre-geste').value.trim();
+          if (autreTexte) answers.geste_autre_precision = autreTexte;
+        }
+        if (i === 16) {
           answers.details = document.getElementById('inp-details').value.trim();
         }
         showStep(i + 1, false);
@@ -756,7 +896,7 @@
     }
   }
 
-  // PRÉVIEW ET GESTION DES PHOTOS OBLIGATOIRES (ÉTAPE 13)
+  // PRÉVIEW ET GESTION DES PHOTOS OBLIGATOIRES (DERNIÈRE ÉTAPE)
   function preview(input, pthId, pzId) {
     const file = input.files[0];
     if (!file) return;
@@ -766,13 +906,13 @@
     const img = pth.querySelector('img');
 
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
       img.src = e.target.result;
       pth.classList.add('loaded');
       pz.classList.add('done');
 
       const key = pthId.replace('pth-', '');
-      filesData[key] = e.target.result; // Base64 stocké temporairement
+      filesData[key] = e.target.result;
 
       checkPhotosValidation();
     };
@@ -781,7 +921,6 @@
 
   function checkPhotosValidation() {
     const submitBtn = document.getElementById('btn-submit');
-    // Validation stricte : toutes les photos doivent être présentes
     if (filesData.glob && filesData.zoom && filesData.cuir) {
       submitBtn.disabled = false;
     } else {
@@ -797,7 +936,7 @@
     showStep(1);
   });
   document.getElementById('btn-close').addEventListener('click', () => {
-    if(confirm("Es-tu sûr(e) de vouloir quitter l'initiation ? Tes réponses ne seront pas enregistrées.")) {
+    if (confirm("Es-tu sûr(e) de vouloir quitter l'initiation ? Tes réponses ne seront pas enregistrées.")) {
       modal.classList.remove('open');
     }
   });
@@ -821,11 +960,35 @@
   document.getElementById('mm-close').addEventListener('click', () => mMember.classList.remove('open'));
   document.getElementById('mm-bg').addEventListener('click', () => mMember.classList.remove('open'));
 
+  // CONSTRUCTION DU MESSAGE COMPLET POUR L'IA SEANAMON
+  function buildSeanamonPayload() {
+    const ar = v => Array.isArray(v) ? v.join(', ') : (v || 'N/A');
+    let gestesTxt = ar(answers.gestes_actuels);
+    if (answers.geste_autre_precision) {
+      gestesTxt += ' (précision Autre : ' + answers.geste_autre_precision + ')';
+    }
+    return 'Prénom : ' + (document.getElementById('inp-prenom').value || 'N/A') +
+      '\nType de cheveux : ' + (answers.type_cheveux || 'N/A') +
+      '\nTexture au toucher : ' + (answers.texture_toucher || 'N/A') +
+      '\nÉpaisseur des brins : ' + (answers.epaisseur || 'N/A') +
+      '\nPorosité : ' + (answers.porosite || 'N/A') +
+      '\nCuir chevelu : ' + (answers.cuir_chevelu || 'N/A') +
+      '\n\n━━━ PROBLÉMATIQUES ━━━\n' + ar(answers.problemes) +
+      '\n\n━━━ ROUTINE ACTUELLE ━━━\n' + ar(answers.routine) +
+      '\nFréquence de lavage : ' + (answers.frequence_lavage || 'N/A') +
+      '\n\n━━━ GESTES / SOINS SPÉCIFIQUES ACTUELS ━━━\n' + gestesTxt +
+      '\nFréquence des soins : ' + (answers.frequence_soins || 'N/A') +
+      '\n\n━━━ AGRESSIONS (12 derniers mois) ━━━\n' + ar(answers.agressions) +
+      '\n\n━━━ TRAITEMENTS RÉCENTS (6 derniers mois) ━━━\n' + ar(answers.traitements_recents) +
+      '\n\n━━━ ENVIRONNEMENT / MODE DE VIE ━━━\n' + (answers.environnement || 'N/A') +
+      '\n\n━━━ OBJECTIFS ━━━\n' + ar(answers.objectifs) +
+      '\n\n━━━ DÉTAILS LIBRES ━━━\n' + (answers.details || 'Rien');
+  }
+
   // SIMULATION DU SUBMIT FINAL ET INTEGRATION IA SEANAMON
   document.getElementById('btn-submit').addEventListener('click', () => {
     document.getElementById('qld').classList.add('active');
-    
-    // Cycle de messages d'ambiance de l'IA Trichologue
+
     setTimeout(() => {
       document.getElementById('ld-msg').innerText = "Analyse cutanée et porositométrique fine...";
       document.getElementById('ld-sub').innerText = "Lecture des besoins d'hydratation cellulaire...";
@@ -837,14 +1000,16 @@
     }, 4500);
 
     setTimeout(() => {
-      // Affichage de la révélation finale
       document.getElementById('qld').classList.remove('active');
       document.getElementById('qr').classList.add('active');
-      
+
+      const fullMsg = buildSeanamonPayload();
+      // fullMsg est prêt à être envoyé à l'API /api/diagnose avec les 3 photos (filesData.glob, .zoom, .cuir)
+
       const content = document.getElementById('res-content');
       content.innerHTML = `
         <div class="rr">
-          <strong>Bonjour ${answers.details ? document.getElementById('inp-prenom').value : 'Chère Couronne'},</strong>\n\nVoici les premières conclusions de Seanamon pour tes cheveux de type <strong>${answers.type_cheveux}</strong> (${answers.epaisseur}).\n\nTon profil montre une porosité <strong>${answers.porosite}</strong> combinée à des problématiques de <em>${Array.isArray(answers.problemes) ? answers.problemes.join(', ') : answers.problemes}</em>.
+          <strong>Bonjour ${document.getElementById('inp-prenom').value || 'Chère Couronne'},</strong>\n\nVoici les premières conclusions de Seanamon pour tes cheveux de type <strong>${answers.type_cheveux}</strong> (${answers.texture_toucher}, épaisseur ${answers.epaisseur}).\n\nTon profil montre une porosité <strong>${answers.porosite}</strong> combinée à des problématiques de <em>${Array.isArray(answers.problemes) ? answers.problemes.join(', ') : answers.problemes}</em>.
         </div>
         <div class="snb">
           <div class="snh"><div class="snn">1</div><div class="snt">Le Diagnostic Botanique Sacré</div></div>
@@ -869,6 +1034,20 @@
       document.getElementById('email-ok').classList.add('show');
     }, 1500);
   }
+
+  // MUSIQUE D'AMBIANCE
+  var audioEl = null, mOn = false;
+  document.getElementById('music-btn').addEventListener('click', function () {
+    var btn = document.getElementById('music-btn');
+    if (!mOn) {
+      if (!audioEl) { audioEl = new Audio('https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/Sunlight_Through_Tall_Grass.mp3'); audioEl.loop = true; audioEl.volume = 0.4; }
+      audioEl.play().catch(function (e) { console.log('Audio:', e); });
+      mOn = true; btn.textContent = '🔊';
+    } else {
+      if (audioEl) { audioEl.pause(); audioEl.currentTime = 0; }
+      mOn = false; btn.textContent = '🎵';
+    }
+  });
 </script>
 
 </body>
