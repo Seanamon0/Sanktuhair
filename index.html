@@ -104,7 +104,7 @@
     .modal.open{opacity:1;pointer-events:all}
     .qp{position:absolute;top:0;left:0;right:0;height:3px;background:rgba(201,169,110,.12);z-index:10}
     .qpf{height:100%;background:linear-gradient(to right,var(--or),var(--orl));transition:width .5s cubic-bezier(.4,0,.2,1);width:0%}
-    .qh{display:flex;align-items:center;justify-content:space-between;padding:1.3rem 1.5rem 0;flex-shrink:0}
+    .qh{display:flex;align-items:center;justify-content:space-between;padding:1.3rem 1.5rem 0;flex-shrink:0;position:relative;z-index:20}
     .ql{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--or);letter-spacing:.12em}
     .qx{width:34px;height:34px;border-radius:50%;background:transparent;border:1px solid var(--bo);color:var(--txm);font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr)}
     .qx:hover{border-color:var(--ord);color:var(--or)}
@@ -446,7 +446,7 @@
     <div class="step" id="s6">
       <h2 class="qq">Comment se comporte ton cuir chevelu ? 💧</h2>
       <div class="ch">
-        <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Sec / Desquamations 🍂 (Démangeaisons, pellicules sèches)</button>
+        <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Sec / Desquamations 🌻 (Démangeaisons, pellicules sèches)</button>
         <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Gras rapidement 💦 (Lourd en racines dès le lendemain)</button>
         <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Sensible / Douloureux 🌺 (Rougeurs, tiraillements)</button> 
         <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Tout va bien 🌱 (Pas de gêne particulière)</button>
@@ -948,6 +948,28 @@
     }
   }
 
+  // REDIMENSIONNEMENT + COMPRESSION CÔTÉ NAVIGATEUR (corrige FUNCTION_PAYLOAD_TOO_LARGE sur Vercel,
+  // limite fixe de 4.5 Mo pour le corps de la requête — les photos de téléphone brutes la dépassent vite)
+  function resizeImage(img, maxDim, quality) {
+    let width = img.naturalWidth || img.width;
+    let height = img.naturalHeight || img.height;
+
+    if (width > height && width > maxDim) {
+      height = Math.round(height * (maxDim / width));
+      width = maxDim;
+    } else if (height >= width && height > maxDim) {
+      width = Math.round(width * (maxDim / height));
+      height = maxDim;
+    }
+
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, width, height);
+    return canvas.toDataURL('image/jpeg', quality);
+  }
+
   // PRÉVIEW ET GESTION DES PHOTOS OBLIGATOIRES (DERNIÈRE ÉTAPE)
   function preview(input, pthId, pzId) {
     const file = input.files[0];
@@ -959,14 +981,32 @@
 
     const reader = new FileReader();
     reader.onload = function (e) {
-      img.src = e.target.result;
-      pth.classList.add('loaded');
-      pz.classList.add('done');
+      const tempImg = new Image();
+      tempImg.onload = function () {
+        const compressed = resizeImage(tempImg, 1280, 0.75);
 
-      const key = pthId.replace('pth-', '');
-      filesData[key] = e.target.result;
+        img.src = compressed;
+        pth.classList.add('loaded');
+        pz.classList.add('done');
 
-      checkPhotosValidation();
+        const key = pthId.replace('pth-', '');
+        filesData[key] = compressed;
+
+        checkPhotosValidation();
+      };
+      tempImg.onerror = function () {
+        // Sécurité : si le redimensionnement échoue (format non supporté par le canvas),
+        // on retombe sur l'image brute plutôt que de bloquer l'utilisateur.
+        img.src = e.target.result;
+        pth.classList.add('loaded');
+        pz.classList.add('done');
+
+        const key = pthId.replace('pth-', '');
+        filesData[key] = e.target.result;
+
+        checkPhotosValidation();
+      };
+      tempImg.src = e.target.result;
     };
     reader.readAsDataURL(file);
   }
