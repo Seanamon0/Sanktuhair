@@ -184,6 +184,7 @@
     .rhr{display:flex;align-items:center;gap:1rem;margin:1.5rem 0}
     .rhl{flex:1;height:1px;background:var(--bo)}
     .rhg{color:var(--or);font-size:.7rem}
+    .r-disclaimer{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.85rem;color:var(--txm);text-align:center;line-height:1.6;max-width:460px;margin:0 auto 1.8rem}
     .snb{background:var(--bdc);border:1px solid var(--bo);border-radius:var(--rc);overflow:hidden;margin-bottom:.75rem}
     .snh{display:flex;align-items:center;gap:1rem;padding:1rem 1.3rem;border-bottom:1px solid var(--bo);background:rgba(201,169,110,.04)}
     .snn{width:28px;height:28px;border:1.5px solid var(--ord);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:.9rem;color:var(--or);flex-shrink:0}
@@ -446,7 +447,7 @@
     <div class="step" id="s6">
       <h2 class="qq">Comment se comporte ton cuir chevelu ? 💧</h2>
       <div class="ch">
-        <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Sec / Desquamations 🌻 (Démangeaisons, pellicules sèches)</button>
+        <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Sec / Desquamations 🍂 (Démangeaisons, pellicules sèches)</button>
         <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Gras rapidement 💦 (Lourd en racines dès le lendemain)</button>
         <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Sensible / Douloureux 🌺 (Rougeurs, tiraillements)</button> 
         <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Tout va bien 🌱 (Pas de gêne particulière)</button>
@@ -602,19 +603,19 @@
     <div class="step" id="s15">
       <h2 class="qq">Quels sont tes objectifs ? 🌷</h2>
       <p class="qhi">(Sélectionne tout ce qui s'applique)</p>
-      <div class="ch" id="objectifs-ch">
+      <div class="ch ch-grid" id="objectifs-ch">
         <button class="cb" onclick="pick(this,'objectifs',true)">Maximiser la pousse 🌱</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Stopper la casse 🌸</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Définir mes cheveux 🌿</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Retrouver de l'épaisseur / volume 🌴</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Apaiser mon cuir chevelu 💕</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Simplifier ma routine au maximum ✨</button>
+        <button class="cb full" onclick="pick(this,'objectifs',true)">Retrouver de l'épaisseur / volume 🌴</button>
+        <button class="cb full" onclick="pick(this,'objectifs',true)">Simplifier ma routine au maximum ✨</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Gagner en longueur 🌷</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Retrouver de la brillance / éclat ☀️</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Renforcer la fibre capillaire 🍃</button>
+        <button class="cb full" onclick="pick(this,'objectifs',true)">Retrouver de la brillance / éclat ☀️</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Réduire les frisottis 🌀</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Faciliter le démêlage 🪮</button>
-        <button class="cb" id="cb-autre-objectif" onclick="toggleAutreObjectif(this)">Autre 📝</button>
+        <button class="cb full" id="cb-autre-objectif" onclick="toggleAutreObjectif(this)">Autre 📝</button>
       </div>
       <div class="other-wrap" id="autre-objectif-wrap">
         <input class="qi" id="inp-autre-objectif" type="text" placeholder="Dis-nous ton objectif... 🌸">
@@ -690,6 +691,7 @@
         <p class="rb">Ordonnance Ancestrale & Scientifique</p>
       </div>
       <div class="rhr"><div class="rhl"></div><span class="rhg">✦</span><div class="rhl"></div></div>
+      <p class="r-disclaimer">✨ Seanamon observe avec rigueur, mais reste une intelligence artificielle — elle peut se tromper, notamment sur des sous-types proches comme 3C et 4A. Considère cette révélation comme une base solide, pas un verdict figé.</p>
       <div id="res-content" style="display:flex;flex-direction:column;gap:1.2rem"></div>
 
       <div class="ebl" id="email-box">
