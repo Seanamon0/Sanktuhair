@@ -130,6 +130,12 @@
     .cb:hover{border-color:var(--ord);color:var(--orl)}
     .cb.sel{border-color:var(--or);background:rgba(201,169,110,.12);color:var(--orl)}
 
+    /* GRILLE 2 COLONNES POUR LES LISTES D'OPTIONS LONGUES (corrige le chevauchement avec la barre Retour/Suivant) */
+    .ch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.65rem}
+    .ch-grid .cb{width:100%;text-align:center}
+    .ch-grid .cb.full{grid-column:1 / -1}
+    @media(max-width:480px){.ch-grid{grid-template-columns:1fr}}
+
     /* champ texte libre "Autre" sous les choices chips */
     .other-wrap{width:100%;max-width:460px;margin:0 auto 1.5rem;display:none}
     .other-wrap.show{display:block}
@@ -333,11 +339,11 @@
 </div>
 
 <section class="cs" id="parcours">
-  <div class="cb2">15</div>
+  <div class="cb2">17</div>
   <div class="ci reveal">
     <p class="lbl">Le Parcours Initiatique</p>
     <h2 class="ct">Prêt·e à reprendre<br>possession de ta <span style="color:var(--or)">Couronne</span> ?</h2>
-    <p class="csu">15 étapes. Une révélation.</p>
+    <p class="csu">17 étapes. Une révélation.</p>
     <p style="font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--or);opacity:.6;">Clique sur le bouton en haut à droite pour commencer</p>
   </div>
 </section>
@@ -376,6 +382,22 @@
     </div>
 
     <div class="step" id="s2">
+      <h2 class="qq">Quel âge as-tu ? 🎂</h2>
+      <div class="ch">
+        <button class="cb" onclick="pick(this,'age',false)">18-25 ans 🌱</button>
+        <button class="cb" onclick="pick(this,'age',false)">26-32 ans ✨</button>
+        <button class="cb" onclick="pick(this,'age',false)">33-39 ans 🌸</button>
+        <button class="cb" onclick="pick(this,'age',false)">40-46 ans 🌺</button>
+        <button class="cb" onclick="pick(this,'age',false)">47-53 ans 👑</button>
+        <button class="cb" onclick="pick(this,'age',false)">54 ans et + ⭐️</button>
+      </div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next2" disabled>Suivant</button>
+      </div>
+    </div>
+
+    <div class="step" id="s3">
       <h2 class="qq">Quelle est ton type de cheveux ? 💇🏾‍♂️</h2>
       <div class="ch">
         <button class="cb" onclick="pick(this,'type_cheveux',false)">Lisses 🌸 (Type 1)</button>
@@ -389,11 +411,11 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next2" disabled>Suivant</button>
+        <button class="qn" id="next3" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step short-content" id="s3">
+    <div class="step short-content" id="s4">
       <h2 class="qq">Comment sont tes cheveux ? 🌸</h2>
       <p class="qhi">Au toucher, en une mèche dans la main</p>
       <div class="ch">
@@ -403,11 +425,11 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next3" disabled>Suivant</button>
+        <button class="qn" id="next4" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step short-content" id="s4">
+    <div class="step short-content" id="s5">
       <h2 class="qq">Et la porosité, on en est où ? 💧</h2>
       <div class="ch">
         <button class="cb" onclick="pick(this,'porosite',false)">Faible 🍃 (L'eau glisse, long à sécher)</button>
@@ -417,11 +439,11 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next4" disabled>Suivant</button>
+        <button class="qn" id="next5" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step" id="s5">
+    <div class="step" id="s6">
       <h2 class="qq">Comment se comporte ton cuir chevelu ? 💧</h2>
       <div class="ch">
         <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Sec / Desquamations 🍂 (Démangeaisons, pellicules sèches)</button>
@@ -431,11 +453,11 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next5" disabled>Suivant</button>
+        <button class="qn" id="next6" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step" id="s6">
+    <div class="step" id="s7">
       <h2 class="qq">As-tu des problématiques ciblées ? 🌷</h2>
       <p class="qhi">(Sélectionne tout ce qui s'applique)</p>
       <div class="ch">
@@ -449,30 +471,30 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next6" disabled>Suivant</button>
-      </div>
-    </div>
-
-    <div class="step" id="s7">
-      <h2 class="qq">Quelle est ta routine actuelle ? 🛁</h2>
-      <p class="qhi">(Sélectionne tout ce qui fait partie de tes habitudes)</p>
-      <div class="ch">
-        <button class="cb" onclick="pick(this,'routine',true)">Shampoing classique du commerce 🌻</button>
-        <button class="cb" onclick="pick(this,'routine',true)">Shampoing sans sulfates / clean 🌱</button>
-        <button class="cb" onclick="pick(this,'routine',true)">Après-shampoing (Conditioner) 💕</button>
-        <button class="cb" onclick="pick(this,'routine',true)">Masque profond (Hydratant / Protéiné) 🌺</button>
-        <button class="cb" onclick="pick(this,'routine',true)">Bains d'huiles / Soins avant-shampoing 🍃</button>
-        <button class="cb" onclick="pick(this,'routine',true)">Crème sans rinçage (Leave-in) / Beurre 🥑</button>
-        <button class="cb" onclick="pick(this,'routine',true)">Huile pour sceller l'hydratation 💦</button>
-        <button class="cb" onclick="pick(this,'routine',true)">Aucune routine, je fais au feeling ✨</button>
-      </div>
-      <div class="qnw">
-        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
         <button class="qn" id="next7" disabled>Suivant</button>
       </div>
     </div>
 
     <div class="step" id="s8">
+      <h2 class="qq">Quelle est ta routine actuelle ? 🛁</h2>
+      <p class="qhi">(Sélectionne tout ce qui fait partie de tes habitudes)</p>
+      <div class="ch ch-grid">
+        <button class="cb" onclick="pick(this,'routine',true)">Shampoing classique du commerce 🌻</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Shampoing sans sulfates / clean 🌱</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Après-shampoing (Conditioner) 💕</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Huile pour sceller l'hydratation 💦</button>
+        <button class="cb full" onclick="pick(this,'routine',true)">Masque profond (Hydratant / Protéiné) 🌺</button>
+        <button class="cb full" onclick="pick(this,'routine',true)">Bains d'huiles / Soins avant-shampoing 🍃</button>
+        <button class="cb full" onclick="pick(this,'routine',true)">Crème sans rinçage (Leave-in) / Beurre 🥑</button>
+        <button class="cb full" onclick="pick(this,'routine',true)">Aucune routine, je fais au feeling ✨</button>
+      </div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next8" disabled>Suivant</button>
+      </div>
+    </div>
+
+    <div class="step" id="s9">
       <h2 class="qq">À quelle fréquence laves-tu tes cheveux ? 👑</h2>
       <div class="ch">
         <button class="cb" onclick="pick(this,'frequence_lavage',false)">Plusieurs fois par semaine 🌱</button>
@@ -482,11 +504,11 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next8" disabled>Suivant</button>
+        <button class="qn" id="next9" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step" id="s9">
+    <div class="step" id="s10">
       <h2 class="qq">Fais-tu des soins spécifiques actuellement ? 🌿</h2>
       <p class="qhi">(Sélectionne tout ce qui s'applique)</p>
       <div class="ch" id="gestes-ch">
@@ -505,11 +527,11 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next9" disabled>Suivant</button>
+        <button class="qn" id="next10" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step short-content" id="s10">
+    <div class="step short-content" id="s11">
       <h2 class="qq">À quelle fréquence fais-tu ces soins ? 🌷</h2>
       <div class="ch">
         <button class="cb" onclick="pick(this,'frequence_soins',false)">1 fois par semaine 🌸</button>
@@ -519,12 +541,12 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next10" disabled>Suivant</button>
+        <button class="qn" id="next11" disabled>Suivant</button>
       </div>
     </div>
 
     <!-- Étape fusionnée : agressions + traitements récents -->
-    <div class="step" id="s11">
+    <div class="step" id="s12">
       <h2 class="qq">Tes cheveux ont connu l'un de ces moments récemment ? 🌸</h2>
       <p class="qhi">(Sélectionne tout ce qui s'applique sur les 12 derniers mois)</p>
       <div class="ch">
@@ -539,11 +561,27 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next11" disabled>Suivant</button>
+        <button class="qn" id="next12" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step" id="s12">
+    <div class="step" id="s13">
+      <h2 class="qq">C'était il y a combien de temps ? 🌸</h2>
+      <div class="ch">
+        <button class="cb" onclick="pick(this,'depuis_combien_de_temps',false)">1 semaine 🌱</button>
+        <button class="cb" onclick="pick(this,'depuis_combien_de_temps',false)">1 mois ☀️</button>
+        <button class="cb" onclick="pick(this,'depuis_combien_de_temps',false)">3 mois 💕</button>
+        <button class="cb" onclick="pick(this,'depuis_combien_de_temps',false)">6 mois 🌷</button>
+        <button class="cb" onclick="pick(this,'depuis_combien_de_temps',false)">1 an 🌸</button>
+        <button class="cb" onclick="pick(this,'depuis_combien_de_temps',false)">Plus d'un an 🍃</button>
+      </div>
+      <div class="qnw">
+        <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
+        <button class="qn" id="next13" disabled>Suivant</button>
+      </div>
+    </div>
+
+    <div class="step" id="s14">
       <h2 class="qq">Ton environnement et mode de vie ? 🌴</h2>
       <p class="qhi">(Sélectionne tout ce qui s'applique)</p>
       <div class="ch">
@@ -557,11 +595,11 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next12" disabled>Suivant</button>
+        <button class="qn" id="next14" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step" id="s13">
+    <div class="step" id="s15">
       <h2 class="qq">Quels sont tes objectifs ? 🌷</h2>
       <p class="qhi">(Sélectionne tout ce qui s'applique)</p>
       <div class="ch" id="objectifs-ch">
@@ -571,7 +609,7 @@
         <button class="cb" onclick="pick(this,'objectifs',true)">Retrouver de l'épaisseur / volume 🌴</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Apaiser mon cuir chevelu 💕</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Simplifier ma routine au maximum ✨</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Gagner en rétention de longueur 🌷</button>
+        <button class="cb" onclick="pick(this,'objectifs',true)">Gagner en longueur 🌷</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Retrouver de la brillance / éclat ☀️</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Renforcer la fibre capillaire 🍃</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Réduire les frisottis 🌀</button>
@@ -583,20 +621,20 @@
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next13" disabled>Suivant</button>
+        <button class="qn" id="next15" disabled>Suivant</button>
       </div>
     </div>
 
-    <div class="step short-content" id="s14">
+    <div class="step short-content" id="s16">
       <h2 class="qq">Des détails à ajouter à Seanamon ? 💗</h2>
       <textarea class="qi" id="inp-details" placeholder="Allergies, antécédents médicaux, accouchement récent, transition capillaire, produits préférés... Dis-nous tout ici pour affiner la prescription."></textarea>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
-        <button class="qn" id="next14">Suivant</button>
+        <button class="qn" id="next16">Suivant</button>
       </div>
     </div>
 
-    <div class="step" id="s15">
+    <div class="step" id="s17">
       <h2 class="qq">La preuve par l'image 📸</h2>
       <p class="pno" style="color:var(--or); font-weight: 500; margin-bottom: .6rem;">Pas de photo, pas de diagnostic. C'est la règle du sanctuaire pour une analyse scientifique exacte. 👑</p>
       <p class="pno" style="color:#e57373; font-weight: 500; margin-bottom: 1.2rem;">⚠️ Ne prends pas ton visage en photo, Seanamon ne pourra pas lire tes photos.</p>
@@ -700,7 +738,7 @@
 <script>
   // CONFIGURATION ET VARIABLES GLOBALES
   let currentStep = 1;
-  const totalSteps = 15;
+  const totalSteps = 17;
   let answers = { problemes: [], routine: [], objectifs: [], gestes_actuels: [], traitements_recents: [], environnement: [] };
   let filesData = { glob: null, zoom: null, cuir: null };
 
@@ -810,31 +848,35 @@
     if (currentStep === 1) {
       nextBtn.disabled = document.getElementById('inp-prenom').value.trim().length < 2;
     } else if (currentStep === 2) {
-      nextBtn.disabled = !answers.type_cheveux;
+      nextBtn.disabled = !answers.age;
     } else if (currentStep === 3) {
-      nextBtn.disabled = !answers.texture_toucher;
+      nextBtn.disabled = !answers.type_cheveux;
     } else if (currentStep === 4) {
-      nextBtn.disabled = !answers.porosite;
+      nextBtn.disabled = !answers.texture_toucher;
     } else if (currentStep === 5) {
-      nextBtn.disabled = !answers.cuir_chevelu;
+      nextBtn.disabled = !answers.porosite;
     } else if (currentStep === 6) {
-      nextBtn.disabled = answers.problemes.length === 0;
+      nextBtn.disabled = !answers.cuir_chevelu;
     } else if (currentStep === 7) {
-      nextBtn.disabled = answers.routine.length === 0;
+      nextBtn.disabled = answers.problemes.length === 0;
     } else if (currentStep === 8) {
-      nextBtn.disabled = !answers.frequence_lavage;
+      nextBtn.disabled = answers.routine.length === 0;
     } else if (currentStep === 9) {
+      nextBtn.disabled = !answers.frequence_lavage;
+    } else if (currentStep === 10) {
       const autreSel = document.getElementById('cb-autre-geste').classList.contains('sel');
       const autreTexte = document.getElementById('inp-autre-geste').value.trim();
       const valid = answers.gestes_actuels.length > 0 && (!autreSel || autreTexte.length > 0);
       nextBtn.disabled = !valid;
-    } else if (currentStep === 10) {
-      nextBtn.disabled = !answers.frequence_soins;
     } else if (currentStep === 11) {
-      nextBtn.disabled = answers.traitements_recents.length === 0;
+      nextBtn.disabled = !answers.frequence_soins;
     } else if (currentStep === 12) {
-      nextBtn.disabled = !answers.environnement || answers.environnement.length === 0;
+      nextBtn.disabled = answers.traitements_recents.length === 0;
     } else if (currentStep === 13) {
+      nextBtn.disabled = !answers.depuis_combien_de_temps;
+    } else if (currentStep === 14) {
+      nextBtn.disabled = !answers.environnement || answers.environnement.length === 0;
+    } else if (currentStep === 15) {
       const autreSel = document.getElementById('cb-autre-objectif').classList.contains('sel');
       const autreTexte = document.getElementById('inp-autre-objectif').value.trim();
       const valid = answers.objectifs.length > 0 && (!autreSel || autreTexte.length > 0);
@@ -886,19 +928,19 @@
   }
 
   // ÉCOUTEURS DES BOUTONS SUIVANT ET DÉCLENCHEURS DE STEPS
-  for (let i = 1; i <= 14; i++) {
+  for (let i = 1; i <= 16; i++) {
     const btn = document.getElementById(`next${i}`);
     if (btn) {
       btn.addEventListener('click', () => {
-        if (i === 9) {
+        if (i === 10) {
           const autreTexte = document.getElementById('inp-autre-geste').value.trim();
           if (autreTexte) answers.geste_autre_precision = autreTexte;
         }
-        if (i === 13) {
+        if (i === 15) {
           const autreTexte = document.getElementById('inp-autre-objectif').value.trim();
           if (autreTexte) answers.objectif_autre_precision = autreTexte;
         }
-        if (i === 14) {
+        if (i === 16) {
           answers.details = document.getElementById('inp-details').value.trim();
         }
         showStep(i + 1, false);
@@ -982,6 +1024,7 @@
       objectifsTxt += ' (précision Autre : ' + answers.objectif_autre_precision + ')';
     }
     return 'Prénom : ' + (document.getElementById('inp-prenom').value || 'N/A') +
+      '\nÂge : ' + (answers.age || 'N/A') +
       '\nType de cheveux : ' + (answers.type_cheveux || 'N/A') +
       '\nTexture au toucher : ' + (answers.texture_toucher || 'N/A') +
       '\nPorosité : ' + (answers.porosite || 'N/A') +
@@ -992,6 +1035,7 @@
       '\n\n━━━ GESTES / SOINS SPÉCIFIQUES ACTUELS ━━━\n' + gestesTxt +
       '\nFréquence des soins : ' + (answers.frequence_soins || 'N/A') +
       '\n\n━━━ TRAITEMENTS / MOMENTS RÉCENTS (12 derniers mois) ━━━\n' + ar(answers.traitements_recents) +
+      '\nC\'était il y a : ' + (answers.depuis_combien_de_temps || 'N/A') +
       '\n\n━━━ ENVIRONNEMENT / MODE DE VIE ━━━\n' + ar(answers.environnement) +
       '\n\n━━━ OBJECTIFS ━━━\n' + objectifsTxt +
       '\n\n━━━ DÉTAILS LIBRES ━━━\n' + (answers.details || 'Rien');
@@ -999,9 +1043,9 @@
 
   // SUBMIT FINAL : APPEL RÉEL À L'IA SEANAMON VIA /api/diagnose
   document.getElementById('btn-submit').addEventListener('click', () => {
-    // CORRECTIF AFFICHAGE : on retire l'étape photos (s15) avant d'afficher le loader,
+    // CORRECTIF AFFICHAGE : on retire l'étape photos (s17) avant d'afficher le loader,
     // sinon elle reste visible en superposition derrière qld/qr.
-    document.getElementById('s15').classList.remove('active');
+    document.getElementById('s17').classList.remove('active');
     document.getElementById('qld').classList.add('active');
 
     let li = 0;
