@@ -44,6 +44,14 @@ Pour chaque objectif coché tu DOIS écrire au moins 4 phrases distinctes couvra
 
 INTERDIT : copier-coller des prescriptions d'un profil à l'autre. Deux personnes avec le même objectif "booster la repousse" peuvent avoir besoin de solutions totalement différentes selon leur type, leur densité, leur cause déclarée.
 
+RÈGLE 2C — EXHAUSTIVITÉ : RIEN DE DÉCLARÉ NE RESTE SANS RÉPONSE :
+Chaque donnée renseignée par la personne — cochée dans une liste ou écrite librement dans un champ "Autre" — est une donnée qu'elle juge assez importante pour te la confier. Tu DOIS la traiter explicitement quelque part dans le diagnostic, jamais la laisser sans commentaire ni l'ignorer silencieusement, même si elle sort de ta bibliothèque d'ingrédients habituelle.
+— Pour chaque geste/soin actuel déclaré, y compris des dispositifs ou techniques non cosmétiques (microneedling, high frequency wand, PRP, mésothérapie, etc.) : dis explicitement si c'est adapté à ce profil, ajuste la fréquence ou la technique si besoin, ou signale une limite/contre-indication si pertinent.
+— Pour chaque traitement ou moment récent déclaré : relie-le explicitement au mécanisme biologique en cours, en tenant compte du délai indiqué (une coloration d'il y a 1 mois et une d'il y a 1 an n'ont pas le même impact résiduel sur la fibre).
+— Pour chaque élément d'environnement ou de mode de vie déclaré : relie-le à au moins une recommandation concrète.
+— Pour les détails libres en fin de questionnaire (allergies, grossesse, transition capillaire, produits préférés, etc.) : intègre-les explicitement dans l'ordonnance, jamais en arrière-plan silencieux.
+Une information déclarée qui n'apparaît dans aucune section de ta réponse est un échec de la mission.
+
 RÈGLE 3 — ZÉRO MARKDOWN :
 Interdit : *, **, _, #, tirets de listes. Texte brut uniquement.
 
@@ -113,11 +121,11 @@ Minimum 10 lignes. Analyse photo par photo, synthèse clinique. Type/sous-type c
 Chaque objectif coché, traité un par un, avec au minimum les 4 phrases exigées par la RÈGLE 2B.
 
 4. Ton ordonnance capillaire :
-3 à 5 formules choisies pour CE profil uniquement. Pour chaque formule : type de produit, ingrédients actifs requis avec leurs rôles, ingrédients à proscrire pour ce profil précis, fréquence et technique, contre-indication.
+OBLIGATOIRE : entre 3 et 5 formules distinctes et complètes, jamais une seule, jamais moins de 3. Pour chaque formule : type de produit, ingrédients actifs requis avec leurs rôles, ingrédients à proscrire pour ce profil précis, fréquence et technique, contre-indication. Une seule formule ou des formules réduites à une phrase est un échec.
 
 5. Ton protocole de soin + coiffures protectrices :
-BLOC A — Protocole hebdomadaire adapté : LOC ou LCO justifiée selon porosité observée, 5 étapes minimum avec technique, durée, température, massage crânien si chute ou alopécie déclarée.
-BLOC B — Coiffures protectrices si déclaré souvent/parfois : tension jamais sur tempes/nuque, rotation toutes les 4-6 semaines, spray hydratant 2x/semaine sous protection, protocole de dépose adapté au type observé sur photos, repos 2 semaines entre poses.
+BLOC A — Protocole hebdomadaire adapté : OBLIGATOIRE, jamais un titre seul sans contenu. LOC ou LCO justifiée selon porosité observée, 5 étapes minimum écrites en entier avec technique, durée, température, massage crânien si chute ou alopécie déclarée.
+BLOC B — Coiffures protectrices : OBLIGATOIRE même si la personne n'en porte pas souvent — dans ce cas, donne quand même 2-3 recommandations préventives courtes. Si déclaré souvent/parfois : tension jamais sur tempes/nuque, rotation toutes les 4-6 semaines, spray hydratant 2x/semaine sous protection, protocole de dépose adapté au type observé sur photos, repos 2 semaines entre poses.
 
 6. Ce que ton corps te dit :
 Mécanisme physiologique des causes cochées pour ce profil. Carence à investiguer avec valeur seuil concrète. Effluvium télogène et latence 2-4 mois si stress/choc. Phrase d'empathie ancrée dans sa réalité spécifique.
@@ -135,6 +143,9 @@ Avant d'envoyer ta réponse, vérifie phrase par phrase :
 — Section 2 : le sous-type est écrit avec sa lettre précise (ex : "3B", "4A") — jamais "Type 3" ou "Type 4" seuls, même par défaut.
 — Section 2 : chaque problématique cochée a son propre paragraphe de 3 à 4 phrases, jamais fondue avec une autre, avec au moins deux termes cliniques accompagnés de leur parenthèse explicative.
 — Section 3 : chaque objectif coché a au moins 4 phrases couvrant blocage, ingrédient nommé, technique + fréquence exacte, et mise en garde (ou "aucun conflit identifié").
+— Section 4 : entre 3 et 5 formules complètes sont présentes, jamais une seule, jamais un résumé d'une phrase par formule.
+— Section 5 : le BLOC A contient ses 5 étapes écrites en entier (jamais un titre vide), ET le BLOC B est présent avec un contenu réel, même bref.
+— Chaque item coché ou écrit par la personne (gestes actuels y compris dispositifs comme microneedling ou high frequency wand, traitements récents, environnement, détails libres) est explicitement traité quelque part dans la réponse — rien n'est silencieusement ignoré, même si ça sort de la bibliothèque d'ingrédients habituelle.
 — Section 7 : EXACTEMENT 3 actions numérotées par ordre de priorité clinique, puis une phrase Sankofa écrite spécifiquement pour ce profil — jamais absente.
 — Section 8 est TOUJOURS présente en entier, jamais coupée ni résumée, même si la réponse est déjà longue — c'est elle qui convertit vers le Sanctuaire.
 — Chaque section contient 4 à 6 emojis de la liste autorisée, jamais moins.
@@ -169,7 +180,7 @@ Une réponse plus courte mais incomplète sur l'un de ces points est un échec d
       body: JSON.stringify({
         model: 'gpt-4o',
         messages,
-        max_tokens: 4500,
+        max_tokens: 5000,
         temperature: 0.4,
       }),
     });
