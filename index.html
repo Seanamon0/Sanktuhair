@@ -111,7 +111,8 @@
     .qst{flex:1;position:relative;overflow:hidden}
 
     /* STEPS ANIMATIONS (SUPPORT REVERSE) */
-    .step{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.5rem 5rem;max-width:540px;margin:0 auto;width:100%;opacity:0;transform:translateX(55px);transition:opacity .38s cubic-bezier(.4,0,.2,1),transform .38s cubic-bezier(.4,0,.2,1);pointer-events:none;overflow-y:auto;scrollbar-width:none}
+    .step{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:3rem 1.5rem 5rem;max-width:540px;margin:0 auto;width:100%;opacity:0;transform:translateX(55px);transition:opacity .38s cubic-bezier(.4,0,.2,1),transform .38s cubic-bezier(.4,0,.2,1);pointer-events:none;overflow-y:auto;scrollbar-width:none;z-index:1}
+    .step.short-content{justify-content:center}
     .step::-webkit-scrollbar{display:none}
     .step.active{opacity:1;transform:translateX(0);pointer-events:all}
     .step.exit{opacity:0;transform:translateX(-55px)}
@@ -366,7 +367,7 @@
   <div class="qh"><div class="ql">♛ Sankhtuhair</div><button class="qx" id="btn-close">✕</button></div>
   <div class="qst" id="qst">
 
-    <div class="step active" id="s1">
+    <div class="step active short-content" id="s1">
       <h2 class="qq">Comment tu t'appelles ? 👋</h2>
       <input class="qi" id="inp-prenom" type="text" placeholder="Ton prénom..." maxlength="60" autocomplete="given-name">
       <div class="qnw">
@@ -392,7 +393,7 @@
       </div>
     </div>
 
-    <div class="step" id="s3">
+    <div class="step short-content" id="s3">
       <h2 class="qq">Comment sont tes cheveux ? 🌸</h2>
       <p class="qhi">Au toucher, en une mèche dans la main</p>
       <div class="ch">
@@ -406,7 +407,7 @@
       </div>
     </div>
 
-    <div class="step" id="s4">
+    <div class="step short-content" id="s4">
       <h2 class="qq">Et la porosité, on en est où ? 💧</h2>
       <div class="ch">
         <button class="cb" onclick="pick(this,'porosite',false)">Faible 🍃 (L'eau glisse, long à sécher)</button>
@@ -421,12 +422,12 @@
     </div>
 
     <div class="step" id="s5">
-      <h2 class="qq">Comment se comporte ton cuir chevelu ? 🌊</h2>
+      <h2 class="qq">Comment se comporte ton cuir chevelu ? 💧</h2>
       <div class="ch">
         <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Sec / Desquamations 🍂 (Démangeaisons, pellicules sèches)</button>
-        <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Gras rapidement 🌧️ (Lourd en racines dès le lendemain)</button>
-        <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Tout va bien 🌿 (Pas de gêne particulière)</button>
-        <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Sensible / Douloureux 🌹 (Rougeurs, tiraillements)</button>
+        <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Gras rapidement 💦 (Lourd en racines dès le lendemain)</button>
+        <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Tout va bien 🌱 (Pas de gêne particulière)</button>
+        <button class="cb" onclick="pick(this,'cuir_chevelu',false)">Sensible / Douloureux 🌺 (Rougeurs, tiraillements)</button>
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
@@ -439,12 +440,12 @@
       <p class="qhi">(Sélectionne tout ce qui s'applique)</p>
       <div class="ch">
         <button class="cb" onclick="pick(this,'problemes',true)">Chute de cheveux / Alopécie 🍂</button>
-        <button class="cb" onclick="pick(this,'problemes',true)">Casse intense / Pointes fourchues 🌾</button>
-        <button class="cb" onclick="pick(this,'problemes',true)">Pellicules / Démangeaisons ❄️</button>
-        <button class="cb" onclick="pick(this,'problemes',true)">Manque de volume 🪶</button>
-        <button class="cb" onclick="pick(this,'problemes',true)">Pousse lente 🐌</button>
-        <button class="cb" onclick="pick(this,'problemes',true)">Cheveux ternes / Sans éclat 🌙</button>
-        <button class="cb" onclick="pick(this,'problemes',true)">Ça va, tout va bien 🌼</button>
+        <button class="cb" onclick="pick(this,'problemes',true)">Casse intense / Pointes fourchues ✨</button>
+        <button class="cb" onclick="pick(this,'problemes',true)">Pellicules / Démangeaisons 💦</button>
+        <button class="cb" onclick="pick(this,'problemes',true)">Manque de volume 🌱</button>
+        <button class="cb" onclick="pick(this,'problemes',true)">Pousse lente 🌷</button>
+        <button class="cb" onclick="pick(this,'problemes',true)">Cheveux ternes / Sans éclat 🤍</button>
+        <button class="cb" onclick="pick(this,'problemes',true)">Ça va, tout va bien 🌸</button>
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
@@ -456,14 +457,14 @@
       <h2 class="qq">Quelle est ta routine actuelle ? 🛁</h2>
       <p class="qhi">(Sélectionne tout ce qui fait partie de tes habitudes)</p>
       <div class="ch">
-        <button class="cb" onclick="pick(this,'routine',true)">Shampoing classique du commerce 🧼</button>
-        <button class="cb" onclick="pick(this,'routine',true)">Shampoing sans sulfates / clean 🌿</button>
-        <button class="cb" onclick="pick(this,'routine',true)">Après-shampoing (Conditioner) 🧴</button>
-        <button class="cb" onclick="pick(this,'routine',true)">Masque profond (Hydratant / Protéiné) 🍯</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Shampoing classique du commerce 🤍</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Shampoing sans sulfates / clean 🌱</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Après-shampoing (Conditioner) 💕</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Masque profond (Hydratant / Protéiné) 🌺</button>
         <button class="cb" onclick="pick(this,'routine',true)">Bains d'huiles / Soins avant-shampoing 🥑</button>
-        <button class="cb" onclick="pick(this,'routine',true)">Crème sans rinçage (Leave-in) / Beurre 🍦</button>
-        <button class="cb" onclick="pick(this,'routine',true)">Huile pour sceller l'hydratation 💧✨</button>
-        <button class="cb" onclick="pick(this,'routine',true)">Aucune routine, je fais au feeling 🌪️</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Crème sans rinçage (Leave-in) / Beurre 🍃</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Huile pour sceller l'hydratation 💦</button>
+        <button class="cb" onclick="pick(this,'routine',true)">Aucune routine, je fais au feeling 🤍</button>
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
@@ -472,10 +473,10 @@
     </div>
 
     <div class="step" id="s8">
-      <h2 class="qq">À quelle fréquence laves-tu tes cheveux ? 📅</h2>
+      <h2 class="qq">À quelle fréquence laves-tu tes cheveux ? 🌸</h2>
       <div class="ch">
         <button class="cb" onclick="pick(this,'frequence_lavage',false)">Plusieurs fois par semaine 💕</button>
-        <button class="cb" onclick="pick(this,'frequence_lavage',false)">Une fois par semaine (Classique) 🌸</button>
+        <button class="cb" onclick="pick(this,'frequence_lavage',false)">Une fois par semaine 🌸</button>
         <button class="cb" onclick="pick(this,'frequence_lavage',false)">Toutes les 2 semaines 🌱</button>
         <button class="cb" onclick="pick(this,'frequence_lavage',false)">Une fois par mois ou moins ⭐</button>
       </div>
@@ -508,7 +509,7 @@
       </div>
     </div>
 
-    <div class="step" id="s10">
+    <div class="step short-content" id="s10">
       <h2 class="qq">À quelle fréquence fais-tu ces soins ? 🌷</h2>
       <div class="ch">
         <button class="cb" onclick="pick(this,'frequence_soins',false)">1 fois par semaine 🌸</button>
@@ -527,12 +528,12 @@
       <h2 class="qq">Tes cheveux ont connu l'un de ces moments récemment ? 🌸</h2>
       <p class="qhi">(Sélectionne tout ce qui s'applique sur les 12 derniers mois)</p>
       <div class="ch">
-        <button class="cb" onclick="pick(this,'traitements_recents',true)">Décolorations / Colorations chimiques 🎨</button>
-        <button class="cb" onclick="pick(this,'traitements_recents',true)">Défrisage / Assouplissement 🧪</button>
-        <button class="cb" onclick="pick(this,'traitements_recents',true)">Lissages fréquents (Plaques, brushing) 🔥</button>
-        <button class="cb" onclick="pick(this,'traitements_recents',true)">Permanente / Mise en forme chimique 🌀</button>
-        <button class="cb" onclick="pick(this,'traitements_recents',true)">Coiffures protectrices trop serrées 🎀</button>
-        <button class="cb" onclick="pick(this,'traitements_recents',true)">Extensions / Tissage 💁🏾‍♀️</button>
+        <button class="cb" onclick="pick(this,'traitements_recents',true)">Décolorations / Colorations chimiques 🌺</button>
+        <button class="cb" onclick="pick(this,'traitements_recents',true)">Défrisage / Assouplissement 💦</button>
+        <button class="cb" onclick="pick(this,'traitements_recents',true)">Lissages fréquents (Plaques, brushing) ☀️</button>
+        <button class="cb" onclick="pick(this,'traitements_recents',true)">Permanente / Mise en forme chimique ✨</button>
+        <button class="cb" onclick="pick(this,'traitements_recents',true)">Coiffures protectrices trop serrées 🫶🏽</button>
+        <button class="cb" onclick="pick(this,'traitements_recents',true)">Extensions / Tissage 👑</button>
         <button class="cb" onclick="pick(this,'traitements_recents',true)">Henné ou colorations végétales 🌿</button>
         <button class="cb" onclick="pick(this,'traitements_recents',true)">Aucun traitement, ils sont 100% naturels 🌱</button>
       </div>
@@ -543,16 +544,16 @@
     </div>
 
     <div class="step" id="s12">
-      <h2 class="qq">Ton environnement et mode de vie ? 🌍</h2>
+      <h2 class="qq">Ton environnement et mode de vie ? 🌴</h2>
       <p class="qhi">(Sélectionne tout ce qui s'applique)</p>
       <div class="ch">
-        <button class="cb" onclick="pickMulti(this,'environnement')">Grande ville très polluée 🌫️</button>
-        <button class="cb" onclick="pickMulti(this,'environnement')">Climat très sec ou très froid ❄️</button>
+        <button class="cb" onclick="pickMulti(this,'environnement')">Grande ville très polluée 🤍</button>
+        <button class="cb" onclick="pickMulti(this,'environnement')">Climat très sec ou très froid ⭐️</button>
         <button class="cb" onclick="pickMulti(this,'environnement')">Climat tropical (Humide & Chaud) ☀️</button>
         <button class="cb" onclick="pickMulti(this,'environnement')">Eau très calcaire chez moi 💧</button>
-        <button class="cb" onclick="pickMulti(this,'environnement')">Stress intense / Fatigue en ce moment 🌙</button>
+        <button class="cb" onclick="pickMulti(this,'environnement')">Stress intense / Fatigue en ce moment 🫶🏽</button>
         <button class="cb" onclick="pickMulti(this,'environnement')">Alimentation instable / Pas assez d'eau 🍂</button>
-        <button class="cb" onclick="pickMulti(this,'environnement')">Tout va bien, vie plutôt équilibrée 🌼</button>
+        <button class="cb" onclick="pickMulti(this,'environnement')">Tout va bien, vie plutôt équilibrée 🌸</button>
       </div>
       <div class="qnw">
         <button class="q-back" onclick="navigateBack()">↩️ Retour</button>
@@ -565,16 +566,15 @@
       <p class="qhi">(Sélectionne tout ce qui s'applique)</p>
       <div class="ch" id="objectifs-ch">
         <button class="cb" onclick="pick(this,'objectifs',true)">Maximiser la pousse 🌱</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Stopper net la casse 🌸</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Définir mes boucles / ondulations 🌿</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Retrouver de l'épaisseur / densité 🪴</button>
+        <button class="cb" onclick="pick(this,'objectifs',true)">Stopper la casse 🌸</button>
+        <button class="cb" onclick="pick(this,'objectifs',true)">Définir mes cheveux 🌿</button>
+        <button class="cb" onclick="pick(this,'objectifs',true)">Retrouver de l'épaisseur / volume 🌴</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Apaiser mon cuir chevelu 💕</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Simplifier ma routine au maximum ✨</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Gagner en rétention de longueur 🌷</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Booster le volume 🌻</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Retrouver de la brillance / éclat ☀️</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Renforcer la fibre capillaire 🍃</button>
-        <button class="cb" onclick="pick(this,'objectifs',true)">Réduire les frisottis 🌼</button>
+        <button class="cb" onclick="pick(this,'objectifs',true)">Réduire les frisottis 🤍</button>
         <button class="cb" onclick="pick(this,'objectifs',true)">Faciliter le démêlage 💧</button>
         <button class="cb" id="cb-autre-objectif" onclick="toggleAutreObjectif(this)">Autre 📝</button>
       </div>
@@ -587,7 +587,7 @@
       </div>
     </div>
 
-    <div class="step" id="s14">
+    <div class="step short-content" id="s14">
       <h2 class="qq">Des détails à ajouter à Seanamon ? 💗</h2>
       <textarea class="qi" id="inp-details" placeholder="Allergies, antécédents médicaux, accouchement récent, transition capillaire, produits préférés... Dis-nous tout ici pour affiner la prescription."></textarea>
       <div class="qnw">
@@ -997,43 +997,81 @@
       '\n\n━━━ DÉTAILS LIBRES ━━━\n' + (answers.details || 'Rien');
   }
 
-  // SIMULATION DU SUBMIT FINAL ET INTEGRATION IA SEANAMON
+  // SUBMIT FINAL : APPEL RÉEL À L'IA SEANAMON VIA /api/diagnose
   document.getElementById('btn-submit').addEventListener('click', () => {
+    // CORRECTIF AFFICHAGE : on retire l'étape photos (s15) avant d'afficher le loader,
+    // sinon elle reste visible en superposition derrière qld/qr.
+    document.getElementById('s15').classList.remove('active');
     document.getElementById('qld').classList.add('active');
 
-    setTimeout(() => {
-      document.getElementById('ld-msg').innerText = "Analyse cutanée et porositométrique fine...";
-      document.getElementById('ld-sub').innerText = "Lecture des besoins d'hydratation cellulaire...";
-    }, 2000);
+    let li = 0;
+    const loadingMessages = [
+      ["Seanamon étudie l'histoire de ta couronne...", "Analyse cuticulaire en cours..."],
+      ["Analyse cutanée et porositométrique fine...", "Lecture des besoins d'hydratation cellulaire..."],
+      ["Extraction des savoirs botaniques pan-africains...", "Sélection des actifs de biotechnologie sacrée..."],
+      ["L'ordonnance prend forme...", "Précision scientifique, âme d'un rituel..."]
+    ];
+    function updateLoadingMsg() {
+      document.getElementById('ld-msg').innerText = loadingMessages[li][0];
+      document.getElementById('ld-sub').innerText = loadingMessages[li][1];
+      li = (li + 1) % loadingMessages.length;
+    }
+    updateLoadingMsg();
+    const loadingInterval = setInterval(updateLoadingMsg, 3000);
 
-    setTimeout(() => {
-      document.getElementById('ld-msg').innerText = "Extraction des savoirs botaniques pan-africains...";
-      document.getElementById('ld-sub').innerText = "Sélection des actifs de biotechnologie sacrée...";
-    }, 4500);
+    const fullMsg = buildSeanamonPayload();
+    const content_blocks = [{ type: 'text', text: fullMsg }];
+    if (filesData.glob) content_blocks.push({ type: 'image_url', image_url: { url: filesData.glob } });
+    if (filesData.zoom) content_blocks.push({ type: 'image_url', image_url: { url: filesData.zoom } });
+    if (filesData.cuir) content_blocks.push({ type: 'image_url', image_url: { url: filesData.cuir } });
 
-    setTimeout(() => {
-      document.getElementById('qld').classList.remove('active');
-      document.getElementById('qr').classList.add('active');
-
-      const fullMsg = buildSeanamonPayload();
-      // fullMsg est prêt à être envoyé à l'API /api/diagnose avec les 3 photos (filesData.glob, .zoom, .cuir)
-
-      const content = document.getElementById('res-content');
-      content.innerHTML = `
-        <div class="rr">
-          <strong>Bonjour ${document.getElementById('inp-prenom').value || 'Chère Couronne'},</strong>\n\nVoici les premières conclusions de Seanamon pour tes cheveux de type <strong>${answers.type_cheveux}</strong> (${answers.texture_toucher}).\n\nTon profil montre une porosité <strong>${answers.porosite}</strong> combinée à des problématiques de <em>${Array.isArray(answers.problemes) ? answers.problemes.join(', ') : answers.problemes}</em>.
-        </div>
-        <div class="snb">
-          <div class="snh"><div class="snn">1</div><div class="snt">Le Diagnostic Botanique Sacré</div></div>
-          <div class="snc">Tes cheveux ont besoin d'un retour aux sources. Nous préconisons un apport ciblé en fonction de ton climat et de ton eau.</div>
-        </div>
-        <div class="snb">
-          <div class="snh"><div class="snn">2</div><div class="snt">L'Ordonnance Technologique</div></div>
-          <div class="snc">Évite les surcharges de produits issus du commerce classique. Ta routine actuelle doit être épurée au profit d'actifs biotechnologiques nobles.</div>
-        </div>
-      `;
-    }, 7000);
+    fetch('/api/diagnose', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        prenom: document.getElementById('inp-prenom').value || '',
+        content: content_blocks,
+        imgs: filesData
+      })
+    })
+      .then(r => {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(data => {
+        clearInterval(loadingInterval);
+        document.getElementById('qld').classList.remove('active');
+        document.getElementById('qr').classList.add('active');
+        showDiagnosticResult(data.result || '');
+      })
+      .catch(err => {
+        console.error('Erreur diagnostic Seanamon:', err);
+        clearInterval(loadingInterval);
+        document.getElementById('qld').classList.remove('active');
+        document.getElementById('qr').classList.add('active');
+        showDiagnosticResult("Seanamon est momentanément indisponible. Réessaie dans quelques instants. ✨");
+      });
   });
+
+  // AFFICHAGE DU RÉSULTAT : parsing simple en sections numérotées si présentes, sinon bloc unique
+  function showDiagnosticResult(rawText) {
+    const content = document.getElementById('res-content');
+    const re = /(?:^|\n)(\d+)\.\s+([^\n:]+)\s*:\s*\n([\s\S]*?)(?=\n\d+\.|$)/g;
+    let sections = [];
+    let m;
+    const t = '\n' + rawText;
+    while ((m = re.exec(t)) !== null) {
+      sections.push({ num: m[1], title: m[2].trim(), body: m[3].trim() });
+    }
+    const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    if (sections.length >= 2) {
+      content.innerHTML = sections.map(s =>
+        `<div class="snb"><div class="snh"><div class="snn">${s.num}</div><div class="snt">${esc(s.title)}</div></div><div class="snc">${esc(s.body)}</div></div>`
+      ).join('');
+    } else {
+      content.innerHTML = `<div class="rr">${esc(rawText)}</div>`;
+    }
+  }
 
   // LOGIQUE DE TRANSMISSION DES NEWSLETTERS / EMAILS
   function sendEmail(e) {
