@@ -129,8 +129,27 @@ Mécanisme physiologique des causes cochées pour ce profil. Carence à investig
 Adapte au profil exact — nomme son type, sa problématique principale, son objectif principal.
 Seanamon t'a révélé la vérité de ta couronne. Mais une révélation sans rituel s'éteint. 🌿 Ton agenda de soin personnalisé Sankhtuhair est le gardien de ce que tu viens d'apprendre — semaine après semaine, il veille sur ta couronne comme tes ancêtres veillaient sur les leurs. Tes rituels. Ton suivi. Ton chemin. Les 150 premières places du Sanctuaire t'attendent. Le Sankofa ne regarde pas en arrière pour contempler — il retourne chercher pour ne plus jamais perdre. 👑✨`;
 
-  try {
-    const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
+  // Phrases caractéristiques d'un refus de contenu OpenAI (renvoyé en 200 OK, pas en erreur HTTP)
+  function isRefusal(text) {
+    if (!text || text.trim().length < 50) return true;
+    const lower = text.toLowerCase();
+    const refusalPatterns = [
+      "i'm sorry, i can't assist",
+      "i cannot assist",
+      "i can't help with that",
+      "i'm unable to assist",
+      "désolé, je ne peux pas",
+      "je ne peux pas t'aider",
+      "je ne peux pas vous aider",
+      "je ne suis pas en mesure d'analyser",
+      "as an ai language model",
+      "i can't provide",
+    ];
+    return refusalPatterns.some(p => lower.includes(p));
+  }
+
+  async function callOpenAI(messages) {
+    const r = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -138,23 +157,49 @@ Seanamon t'a révélé la vérité de ta couronne. Mais une révélation sans ri
       },
       body: JSON.stringify({
         model: 'gpt-4o',
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: content }
-        ],
+        messages,
         max_tokens: 4000,
         temperature: 0.5,
       }),
     });
-
-    if (!openaiRes.ok) {
-      const errBody = await openaiRes.text();
-      console.error('OpenAI error:', errBody);
-      return res.status(502).json({ error: 'OpenAI error', detail: errBody });
+    if (!r.ok) {
+      const errBody = await r.text();
+      throw new Error('OpenAI HTTP error: ' + errBody);
     }
+    const data = await r.json();
+    return data.choices?.[0]?.message?.content || '';
+  }
 
-    const data = await openaiRes.json();
-    const result = data.choices?.[0]?.message?.content || '';
+  try {
+    let result = await callOpenAI([
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: content }
+    ]);
+
+    // Si OpenAI a refusé silencieusement (200 OK avec un message de refus), on retente
+    // une seule fois en analyse texte uniquement, sans les images, pour éviter un
+    // blocage lié au contenu visuel tout en donnant un résultat exploitable.
+    if (isRefusal(result)) {
+      console.warn('Refus détecté côté OpenAI, nouvelle tentative sans images.');
+      const textOnlyContent = Array.isArray(content)
+        ? content.filter(block => block.type === 'text')
+        : content;
+
+      try {
+        result = await callOpenAI([
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: textOnlyContent }
+        ]);
+      } catch (retryErr) {
+        console.error('Erreur lors du retry sans images:', retryErr.message);
+      }
+
+      if (isRefusal(result)) {
+        return res.status(200).json({
+          result: "Seanamon n'a pas pu lire tes photos cette fois-ci 🌸 Cela arrive parfois selon le cadrage ou la luminosité. Réessaie avec des photos bien éclairées, cadrées uniquement sur tes cheveux et ton cuir chevelu (jamais ton visage), et Seanamon pourra te révéler ton diagnostic complet. ✨"
+        });
+      }
+    }
 
     const SUPABASE_URL = process.env.SUPABASE_URL;
     const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY;
