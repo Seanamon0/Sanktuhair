@@ -204,6 +204,8 @@ Une réponse plus courte mais incomplète sur l'un de ces points est un échec d
       { role: 'user', content: content }
     ]);
 
+    let photosSkipped = false;
+
     // Si OpenAI a refusé silencieusement (200 OK avec un message de refus), on retente
     // une seule fois en analyse texte uniquement, sans les images, pour éviter un
     // blocage lié au contenu visuel tout en donnant un résultat exploitable.
@@ -218,6 +220,7 @@ Une réponse plus courte mais incomplète sur l'un de ces points est un échec d
           { role: 'system', content: systemPrompt },
           { role: 'user', content: textOnlyContent }
         ]);
+        photosSkipped = true;
       } catch (retryErr) {
         console.error('Erreur lors du retry sans images:', retryErr.message);
       }
@@ -255,7 +258,7 @@ Une réponse plus courte mais incomplète sur l'un de ces points est un échec d
       }
     }
 
-    return res.status(200).json({ result });
+    return res.status(200).json({ result, photosSkipped });
 
   } catch (err) {
     console.error('Catch error:', err.message);
