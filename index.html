@@ -185,6 +185,7 @@
     .rhl{flex:1;height:1px;background:var(--bo)}
     .rhg{color:var(--or);font-size:.7rem}
     .r-disclaimer{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.85rem;color:var(--txm);text-align:center;line-height:1.6;max-width:460px;margin:0 auto 1.8rem}
+    .r-warning{background:rgba(201,169,110,.08);border:1px solid var(--ord);border-radius:var(--rc);padding:1.2rem 1.4rem;font-size:.88rem;color:var(--txs);line-height:1.7;text-align:left}
     .snb{background:var(--bdc);border:1px solid var(--bo);border-radius:var(--rc);overflow:hidden;margin-bottom:.75rem}
     .snh{display:flex;align-items:center;gap:1rem;padding:1rem 1.3rem;border-bottom:1px solid var(--bo);background:rgba(201,169,110,.04)}
     .snn{width:28px;height:28px;border:1.5px solid var(--ord);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:.9rem;color:var(--or);flex-shrink:0}
@@ -1128,7 +1129,7 @@
         clearInterval(loadingInterval);
         document.getElementById('qld').classList.remove('active');
         document.getElementById('qr').classList.add('active');
-        showDiagnosticResult(data.result || '');
+        showDiagnosticResult(data.result || '', data.photosSkipped);
       })
       .catch(err => {
         console.error('Erreur diagnostic Seanamon:', err);
@@ -1140,7 +1141,7 @@
   });
 
   // AFFICHAGE DU RÉSULTAT : parsing simple en sections numérotées si présentes, sinon bloc unique
-  function showDiagnosticResult(rawText) {
+  function showDiagnosticResult(rawText, photosSkipped) {
     const content = document.getElementById('res-content');
     const re = /(?:^|\n)(\d+)\.\s+([^\n:]+)\s*:\s*\n([\s\S]*?)(?=\n\d+\.|$)/g;
     let sections = [];
@@ -1150,12 +1151,15 @@
       sections.push({ num: m[1], title: m[2].trim(), body: m[3].trim() });
     }
     const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const warningHtml = photosSkipped
+      ? `<div class="r-warning">📸 Tes photos n'ont pas pu être lues cette fois-ci (souvent une question de cadrage ou de luminosité) — ce diagnostic se base uniquement sur tes réponses au questionnaire. Pour une lecture complète incluant l'observation de ta fibre, relance une initiation avec des photos bien éclairées, cadrées uniquement sur tes cheveux et ton cuir chevelu.</div>`
+      : '';
     if (sections.length >= 2) {
-      content.innerHTML = sections.map(s =>
+      content.innerHTML = warningHtml + sections.map(s =>
         `<div class="snb"><div class="snh"><div class="snn">${s.num}</div><div class="snt">${esc(s.title)}</div></div><div class="snc">${esc(s.body)}</div></div>`
       ).join('');
     } else {
-      content.innerHTML = `<div class="rr">${esc(rawText)}</div>`;
+      content.innerHTML = warningHtml + `<div class="rr">${esc(rawText)}</div>`;
     }
   }
 
