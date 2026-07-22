@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sankhtuhair — Sanctuaire de ta Couronne</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -26,24 +26,37 @@
       width: 100%;
     }
     .logo {
-      font-size: 5rem;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
       margin-bottom: 2rem;
+      border: 2px solid #c9a96e;
+      box-shadow: 0 0 40px rgba(201, 169, 110, 0.2);
+    }
+    .emoji-maintenance {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
     }
     h1 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 3.5rem;
-      font-weight: 400;
-      color: #c9a96e;
-      margin-bottom: 1rem;
+      font-weight: 300;
+      color: #e8dcc8;
+      margin-bottom: 0.5rem;
       letter-spacing: 0.08em;
+    }
+    .hair {
+      color: #c9a96e;
+      font-style: italic;
     }
     .subtitle {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-style: italic;
-      color: #e8dcc8;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c9a96e;
       margin-bottom: 2rem;
-      font-weight: 300;
     }
     .divider {
       width: 80px;
@@ -142,7 +155,7 @@
     }
     @media (max-width: 600px) {
       h1 { font-size: 2.5rem; }
-      .logo { font-size: 3.5rem; }
+      .logo { width: 100px; height: 100px; }
       .email-form { flex-direction: column; }
       input[type="email"] { width: 100%; }
     }
@@ -150,13 +163,15 @@
 </head>
 <body>
   <div class="container">
-    <div class="logo">👑</div>
+    <img class="logo" src="https://raw.githubusercontent.com/Seanamon0/Sanktuhair/main/logo" alt="Sankhtuhair">
     
-    <h1>SANKHTUHAIR</h1>
+    <div class="emoji-maintenance">🛠️</div>
     
-    <div class="divider"></div>
+    <h1>SANKTU<span class="hair">hair</span></h1>
     
     <p class="subtitle">Sanctuaire Capillaire · Fondé par Élodie</p>
+    
+    <div class="divider"></div>
     
     <div class="message">
       <p>✨ Nous travaillons sur quelque chose de spécial pour toi.</p>
