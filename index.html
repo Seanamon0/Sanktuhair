@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sankhtuhair - Coming Back Soon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0F2922 0%, #1a3a35 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'DM Sans', sans-serif;
+            color: #e8dcc8;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #c9a96e;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #e8dcc8;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            opacity: 0.85;
+        }
+
+        .message p {
+            margin-bottom: 1rem;
+        }
+
+        .email-section {
+            margin-top: 3rem;
+        }
+
+        .email-section p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        input[type="email"] {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid #c9a96e;
+            background: rgba(232, 220, 200, 0.05);
+            color: #e8dcc8;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="email"]::placeholder {
+            color: #c9a96e;
+            opacity: 0.6;
+        }
+
+        input[type="email"]:focus {
+            outline: none;
+            background: rgba(232, 220, 200, 0.1);
+            box-shadow: 0 0 20px rgba(201, 169, 110, 0.3);
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            background: #c9a96e;
+            color: #0F2922;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background: #e8dcc8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(201, 169, 110, 0.4);
+        }
+
+        .divider {
+            width: 80px;
+            height: 2px;
+            background: #c9a96e;
+            margin: 2rem auto;
+            opacity: 0.5;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        .footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .coming-soon {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: #c9a96e;
+            margin: 2rem 0 1rem 0;
+            font-weight: 400;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .email-form {
+                flex-direction: column;
+            }
+
+            .logo {
+                font-size: 2.5rem;
+            }
+        }
+
+        .hidden-message {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            opacity: 0.4;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">👑</div>
+        
+        <h1>SANKHTUHAIR</h1>
+        
+        <div class="divider"></div>
+        
+        <p class="subtitle">AI-Powered Hair Care Diagnosis</p>
+        
+        <div class="coming-soon">Coming back in August 🌿</div>
+        
+        <div class="message">
+            <p>We're building something special for your hair journey.</p>
+            <p>Improving our platform to serve you better.</p>
+        </div>
+
+        <div class="email-section">
+            <p>Be the first to know when we launch</p>
+            <form class="email-form" onsubmit="handleEmail(event)">
+                <input 
+                    type="email" 
+                    placeholder="votre email"
+                    required
+                    id="emailInput"
+                >
+                <button type="submit">Notify me</button>
+            </form>
+            <p id="successMessage" style="margin-top: 1rem; color: #c9a96e; display: none;">✓ Merci! On revient bientôt</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="footer">
+            <p>Sankhtuhair © 2026</p>
+            <p>Building Black biotech for hair care 🌍</p>
+        </div>
+
+        <div class="hidden-message">
+            "Va chercher dans ton passé ce qui te rendra plus fort demain."
+        </div>
+    </div>
+
+    <script>
+        async function handleEmail(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('emailInput').value;
+            const button = event.target.querySelector('button');
+            const successMsg = document.getElementById('successMessage');
+            
+            // Store email (you can integrate with Resend/newsletter service)
+            console.log('Email collected:', email);
+            
+            // UX feedback
+            button.textContent = 'Envoyé ✓';
+            button.disabled = true;
+            successMsg.style.display = 'block';
+            document.getElementById('emailInput').disabled = true;
+            
+            // Reset after 3 seconds
+            setTimeout(() => {
+                button.textContent = 'Notify me';
+                button.disabled = false;
+                successMsg.style.display = 'none';
+                document.getElementById('emailInput').value = '';
+                document.getElementById('emailInput').disabled = false;
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
